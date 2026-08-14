@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="HealthPlus Pharmacy Privacy Policy — how we protect your personal and order data, SSL security, and your rights.">
+<title>Privacy Policy &amp; Terms — HealthPlus Pharmacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- PROMO BAR -->
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+<!-- NAV -->
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    </div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="order-online.html">Shop</a></li>
+    <li><a href="services.html">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- Auth: logged out -->
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+      <button class="nav-cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;"></span>
+      </button>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main>
+
+<!-- PAGE HERO -->
+<div class="page-hero dark-overlay hero-bg-about">
+  <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Privacy &amp; Terms</p>
+  <h1>Privacy Policy<br>&amp; Terms of Service</h1>
+  <p>How HealthPlus protects your personal data, secures your payments, and respects your rights.</p>
+</div>
+
+<!-- CONTENT -->
+<div class="privacy-wrap">
+
+  <span class="privacy-last-updated">Last updated: June 2026</span>
+
+  <!-- Quick navigation -->
+  <div style="background:var(--mint);border-radius:var(--radius-md);padding:22px 26px;margin-bottom:40px;">
+    <strong style="display:block;font-size:14px;color:var(--teal);margin-bottom:12px;">Jump to section:</strong>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <a href="#data-collection"  style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Data We Collect</a>
+      <a href="#how-we-use"       style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">How We Use It</a>
+      <a href="#ssl-security"     style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">SSL &amp; Security</a>
+      <a href="#payment-security" style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Payment Security</a>
+      <a href="#your-rights"      style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Your Rights</a>
+      <a href="#cookies"          style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Cookies</a>
+      <a href="#third-parties"    style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Third Parties</a>
+      <a href="#terms"            style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Terms of Service</a>
+      <a href="#contact-privacy"  style="font-size:13px;color:var(--teal);font-weight:600;text-decoration:underline;">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- ── INTRODUCTION ── -->
+  <p>
+    HealthPlus Pharmacy ("HealthPlus", "we", "us", "our") operates the HealthPlus website and
+    mobile-accessible platform at <strong>healthplusmedical.com</strong>. We are an online pharmacy
+    selling medicines and health products, with prescription verification and delivery services
+    primarily in Accra, Ghana, and to international customers worldwide.
+  </p>
+  <p>
+    This Privacy Policy explains what personal data we collect, how we use it, how we protect it,
+    and what rights you have over your information. By creating a HealthPlus account or placing
+    an order, you agree to the practices described here.
+  </p>
+
+  <!-- ── 1. DATA WE COLLECT ── -->
+  <h2 id="data-collection"><span class="privacy-section-icon">📋</span>1. Data We Collect</h2>
+  <p>We collect the following categories of personal information:</p>
+
+  <h2 style="font-size:17px;margin-top:22px;margin-bottom:10px;">1.1 Account &amp; Identity Information</h2>
+  <ul>
+    <li>Full name, date of birth, gender</li>
+    <li>Email address and phone number (including international dial code)</li>
+    <li>Country of residence</li>
+    <li>Ghana Card number (optional — for Ghanaian customer identity verification)</li>
+    <li>Customer ID (generated by HealthPlus on registration)</li>
+    <li>Password (stored as a one-way cryptographic hash — we never store your plain-text password)</li>
+  </ul>
+
+  <h2 style="font-size:17px;margin-top:22px;margin-bottom:10px;">1.2 Prescription &amp; Order Information</h2>
+  <ul>
+    <li>Prescription images or PDFs you upload for prescription-only medicines</li>
+    <li>Verification notes from our licensed pharmacists (shared only with you)</li>
+    <li>Order history, items purchased, and delivery details</li>
+  </ul>
+  <div class="callout" style="margin:16px 0 24px;">
+    <strong>Special category data</strong>
+    <p>Prescription information can reveal details about your health and is treated as "special category" or "sensitive" personal data under data protection law. We process it only to verify and fulfil your order, and only with your consent.</p>
+  </div>
+
+  <h2 style="font-size:17px;margin-top:22px;margin-bottom:10px;">1.3 Transaction &amp; Payment Information</h2>
+  <ul>
+    <li>Order details, amounts, and payment method chosen</li>
+    <li>Mobile Money network and account name (not your PIN — we never receive or store your PIN)</li>
+    <li>Card payment is processed via PCI-DSS compliant third-party processors (Stripe, PayPal, Square). HealthPlus never stores your card number, CVV, or expiry date on our servers.</li>
+    <li>Transaction reference numbers for reconciliation</li>
+  </ul>
+
+  <h2 style="font-size:17px;margin-top:22px;margin-bottom:10px;">1.4 Technical &amp; Usage Information</h2>
+  <ul>
+    <li>IP address and approximate geolocation (country/city level)</li>
+    <li>Browser type, operating system, and device type</li>
+    <li>Pages visited, features used, and session duration (via our own analytics — no third-party ad trackers)</li>
+    <li>Error logs for debugging (anonymised within 30 days)</li>
+  </ul>
+
+  <!-- ── 2. HOW WE USE IT ── -->
+  <h2 id="how-we-use"><span class="privacy-section-icon">🎯</span>2. How We Use Your Information</h2>
+  <p>We use your personal information for the following purposes:</p>
+  <ul>
+    <li><strong>Fulfilling orders</strong> — processing your cart, verifying prescriptions, and dispatching deliveries</li>
+    <li><strong>Customer identification</strong> — matching you to your account, orders and prescription records</li>
+    <li><strong>Payment processing</strong> — charging for orders and issuing refunds</li>
+    <li><strong>Order communication</strong> — sending email confirmations, delivery updates, and order status notifications</li>
+    <li><strong>Security</strong> — detecting fraud, preventing unauthorised access, and investigating suspicious activity</li>
+    <li><strong>Legal compliance</strong> — meeting our obligations under Ghanaian data protection law and applicable international regulations</li>
+    <li><strong>Service improvement</strong> — aggregated, anonymised usage analytics to improve the platform</li>
+  </ul>
+  <p>We do <strong>not</strong> sell your personal information to any third party. We do not use your prescription or health-related data for advertising purposes.</p>
+
+  <!-- ── 3. SSL AND SECURITY ── -->
+  <h2 id="ssl-security"><span class="privacy-section-icon">🔒</span>3. SSL Encryption &amp; Technical Security</h2>
+  <p>
+    All data transmitted between your browser or device and the HealthPlus platform is encrypted using
+    <strong>TLS 1.3 (Transport Layer Security)</strong>, the same standard used by banks. You will see
+    a padlock icon in your browser's address bar confirming the connection is secure.
+  </p>
+  <ul>
+    <li><strong>256-bit AES encryption</strong> for data at rest in our databases</li>
+    <li><strong>HTTPS enforced</strong> on every page — HTTP connections are automatically redirected</li>
+    <li><strong>HSTS (HTTP Strict Transport Security)</strong> headers prevent protocol downgrade attacks</li>
+    <li><strong>Content Security Policy (CSP)</strong> headers prevent cross-site scripting (XSS) injection</li>
+    <li><strong>X-Frame-Options: SAMEORIGIN</strong> prevents clickjacking attacks</li>
+    <li><strong>Regular security audits</strong> — our codebase is reviewed quarterly by an independent security team</li>
+    <li><strong>Penetration testing</strong> — annual external penetration tests on all production systems</li>
+    <li><strong>Access controls</strong> — staff access to customer and prescription data is role-based, logged, and audited</li>
+  </ul>
+
+  <div class="trust-badges" style="margin:20px 0 30px;">
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/></svg>
+      256-bit SSL / TLS 1.3
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      PCI-DSS Payment Processing
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+      Quarterly Security Audits
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+      GDPR-Aligned Data Practices
+    </div>
+  </div>
+
+  <!-- ── 4. PAYMENT SECURITY ── -->
+  <h2 id="payment-security"><span class="privacy-section-icon">💳</span>4. Payment Security</h2>
+  <p>HealthPlus accepts multiple payment methods, each with specific security measures:</p>
+
+  <h2 style="font-size:17px;margin-top:20px;margin-bottom:10px;">Mobile Money (MTN MoMo, Telecel Cash, AirtelTigo)</h2>
+  <p>
+    Mobile Money payments use a network-initiated USSD prompt sent directly to your phone.
+    HealthPlus receives only a payment confirmation reference — we never receive or store
+    your MoMo PIN. Your PIN is between you and your mobile network only.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:20px;margin-bottom:10px;">Card Payments (Stripe)</h2>
+  <p>
+    Card payments are processed directly by <strong>Stripe</strong>, a PCI-DSS Level 1 certified
+    payment processor — the highest level of payment security certification. Your card number,
+    CVV, and expiry date are transmitted directly to Stripe's servers and are never seen by or
+    stored on HealthPlus infrastructure. HealthPlus receives only a tokenised reference and
+    transaction status.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:20px;margin-bottom:10px;">PayPal</h2>
+  <p>
+    PayPal payments are processed entirely within PayPal's secure environment. HealthPlus
+    does not handle any PayPal account credentials or payment details.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:20px;margin-bottom:10px;">Transaction Fees</h2>
+  <p>The following processing fees may be applied to transactions:</p>
+  <ul>
+    <li><strong>Mobile Money:</strong> 1.5% network processing fee (applied by the mobile network)</li>
+    <li><strong>Stripe (card):</strong> 2.9% + USD 0.30 per transaction (industry standard)</li>
+    <li><strong>PayPal:</strong> 3.49% + fixed fee depending on currency</li>
+    <li><strong>Square:</strong> 2.6% + USD 0.10 per transaction</li>
+    <li>Transaction fees are displayed clearly at checkout before payment is confirmed. HealthPlus does not add markup to processor fees.</li>
+  </ul>
+
+  <!-- ── 5. YOUR RIGHTS ── -->
+  <h2 id="your-rights"><span class="privacy-section-icon">⚖️</span>5. Your Data Rights</h2>
+  <p>You have the following rights regarding your personal data held by HealthPlus:</p>
+  <ul>
+    <li><strong>Right of access</strong> — request a copy of all personal data we hold about you</li>
+    <li><strong>Right to rectification</strong> — correct inaccurate or incomplete information</li>
+    <li><strong>Right to erasure</strong> — request deletion of your account and associated data (subject to legal retention obligations for medical records)</li>
+    <li><strong>Right to restrict processing</strong> — ask us to limit how we use your data while a dispute is resolved</li>
+    <li><strong>Right to data portability</strong> — receive your health data in a machine-readable format</li>
+    <li><strong>Right to withdraw consent</strong> — where processing is based on consent (e.g. marketing emails), withdraw at any time without affecting prior processing</li>
+    <li><strong>Right to object</strong> — object to processing for legitimate interests</li>
+  </ul>
+  <p>To exercise any of these rights, email <a href="mailto:privacy@healthplusmedical.com" style="color:var(--teal);font-weight:700;">privacy@healthplusmedical.com</a>. We will respond within 30 days.</p>
+
+  <!-- ── 6. COOKIES ── -->
+  <h2 id="cookies"><span class="privacy-section-icon">🍪</span>6. Cookies &amp; Local Storage</h2>
+  <p>HealthPlus uses the following types of storage in your browser:</p>
+  <ul>
+    <li><strong>Session storage</strong> — stores your cart, session ID, and security event log for the duration of your browser session. Cleared automatically when you close the tab.</li>
+    <li><strong>Strictly necessary cookies</strong> — required for the site to function (e.g. session authentication). Cannot be disabled.</li>
+    <li><strong>Analytics cookies</strong> — our own first-party analytics (no Google Analytics, no Facebook Pixel). Collects anonymised page-view data to improve the service. You may opt out by contacting us.</li>
+  </ul>
+  <p>We do <strong>not</strong> use advertising cookies, remarketing pixels, or cross-site tracking cookies of any kind.</p>
+
+  <!-- ── 7. THIRD PARTIES ── -->
+  <h2 id="third-parties"><span class="privacy-section-icon">🤝</span>7. Third-Party Services</h2>
+  <p>HealthPlus uses the following trusted third-party services to operate the platform:</p>
+  <ul>
+    <li><strong>Stripe</strong> — card payment processing (PCI-DSS Level 1)</li>
+    <li><strong>PayPal</strong> — alternative payment processing</li>
+    <li><strong>Square</strong> — alternative payment processing</li>
+    <li><strong>OpenStreetMap / Leaflet</strong> — map tiles for live order delivery tracking. No personal data is sent to OpenStreetMap.</li>
+    <li><strong>Google Fonts</strong> — loads Fraunces and Inter typefaces. Google may log your IP as part of font delivery. See Google's Privacy Policy for details.</li>
+  </ul>
+  <p>All third-party processors are bound by Data Processing Agreements (DPAs) requiring them to process your data only on our behalf and in accordance with this policy.</p>
+
+  <!-- ── 8. DATA RETENTION ── -->
+  <h2><span class="privacy-section-icon">🗂️</span>8. Data Retention</h2>
+  <ul>
+    <li><strong>Account data</strong> — retained for the duration of your account, plus 2 years after closure</li>
+    <li><strong>Prescription &amp; order records</strong> — retained for 6 years as required by Ghana FDA and Pharmacy Council recordkeeping rules</li>
+    <li><strong>Payment records</strong> — retained for 7 years for tax and audit purposes</li>
+    <li><strong>Security logs</strong> — retained for 90 days then anonymised</li>
+    <li><strong>Analytics data</strong> — aggregated after 12 months, never tied to a named individual</li>
+  </ul>
+
+  <!-- ── 9. INTERNATIONAL CUSTOMERS ── -->
+  <h2><span class="privacy-section-icon">🌍</span>9. International Customers</h2>
+  <p>
+    HealthPlus serves customers from all countries. If you are located outside Ghana, your personal
+    data may be transferred to and processed in Ghana, where our servers are located. We ensure
+    appropriate safeguards are in place for such transfers, including standard contractual clauses
+    where required by the laws of your country.
+  </p>
+  <p>
+    For customers in the European Economic Area (EEA), the United Kingdom, or other jurisdictions
+    with strong data protection frameworks, we process your data in a manner compatible with
+    GDPR principles, including lawfulness, fairness, transparency, purpose limitation,
+    data minimisation, accuracy, storage limitation, and integrity and confidentiality.
+  </p>
+
+  <!-- ── 10. CHILDREN ── -->
+  <h2><span class="privacy-section-icon">👶</span>10. Children's Privacy</h2>
+  <p>
+    HealthPlus services are not directed to children under 13, and accounts may only be created
+    by individuals aged 18 or over. We do not knowingly collect personal information from
+    children under 13 without verifiable parental consent. If we discover we have
+    inadvertently collected data from a child under 13 without consent, we will delete it promptly.
+  </p>
+
+  <!-- ── 11. CHANGES ── -->
+  <h2><span class="privacy-section-icon">📝</span>11. Changes to This Policy</h2>
+  <p>
+    We may update this Privacy Policy from time to time. Material changes will be communicated
+    to registered users by email at least 14 days before taking effect. The "Last updated" date
+    at the top of this page reflects the most recent revision. Continued use of HealthPlus
+    after the effective date constitutes acceptance of the updated policy.
+  </p>
+
+  <!-- ── TERMS OF SERVICE ── -->
+  <h2 id="terms" style="font-size:clamp(22px,2.4vw,30px);margin-top:60px;padding-top:40px;border-top:2px solid var(--mint-mid);">
+    <span class="privacy-section-icon">📜</span>Terms of Service
+  </h2>
+  <p>The following Terms of Service govern your use of HealthPlus Pharmacy.</p>
+
+  <h2 style="font-size:17px;margin-top:24px;">Medical Disclaimer</h2>
+  <p>
+    HealthPlus is an online pharmacy selling medicines and health products. Product descriptions
+    and health articles on this platform are informational only and do not constitute medical
+    advice, diagnosis, or treatment. Always read the product label and follow the guidance of a
+    licensed doctor or pharmacist. In a medical emergency, call 999 immediately.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:24px;">Use of the Platform</h2>
+  <ul>
+    <li>You must be at least 18 years old to create an account. Minors must be registered by a parent or legal guardian.</li>
+    <li>You agree to provide accurate information. Providing false personal or payment information is prohibited and may result in account termination.</li>
+    <li>You may not use HealthPlus for any unlawful purpose or in violation of these Terms.</li>
+    <li>HealthPlus reserves the right to suspend or terminate accounts that violate these Terms or that our security systems identify as fraudulent.</li>
+  </ul>
+
+  <h2 style="font-size:17px;margin-top:24px;">Prescription Medicines</h2>
+  <p>
+    Prescription medicines are dispensed only on receipt of a valid prescription from a licensed
+    medical practitioner, verified by one of our registered pharmacists. Attempting to obtain
+    prescription medicines without a valid prescription is illegal and will result in immediate
+    order cancellation and account review.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:24px;">Cancellations &amp; Refunds</h2>
+  <ul>
+    <li><strong>Order cancellation:</strong> Orders may be cancelled before dispatch. Once a rider has been assigned and collected the order, cancellation is not possible.</li>
+    <li><strong>Rejected prescriptions:</strong> If our pharmacist cannot verify a prescription, that item is removed from your order and refunded in full.</li>
+    <li><strong>Refund processing:</strong> Approved refunds are returned to the original payment method within 3–5 business days for card payments, and typically within 24 hours for Mobile Money.</li>
+  </ul>
+
+  <h2 style="font-size:17px;margin-top:24px;">Intellectual Property</h2>
+  <p>
+    All content on the HealthPlus platform — including brand identity, copy, imagery, and software —
+    is the intellectual property of HealthPlus Pharmacy. You may not reproduce, distribute,
+    or create derivative works without our written permission.
+  </p>
+
+  <h2 style="font-size:17px;margin-top:24px;">Limitation of Liability</h2>
+  <p>
+    To the maximum extent permitted by applicable law, HealthPlus shall not be liable for any
+    indirect, incidental, special, consequential, or punitive damages arising from your use of
+    the platform. Our total liability for any claim arising from these Terms shall not exceed
+    the amount you paid us for the relevant service in the 30 days preceding the claim.
+  </p>
+
+  <!-- ── CONTACT ── -->
+  <h2 id="contact-privacy"><span class="privacy-section-icon">✉️</span>12. Contact — Privacy &amp; Legal</h2>
+  <p>For privacy requests, data subject rights, or legal enquiries:</p>
+  <div style="background:var(--mint);border-radius:var(--radius-md);padding:24px 28px;margin-top:16px;">
+    <strong style="display:block;margin-bottom:6px;color:var(--teal);">HealthPlus Pharmacy — Data Protection Office</strong>
+    <p style="margin:0;font-size:14.5px;line-height:1.8;">
+      37 Trinity Road, Near FabriCad<br>
+      East Legon, Accra, Ghana · GA-229-1995<br>
+      Email: <a href="mailto:privacy@healthplusmedical.com" style="color:var(--teal);font-weight:700;">privacy@healthplusmedical.com</a><br>
+      Phone: <a href="tel:+233539314527" style="color:var(--teal);font-weight:700;">+233 539 314 527</a>
+    </p>
+  </div>
+
+</div><!-- /privacy-wrap -->
+
+<!-- FOOTER -->
+</main>
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+
+
+<div class="toast" id="toast"></div>
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+<div class="float-btn-stack" id="float-btn-stack">
+  <!-- WhatsApp support -->
+  <a href="https://wa.me/233203122589" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp support">
+    <div class="wa-icon"><img src="assets/whatsapp.png" alt="WhatsApp" width="17" height="17"></div>
+    <span>Support</span>
+  </a>
+  <!-- AI Health Assistant -->
+  <button type="button" class="ai-fab-btn" id="ai-fab-btn" aria-label="AI Health Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <span>AI Health</span>
+  </button>
+
+</div>
+
+<div class="ai-chat-panel-popup" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">💬</div>
+    <div class="ai-chat-info"><strong>HealthPlus AI Assistant</strong><span>Symptom guidance &amp; OTC suggestions</span></div>
+    <button class="ai-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="ai-chat-input" placeholder="Describe how you're feeling..." autocomplete="off">
+    <button class="ai-send-btn" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/ai-assistant.js" defer></script>
+<script src="js/wire.js" defer></script>
+</body>
+</html>

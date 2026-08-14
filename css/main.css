@@ -1,0 +1,3677 @@
+/* ============================================================
+   HEALTHPLUS MEDICAL SERVICE — MASTER STYLESHEET
+   File: css/main.css
+   Purpose: Contains ALL visual styles for the entire website.
+            No CSS should appear inside any HTML <style> tag
+            or as inline style="" attributes. Everything lives here.
+
+   TABLE OF CONTENTS
+   -----------------
+   01. CSS Custom Properties (Design Tokens / Variables)
+   02. CSS Reset & Base Styles
+   03. Typography — Headings, Body, Links
+   04. Utility Classes (Section Labels, Reveals)
+   05. Navigation Bar
+   06. Buttons (Primary, Outline, Emergency, Light, Ghost)
+   07. Page Hero (full-width header for inner pages)
+   08. Vitals Ticker Strip
+   09. Homepage Hero Section
+   10. Department / Service Cards Grid
+   11. Consultation — Mode Selector Cards
+   12. Consultation — Doctor Cards
+   13. Consultation — Booking Summary Sidebar
+   14. Emergency Section
+   15. How It Works Steps
+   16. Why Us / Trust Cards
+   17. Hospital Finder — Layout, List, Leaflet Map
+   18. Live Order Tracking Card
+   19. Home Call-In Section
+   20. Promo / Banner Strip
+   21. Payment Methods Grid
+   22. Order Page — Medicine Cards (Search Results + Freq.)
+   23. Cart Summary Box
+   24. Blog — Index Grid, Cards, Filter Chips
+   25. Blog — Article Pages (full article layout)
+   26. Newsletter Band
+   27. About Us — Intro, Values, Mission/Vision, Stats
+   28. Services Page — Photo Cards
+   29. Payment Modal
+   30. Rider Chat Window
+   31. Urgency Pills
+   32. Forms (generic inputs, labels, rows)
+   33. Toast Notification
+   34. Floating Action Buttons (WhatsApp + SOS)
+   35. Footer
+   36. Animations & Keyframes
+   37. Responsive Breakpoints (tablets & mobile)
+   ============================================================ */
+
+
+/* ============================================================
+   01. CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   These variables drive the entire colour palette and spacing.
+   Change a value here and it updates everywhere.
+   ============================================================ */
+:root {
+  /* — Primary brand colours — */
+  --teal:        #0B3D3A;   /* Main brand — nav, headings, primary buttons */
+  --teal-deep:   #072826;   /* Darker teal for footer, dark sections         */
+  --teal-soft:   #134A46;   /* Hover state for teal elements                 */
+
+  /* — Background tones — */
+  --mint:        #E8F3EE;   /* Light section backgrounds, card fill          */
+  --mint-mid:    #D3E8DF;   /* Dividers, borders on light backgrounds        */
+  --paper:       #FAF8F4;   /* Main page background — warm off-white         */
+
+  /* — Accent: Emergency / Urgent — */
+  --coral:       #E85C4A;   /* Emergency CTAs, urgent badges ONLY            */
+  --coral-deep:  #C8442F;   /* Hover state for coral                         */
+  --coral-soft:  #FCE7E3;   /* Coral tint for tags and backgrounds           */
+
+  /* — Secondary accents — */
+  --sage:        #6B8F87;   /* Muted body text on light backgrounds          */
+  --gold:        #C9A35C;   /* Premium/pharmacy accent, footer links hover   */
+
+  /* — Neutrals — */
+  --ink:         #10201D;   /* Primary body text colour                      */
+  --white:       #FFFFFF;
+  --grey-mid:    #E2E0D8;   /* Neutral borders                               */
+
+  /* — Shadows — */
+  --shadow-soft: 0 12px 32px rgba(11,61,58,0.10);
+  --shadow-card: 0 4px 16px rgba(11,61,58,0.07);
+
+  /* — Typography scale — */
+  --font-display: "Fraunces", Georgia, serif;   /* Headings, numbers        */
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --text-xs:   11px;
+  --text-sm:   12.5px;
+  --text-base: 14px;
+  --text-md:   15.5px;
+  --text-lg:   18px;
+  --text-xl:   22px;
+
+  /* — Spacing — */
+  --section-pad:   100px 60px;
+  --section-pad-m: 60px 20px;
+  --radius-sm:  10px;
+  --radius-md:  16px;
+  --radius-lg:  20px;
+  --radius-xl:  24px;
+  --radius-pill:100px;
+
+  /* — Transitions — */
+  --ease: 0.25s ease;
+  --ease-slow: 0.5s ease;
+}
+
+
+/* ============================================================
+   02. CSS RESET & BASE STYLES
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smooth scrolling for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Disable all animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *   { animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 8% 12%, rgba(11,61,58,0.05), transparent 40%),
+    radial-gradient(circle at 95% 8%, rgba(200,163,92,0.07), transparent 38%),
+    radial-gradient(circle at 90% 92%, rgba(232,92,74,0.045), transparent 42%),
+    radial-gradient(circle at 5% 90%, rgba(11,61,58,0.04), transparent 38%);
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+img   { max-width: 100%; display: block; }
+a     { text-decoration: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+ul    { list-style: none; }
+button { font-family: var(--font-body); cursor: pointer; border: none; }
+
+/* Keyboard focus ring — visible for accessibility */
+:focus-visible {
+  outline: 2.5px solid var(--coral);
+  outline-offset: 3px;
+}
+
+
+/* ============================================================
+   03. TYPOGRAPHY
+   ============================================================ */
+
+/* All display headings use Fraunces serif */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--teal);
+  line-height: 1.1;
+}
+
+/* Article body text — slightly larger for readability */
+.article-wrap p,
+.article-wrap li {
+  font-size: var(--text-md);
+  line-height: 1.85;
+  color: #2C3E35;
+}
+
+
+/* ============================================================
+   04. UTILITY CLASSES
+   ============================================================ */
+
+/* — Section eyebrow label (e.g. "Our Services") — */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+/* Red line before label */
+.section-label::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--coral);
+}
+.section-label span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+/* Centred variant */
+.section-label.centered { justify-content: center; }
+
+/* Dark-background variant (white line + gold text) */
+.section-label.on-dark span  { color: var(--gold); }
+.section-label.on-dark::before { background: var(--gold); }
+
+/* — Scroll reveal animation — */
+/* Elements start hidden; JS adds .in-view when they enter the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--ease-slow), transform var(--ease-slow);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* — Generic section wrapper — */
+.section {
+  padding: var(--section-pad);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.section-header h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+/* "View all →" link */
+.view-all-link {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1.5px solid var(--teal);
+  padding-bottom: 3px;
+  transition: gap var(--ease), color var(--ease), border-color var(--ease);
+}
+.view-all-link:hover { gap: 10px; color: var(--coral); border-color: var(--coral); }
+
+/* — Pulsing dot (used for "live" / "online" indicators) — */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2BAA6B;           /* green = online / active */
+  display: inline-block;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+/* Coral pulse dot variant for emergency */
+.pulse-dot.urgent { background: var(--coral); }
+
+/* — Section body subtitle — */
+.section-sub {
+  font-size: var(--text-md);
+  color: var(--sage);
+  max-width: 560px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   05. NAVIGATION BAR
+   ============================================================ */
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(250, 248, 244, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--mint-mid);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  height: 76px;
+  transition: background var(--ease), box-shadow var(--ease);
+}
+/* Scrolled state — JS adds this class */
+.site-nav.scrolled {
+  box-shadow: 0 4px 24px rgba(11, 61, 58, 0.08);
+}
+
+/* — Logo area — */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-logo-mark svg {
+  width: 22px;
+  height: 22px;
+  color: var(--mint);
+}
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--teal);
+  letter-spacing: -0.3px;
+}
+/* The "Plus" in HealthPlus renders in coral */
+.nav-logo-text em {
+  font-style: normal;
+  color: var(--coral);
+}
+
+/* — Navigation link list — */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: color var(--ease);
+  position: relative;
+}
+/* Animated underline on non-CTA links */
+.nav-links a:not(.nav-cta):not(.nav-emergency)::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 2px;
+  background: var(--coral);
+  transition: width var(--ease);
+}
+.nav-links a:hover:not(.nav-cta):not(.nav-emergency) { color: var(--teal-soft); }
+.nav-links a:hover:not(.nav-cta):not(.nav-emergency)::after { width: 100%; }
+/* Active page underline */
+.nav-links a.active { color: var(--coral); }
+.nav-links a.active::after { width: 100%; }
+
+/* — Emergency pill in nav — */
+.nav-emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--coral-soft);
+  color: var(--coral-deep) !important;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 700 !important;
+  font-size: 12.5px !important;
+}
+.nav-emergency svg { width: 15px; height: 15px; flex-shrink: 0; }
+.nav-emergency .pulse-dot { background: var(--coral); }
+
+/* — Book Now CTA button in nav — */
+.nav-cta {
+  background: var(--teal);
+  color: var(--white) !important;
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 700 !important;
+  transition: background var(--ease), transform var(--ease);
+}
+.nav-cta:hover { background: var(--teal-soft); transform: translateY(-1px); }
+
+/* — Mobile hamburger icon — */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1100;
+}
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--teal);
+  transition: var(--ease);
+}
+
+
+/* ============================================================
+   06. BUTTONS
+   All button variants. Use these classes instead of inline styles.
+   ============================================================ */
+
+/* — Primary: teal filled — */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: var(--white);
+  padding: 15px 32px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+}
+.btn-primary:hover {
+  background: var(--teal-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(11, 61, 58, 0.25);
+}
+
+/* — Outline: transparent with teal border — */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--teal);
+  padding: 15px 32px;
+  border: 1.5px solid var(--teal);
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  font-weight: 700;
+  transition: background var(--ease), color var(--ease);
+}
+.btn-outline:hover { background: var(--teal); color: var(--white); }
+
+/* — Emergency: coral filled — */
+.btn-emergency {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--coral);
+  color: var(--white);
+  padding: 15px 32px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  font-weight: 700;
+  transition: background var(--ease), transform var(--ease);
+}
+.btn-emergency:hover { background: var(--coral-deep); transform: translateY(-2px); }
+
+/* — Light: white filled (for dark backgrounds) — */
+.btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--teal);
+  padding: 15px 32px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-base);
+  font-weight: 700;
+  transition: transform var(--ease), box-shadow var(--ease);
+}
+.btn-light:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.15); }
+
+/* — Size modifier: small — */
+.btn-sm { padding: 11px 22px; font-size: var(--text-xs); }
+
+/* — Width modifier: full-width — */
+.btn-block { width: 100%; justify-content: center; }
+
+
+/* ============================================================
+   07. PAGE HERO (inner page header)
+   The page-hero class is used on all non-homepage inner pages.
+   Background images are set via .hero-bg-* classes below,
+   keeping background-image out of inline styles.
+   ============================================================ */
+.page-hero {
+  padding: 160px 60px 70px;
+  text-align: center;
+  background: var(--mint);          /* Default — overridden by .hero-bg-* */
+}
+/* White text for hero sections with dark photo overlay */
+.page-hero.dark-overlay h1,
+.page-hero.dark-overlay p,
+.page-hero.dark-overlay .breadcrumb,
+.page-hero.dark-overlay .breadcrumb a { color: var(--white); }
+.page-hero.dark-overlay .breadcrumb span { color: rgba(255,255,255,0.5); }
+
+/* — Background image classes — one per page — */
+.hero-bg-consultation {
+  background: linear-gradient(rgba(11,61,58,0.75), rgba(11,61,58,0.75)),
+              url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-pharmacy {
+  background: linear-gradient(rgba(11,61,58,0.72), rgba(11,61,58,0.72)),
+              url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-emergency {
+  background: linear-gradient(rgba(7,40,38,0.82), rgba(7,40,38,0.82)),
+              url('https://images.unsplash.com/photo-1587745416684-47953f16f02f?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-hospital {
+  background: linear-gradient(rgba(11,61,58,0.72), rgba(11,61,58,0.72)),
+              url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-homevisit {
+  background: linear-gradient(rgba(11,61,58,0.75), rgba(11,61,58,0.75)),
+              url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-about {
+  background: linear-gradient(rgba(11,61,58,0.75), rgba(11,61,58,0.75)),
+              url('https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-blog {
+  background: linear-gradient(rgba(11,61,58,0.76), rgba(11,61,58,0.76)),
+              url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1400&q=80')
+              center / cover no-repeat;
+}
+.hero-bg-services {
+  background: linear-gradient(rgba(11,61,58,0.75), rgba(11,61,58,0.75)),
+              url('https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=1400&q=80')
+              center / cover no-repeat;
+}
+/* Blog article hero backgrounds — one per article */
+.hero-bg-article-signs       { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-video        { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-antibiotics  { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-mental       { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-foods        { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-firstaid     { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1587745416684-47953f16f02f?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-checkup      { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1576671081837-49000212a370?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-store        { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1400&q=80') center/cover no-repeat; }
+.hero-bg-article-diagnosis    { background: linear-gradient(rgba(11,61,58,0.78), rgba(11,61,58,0.78)), url('https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1400&q=80') center/cover no-repeat; }
+
+/* Breadcrumb trail above hero title */
+.breadcrumb { font-size: 13px; color: var(--sage); margin-bottom: 18px; }
+.breadcrumb a { color: var(--sage); }
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb span { margin: 0 6px; }
+
+.page-hero h1 {
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+.page-hero p {
+  font-size: var(--text-md);
+  color: var(--sage);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   08. VITALS TICKER STRIP
+   Scrolling marquee bar below the homepage hero showing
+   live stats (doctors online, avg wait, etc.)
+   ============================================================ */
+.vitals-strip {
+  background: var(--teal);
+  overflow: hidden;
+  padding: 16px 0;
+  position: relative;
+}
+.vitals-inner {
+  display: flex;
+  width: max-content;
+  animation: scrollTicker 32s linear infinite;
+}
+/* Pause on hover so users can read the items */
+.vitals-strip:hover .vitals-inner { animation-play-state: paused; }
+
+.vital-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 36px;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  white-space: nowrap;
+}
+.vital-item svg    { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+.vital-item strong { color: var(--white); font-size: 13.5px; font-weight: 700; }
+.vital-item span   { color: rgba(255,255,255,0.55); font-size: 13px; margin-left: 4px; }
+
+
+/* ============================================================
+   09. HOMEPAGE HERO SECTION
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 60px 80px;
+  background:
+    linear-gradient(115deg, rgba(11,61,58,0.94) 0%, rgba(11,61,58,0.80) 38%, rgba(11,61,58,0.55) 100%),
+    url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1800&q=80')
+    center / cover no-repeat;
+  overflow: hidden;
+}
+/* Text overrides for the photo-backed hero — headline, subtext and stats
+   need to shift to white/light so they stay readable over the photo. */
+.hero-content h1,
+.hero-content h1 em { color: var(--white); }
+.hero-sub { color: rgba(255,255,255,0.86); }
+.hero-trust-num  { color: var(--gold); }
+.hero-trust-lbl  { color: rgba(255,255,255,0.75); }
+/* Outline button needs a light variant here — the default teal
+   border/text would nearly vanish against the dark photo overlay. */
+.hero .btn-outline { color: var(--white); border-color: rgba(255,255,255,0.65); }
+.hero .btn-outline:hover { background: var(--white); color: var(--teal); }
+/* Decorative radial gradient blobs */
+.hero-bg-shape {
+  position: absolute;
+  top: -10%; right: -8%;
+  width: 720px; height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(11,61,58,0.08), transparent 70%);
+  pointer-events: none;
+}
+.hero-bg-shape.two {
+  top: auto; bottom: -25%; left: -10%; right: auto;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle at 60% 60%, rgba(232,92,74,0.06), transparent 70%);
+}
+/* Two-column grid: content | visual */
+.hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+/* "42 doctors online now" pill above h1 */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  padding: 8px 16px 8px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 26px;
+  box-shadow: var(--shadow-soft);
+}
+.hero-eyebrow span { font-size: 12.5px; font-weight: 700; color: var(--teal); letter-spacing: 0.3px; }
+
+.hero-content h1 {
+  font-size: clamp(40px, 4.6vw, 68px);
+  font-weight: 600;
+  letter-spacing: -1.5px;
+  margin-bottom: 22px;
+}
+/* Italic coral word in hero headline */
+.hero-content h1 em { font-style: italic; color: var(--coral); font-weight: 500; }
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--sage);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+/* Trust stats row below CTA buttons */
+.hero-trust      { display: flex; gap: 30px; flex-wrap: wrap; }
+.hero-trust-item { display: flex; flex-direction: column; gap: 2px; }
+.hero-trust-num  { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--teal); }
+.hero-trust-lbl  { font-size: 12px; color: var(--sage); font-weight: 600; letter-spacing: 0.3px; }
+
+/* Doctor availability card (right column) */
+.hero-card-main {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(11,61,58,0.18);
+  transform: rotate(1.5deg);     /* Slight tilt for visual interest */
+}
+.hero-card-main img { width: 100%; aspect-ratio: 4/3.1; object-fit: cover; }
+.hero-card-body     { padding: 22px 24px; }
+.hero-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.hero-card-row strong { font-family: var(--font-display); font-size: 17px; color: var(--ink); }
+/* "Online" green status chip */
+.hero-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #E7F7EE;
+  color: #1E8A52;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+}
+.hero-card-meta { font-size: 13px; color: var(--sage); }
+
+/* Floating mini-cards (chat notification, rider ETA) */
+.hero-float-card {
+  position: absolute;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  box-shadow: 0 16px 40px rgba(11,61,58,0.16);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: floatY 4s ease-in-out infinite;
+}
+.hero-float-card.one { top: 6%; left: -8%; animation-delay: 0s; }
+.hero-float-card.two { bottom: 8%; right: -10%; animation-delay: 1.4s; }
+.hero-float-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.hero-float-icon.teal  { background: var(--mint); color: var(--teal); }
+.hero-float-icon.coral { background: var(--coral-soft); color: var(--coral); }
+.hero-float-icon svg   { width: 19px; height: 19px; }
+.hero-float-card strong { display: block; font-size: 13.5px; color: var(--ink); }
+.hero-float-card span   { font-size: 11.5px; color: var(--sage); }
+.hero-visual { position: relative; }
+
+
+/* ============================================================
+   10. DEPARTMENT / SERVICE CARDS GRID
+   ============================================================ */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.dept-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 30px 26px;
+  border: 1px solid var(--mint-mid);
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow), border-color var(--ease-slow);
+  display: block;               /* <a> tags used as cards */
+  color: inherit;
+}
+.dept-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+  border-color: transparent;
+}
+.dept-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: var(--mint);
+  color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  transition: background var(--ease), color var(--ease);
+}
+.dept-card:hover .dept-icon { background: var(--teal); color: var(--mint); }
+.dept-icon svg { width: 24px; height: 24px; }
+.dept-card h3  { font-size: 18px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.2px; }
+.dept-card p   { font-size: 13.5px; color: var(--sage); line-height: 1.6; margin-bottom: 16px; }
+.dept-link     { font-size: 12.5px; font-weight: 700; color: var(--coral); display: inline-flex; align-items: center; gap: 5px; }
+
+
+/* ============================================================
+   11. CONSULTATION — MODE SELECTOR CARDS
+   ============================================================ */
+.consult-section  {
+  position: relative;
+  background:
+    linear-gradient(100deg, rgba(11,61,58,0.90) 0%, rgba(11,61,58,0.74) 55%, rgba(11,61,58,0.58) 100%),
+    url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1800&q=80')
+    center / cover no-repeat;
+  padding: var(--section-pad);
+}
+/* Text overrides so the consult section reads clearly over the photo */
+.consult-section h2 { color: var(--white); }
+.consult-section .section-sub { color: rgba(255,255,255,0.85); }
+.consult-section .section-label span { color: var(--gold); }
+.consult-section .section-label::before { background: var(--gold); }
+.consult-inner    { max-width: 1320px; margin: 0 auto; }
+.consult-modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 56px;
+}
+.mode-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color var(--ease), transform var(--ease);
+}
+.mode-card:hover              { transform: translateY(-4px); }
+.mode-card.selected           { border-color: var(--teal); }
+.mode-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.mode-icon {
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  background: var(--teal); color: var(--mint);
+  display: flex; align-items: center; justify-content: center;
+}
+.mode-icon svg { width: 23px; height: 23px; }
+/* Custom radio button */
+.mode-radio {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--grey-mid);
+  position: relative; flex-shrink: 0;
+}
+.mode-card.selected .mode-radio { border-color: var(--teal); }
+.mode-card.selected .mode-radio::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.mode-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+.mode-card p  { font-size: 13px; color: var(--sage); line-height: 1.6; }
+
+
+/* ============================================================
+   12. CONSULTATION — DOCTOR CARDS
+   ============================================================ */
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.doctor-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  text-align: center;
+  border: 1.5px solid var(--mint-mid);
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow), border-color var(--ease-slow);
+  cursor: pointer;
+}
+.doctor-card:hover         { transform: translateY(-5px); box-shadow: var(--shadow-soft); border-color: transparent; }
+.doctor-card.selected-doc  { border-color: var(--teal); box-shadow: var(--shadow-soft); }
+/* Doctor profile photo */
+.doc-photo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 2px;
+  display: block;
+  border: 3px solid var(--mint);
+}
+/* Green "online" dot overlaid on photo */
+.doc-online-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #2BAA6B;
+  border: 2.5px solid var(--white);
+  margin: -14px 0 10px 58px;   /* Positions dot in lower-right of photo */
+  position: relative; z-index: 2;
+}
+.doctor-card h4  { font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+.doc-spec        { font-size: 12px; color: var(--coral); font-weight: 700; margin-bottom: 8px; display: block; }
+.doc-meta        { font-size: 11.5px; color: var(--sage); margin-bottom: 14px; display: block; }
+
+
+/* ============================================================
+   13. CONSULTATION — BOOKING SUMMARY SIDEBAR
+   ============================================================ */
+.consult-page-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 90px 60px 110px;
+}
+.consult-summary {
+  background: var(--teal);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  position: sticky;
+  top: 100px;           /* Sticks to viewport as user scrolls form */
+}
+.consult-summary h3         { color: var(--white); font-size: 19px; margin-bottom: 18px; }
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  font-size: 13.5px;
+}
+.summary-row span:first-child  { color: rgba(255,255,255,0.6); }
+.summary-row span:last-child   { font-weight: 600; }
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 18px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.summary-total span:last-child {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 22px;
+}
+
+
+/* ============================================================
+   14. EMERGENCY SECTION
+   ============================================================ */
+.emergency-section {
+  background: var(--teal-deep);
+  background-image: radial-gradient(circle at 85% 20%, rgba(232,92,74,0.18), transparent 50%);
+  padding: 90px 60px;
+  color: var(--white);
+}
+.emergency-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 60px;
+  align-items: center;
+}
+.emergency-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,92,74,0.18);
+  border: 1px solid rgba(232,92,74,0.4);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 22px;
+}
+.emergency-badge span { font-size: 12px; font-weight: 700; color: #FF9F8F; letter-spacing: 0.5px; }
+.emergency-section h2 { color: var(--white); font-size: clamp(28px,3.2vw,44px); margin-bottom: 18px; }
+.emergency-lead-text {
+  color: rgba(255,255,255,0.65);
+  font-size: 15.5px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+  max-width: 440px;
+}
+.emergency-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+/* 2×2 grid of emergency feature cards */
+.emergency-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.emergency-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: background var(--ease);
+}
+.emergency-card:hover { background: rgba(255,255,255,0.1); }
+.emergency-card-icon {
+  width: 42px; height: 42px;
+  border-radius: 12px;
+  background: rgba(232,92,74,0.15);
+  color: var(--coral);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+}
+.emergency-card-icon svg { width: 21px; height: 21px; }
+.emergency-card h4 { color: var(--white); font-size: 15px; font-weight: 600; margin-bottom: 6px; font-family: var(--font-display); }
+.emergency-card p  { color: rgba(255,255,255,0.55); font-size: 12.5px; line-height: 1.6; }
+
+
+/* ============================================================
+   15. HOW IT WORKS — STEPS SECTION
+   ============================================================ */
+.how-it-works { background: var(--teal); padding: var(--section-pad); }
+.how-it-works h2 { color: var(--white); font-size: clamp(28px,3vw,42px); margin-bottom: 50px; }
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.step-card { position: relative; padding-top: 10px; }
+/* Big faded number */
+.step-num { font-family: var(--font-display); font-size: 42px; font-weight: 700; color: rgba(255,255,255,0.15); display: block; margin-bottom: 14px; }
+.step-card h3 { color: var(--white); font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+.step-card p  { color: rgba(255,255,255,0.55); font-size: 13.5px; line-height: 1.7; }
+
+
+/* ============================================================
+   16. WHY US / TRUST CARDS
+   ============================================================ */
+.why-section {
+  background: var(--teal-deep);
+  padding: var(--section-pad);
+}
+.why-section h2 { color: var(--white); }
+.why-section .section-label span { color: var(--gold); }
+.why-section .section-label::before { background: var(--gold); }
+.why-card h3 { color: var(--white); }
+.why-card p  { color: rgba(255,255,255,0.72); }
+.why-grid    { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1320px; margin: 0 auto; }
+.why-card    { padding: 8px; }
+.why-icon {
+  width: 50px; height: 50px;
+  border-radius: 14px;
+  background: var(--mint); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.why-icon svg { width: 22px; height: 22px; }
+.why-card h3  { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.why-card p   { font-size: 13.5px; color: var(--sage); line-height: 1.7; }
+
+
+/* ============================================================
+   17. HOSPITAL FINDER — LAYOUT, LIST, MAP
+   ============================================================ */
+.finder-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 60px 60px 100px;
+}
+.finder-search-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.finder-search-bar input {
+  flex: 1;
+  min-width: 220px;
+  padding: 15px 18px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 14px;
+  font-size: var(--text-base);
+  background: var(--white);
+  font-family: var(--font-body);
+}
+/* Pill filter chips (All / Hospitals / Clinics / Pharmacies) */
+.filter-chip {
+  padding: 11px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--ease);
+  font-family: var(--font-body);
+}
+.filter-chip.active,
+.filter-chip:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+/* Side-by-side list + map layout */
+.finder-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.finder-list {
+  background: var(--white);
+  max-height: 560px;
+  overflow-y: auto;
+}
+.finder-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 16px;
+  border-bottom: 1px solid var(--mint-mid);
+  cursor: pointer;
+  transition: background var(--ease);
+}
+.finder-item:last-child        { border-bottom: none; }
+.finder-item:hover,
+.finder-item.active            { background: var(--mint); }
+/* Coloured icon pin on each list item */
+.finder-pin {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: var(--teal);
+  color: var(--mint);
+  display: flex; align-items: center; justify-content: center;
+}
+.finder-pin svg              { width: 18px; height: 18px; }
+.finder-item.active .finder-pin { background: var(--coral); }
+.finder-item-body            { flex: 1; min-width: 0; }
+.finder-item-body strong     { display: block; font-size: 14px; color: var(--ink); margin-bottom: 3px; }
+.finder-item-meta            { display: flex; gap: 8px; align-items: center; font-size: 11.5px; color: var(--sage); flex-wrap: wrap; }
+.finder-dist                 { font-weight: 700; color: var(--teal); }
+.finder-open                 { color: #1E8A52; font-weight: 600; }
+/* Leaflet map tile area */
+#finder-map { height: 560px; width: 100%; }
+.map-note   { font-size: 12.5px; color: var(--sage); margin-top: 14px; max-width: 600px; }
+
+
+/* ============================================================
+   18. LIVE ORDER TRACKING CARD
+   ============================================================ */
+#order-tracking-result {
+  display: none;               /* Hidden until order is placed & paid */
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 60px 100px;
+}
+.tracking-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  max-width: 500px;
+}
+#tracking-map-leaflet { width: 100%; height: 260px; }
+.tracking-status-bar {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--mint-mid);
+}
+.tracking-eta             { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.tracking-eta strong      { font-family: var(--font-display); font-size: 28px; color: var(--teal); }
+.tracking-eta span        { font-size: 13px; color: var(--sage); }
+.tracking-stage           { font-size: 13px; color: var(--ink); font-weight: 600; }
+/* Progress bar beneath stage text */
+.tracking-progress        { height: 4px; background: var(--mint-mid); border-radius: var(--radius-pill); margin-top: 14px; overflow: hidden; }
+.tracking-progress-fill   { height: 100%; background: var(--coral); border-radius: var(--radius-pill); transition: width 0.6s ease; }
+/* Rider row at bottom of tracking card */
+.tracking-courier         { display: flex; align-items: center; gap: 14px; padding: 20px 24px; }
+.courier-avatar           { width: 46px; height: 46px; border-radius: 50%; background: var(--mint); color: var(--teal); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+.courier-info             { flex: 1; }
+.courier-info strong      { display: block; font-size: 14px; }
+.courier-info span        { font-size: 12px; color: var(--sage); }
+.courier-actions          { display: flex; gap: 8px; }
+.courier-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--mint); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background var(--ease), color var(--ease);
+}
+.courier-btn:hover        { background: var(--teal); color: var(--mint); }
+.courier-btn svg          { width: 17px; height: 17px; }
+
+
+/* ============================================================
+   19. HOME CALL-IN SECTION
+   ============================================================ */
+.homecall-section  {
+  padding: var(--section-pad);
+  background: linear-gradient(135deg, var(--coral-soft) 0%, #FBF0DC 100%);
+}
+.homecall-layout   { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1320px; margin: 0 auto; }
+.homecall-visual   { border-radius: var(--radius-xl); overflow: hidden; }
+.homecall-visual img { width: 100%; aspect-ratio: 4/3.4; object-fit: cover; }
+.homecall-list     { display: flex; flex-direction: column; gap: 18px; margin: 28px 0 34px; }
+.homecall-item     { display: flex; gap: 14px; align-items: flex-start; }
+.homecall-check {
+  width: 26px; height: 26px;
+  border-radius: 50%; flex-shrink: 0;
+  background: var(--mint); color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.homecall-check svg     { width: 14px; height: 14px; }
+.homecall-item strong   { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 2px; }
+.homecall-item span     { font-size: 13px; color: var(--sage); }
+
+
+/* ============================================================
+   20. PROMO BANNER STRIP
+   ============================================================ */
+.promo-banner {
+  background: var(--gold);
+  padding: 64px 60px;
+  text-align: center;
+}
+.promo-banner h2     { font-size: clamp(24px,2.6vw,36px); margin-bottom: 22px; color: var(--teal-deep); }
+.promo-banner h2 em  { font-style: italic; color: var(--white); }
+
+
+/* ============================================================
+   21. PAYMENT METHODS GRID (homepage)
+   ============================================================ */
+.payment-section { padding: var(--section-pad); max-width: 1320px; margin: 0 auto; text-align: center; }
+.payment-methods { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 50px; }
+.payment-card    { background: var(--white); border: 1px solid var(--mint-mid); border-radius: var(--radius-lg); padding: 30px 22px; text-align: left; }
+.payment-icon    { color: var(--teal); margin-bottom: 16px; }
+.payment-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.payment-card p  { font-size: 12.5px; color: var(--sage); line-height: 1.6; }
+
+
+/* ============================================================
+   22. ORDER PAGE — MEDICINE CARDS
+   ============================================================ */
+.order-wrap          { max-width: 1320px; margin: 0 auto; padding: 60px 60px 40px; }
+/* Search input box */
+.med-search-box      { position: relative; margin-bottom: 10px; }
+.med-search-box input {
+  width: 100%;
+  padding: 18px 18px 18px 52px;
+  border: 2px solid var(--mint-mid);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  background: var(--white);
+  font-family: var(--font-body);
+  transition: border-color var(--ease);
+}
+.med-search-box input:focus    { border-color: var(--teal); outline: none; }
+.med-search-box svg {
+  position: absolute;
+  left: 18px; top: 50%;
+  transform: translateY(-50%);
+  width: 20px; height: 20px;
+  color: var(--sage);
+  pointer-events: none;
+}
+#search-hint         { font-size: 12.5px; color: var(--sage); margin-bottom: 28px; padding-left: 4px; }
+#search-results-section { display: none; margin-bottom: 40px; }
+#search-results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+/* Individual medicine search result card */
+.med-card-v2 {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--mint-mid);
+  overflow: hidden;
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow);
+}
+.med-card-v2:hover           { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+.med-img-wrap { position: relative; overflow: hidden; }
+.med-card-v2 .med-img        { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--mint); display: block; }
+.med-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 2px solid var(--white);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+.med-card-v2 .med-body       { padding: 16px; }
+.med-card-v2 .med-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--coral); background: var(--coral-soft);
+  padding: 3px 10px; border-radius: var(--radius-pill);
+  display: inline-block; margin-bottom: 8px;
+}
+.med-card-v2 h4             { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.med-card-v2 .med-desc      { font-size: 12px; color: var(--sage); line-height: 1.55; margin-bottom: 10px; }
+
+/* Strength/milligram dropdown — shown when a drug has more than
+   one variant, instead of listing each strength as its own card. */
+.variant-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.variant-row label {
+  font-size: 10.5px;
+  color: var(--sage);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.select-wrap { position: relative; flex: 1; }
+.variant-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 10px;
+  padding: 9px 32px 9px 12px;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: border-color var(--ease), box-shadow var(--ease);
+}
+.variant-select:hover  { border-color: var(--teal); }
+.variant-select:focus  { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,128,128,0.12); }
+.select-chevron {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  transform: translateY(-50%);
+  color: var(--sage);
+  pointer-events: none;
+}
+
+.med-card-v2 .med-foot      { display: flex; justify-content: space-between; align-items: center; }
+.med-card-v2 .med-price     { font-size: 15px; font-weight: 700; color: var(--teal); }
+.med-card-v2 .add-btn {
+  background: var(--teal); color: var(--white);
+  border: none; border-radius: var(--radius-pill);
+  padding: 7px 16px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: var(--font-body);
+  transition: background var(--ease);
+}
+.med-card-v2 .add-btn:hover { background: var(--teal-soft); }
+
+/* Frequently Ordered grid */
+.freq-grid       { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 40px; }
+.freq-card       { background: var(--white); border-radius: var(--radius-lg); border: 1.5px solid var(--mint-mid); overflow: hidden; transition: transform var(--ease-slow), box-shadow var(--ease-slow); }
+.freq-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.freq-card img   { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.freq-card .fc-body { padding: 14px 16px; }
+.freq-card h4    { font-size: 13.5px; font-weight: 600; margin-bottom: 2px; }
+.freq-card .fc-sub  { font-size: 11.5px; color: var(--sage); margin-bottom: 10px; }
+.freq-card .fc-foot { display: flex; justify-content: space-between; align-items: center; }
+.freq-card .fc-price { font-size: 14px; font-weight: 700; color: var(--teal); }
+
+/* Quantity stepper (+/-) shared by freq cards and search results */
+.qty-row    { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.q-btn {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--mint); color: var(--teal);
+  border: none; font-weight: 700; font-size: 14px;
+  cursor: pointer; font-family: var(--font-body);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--ease), color var(--ease);
+}
+.q-btn:hover  { background: var(--teal); color: var(--white); }
+.qty-val      { font-size: 13px; font-weight: 700; min-width: 16px; text-align: center; }
+
+
+/* ============================================================
+   23. CART SUMMARY BOX (Order page sidebar)
+   ============================================================ */
+.order-bottom {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  gap: 40px;
+  align-items: start;
+  padding: 0 60px 40px;
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.order-bottom.revealed { opacity: 1; transform: translateY(0); }
+.cart-box { background: var(--white); border-radius: var(--radius-xl); padding: 30px; box-shadow: var(--shadow-soft); position: sticky; top: 100px; }
+.cart-box h3  { font-size: 18px; margin-bottom: 18px; }
+.cart-items   { display: flex; flex-direction: column; }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--mint-mid);
+  font-size: 13.5px;
+}
+.cart-item .ci-name { flex: 1; }
+.ci-remove {
+  background: none; border: none;
+  color: var(--sage); cursor: pointer; font-size: 16px; padding: 0 6px;
+  transition: color var(--ease);
+}
+.ci-remove:hover    { color: var(--coral); }
+.cart-total-row     { display: flex; justify-content: space-between; padding: 14px 0 0; font-size: 16px; font-weight: 700; color: var(--teal); }
+.empty-cart         { text-align: center; padding: 24px 0; color: var(--sage); font-size: 13.5px; }
+
+
+/* ============================================================
+   24. BLOG — INDEX GRID, CARDS, FILTER CHIPS
+   ============================================================ */
+.blog-wrap { max-width: 1320px; margin: 0 auto; padding: 60px 60px 80px; }
+.blog-cats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
+/* Category filter chip (same style as finder chips) */
+.cat-chip {
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--mint-mid);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--ease);
+  background: var(--white);
+  font-family: var(--font-body);
+}
+.cat-chip.active,
+.cat-chip:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.blog-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--mint-mid);
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow);
+  display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); border-color: transparent; }
+
+/* Thumbnail image container */
+.blog-thumb       { aspect-ratio: 16/9; overflow: hidden; display: block; }
+.blog-thumb img   { width: 100%; height: 100%; object-fit: cover; transition: transform var(--ease-slow); display: block; }
+.blog-card:hover .blog-thumb img { transform: scale(1.05); }
+
+.blog-body        { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.blog-tag {
+  display: inline-block;
+  background: var(--coral-soft); color: var(--coral-deep);
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+  margin-bottom: 12px; width: fit-content;
+}
+.blog-card h3     { font-size: 18px; font-weight: 600; margin-bottom: 10px; line-height: 1.35; color: var(--ink); }
+.blog-card p      { font-size: 13.5px; color: var(--sage); line-height: 1.7; margin-bottom: 16px; flex: 1; }
+.blog-foot        { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.blog-meta        { font-size: 12px; color: var(--sage); }
+/* "Read Article →" teal pill button */
+.blog-read-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--teal); color: var(--white);
+  padding: 9px 18px; border-radius: var(--radius-pill);
+  font-size: 12.5px; font-weight: 700;
+  transition: background var(--ease), transform var(--ease);
+}
+.blog-read-btn:hover { background: var(--teal-soft); transform: translateY(-1px); }
+
+
+/* ============================================================
+   25. BLOG — ARTICLE PAGES
+   Full article layout for individual blog post pages.
+   ============================================================ */
+.article-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 70px 40px 100px;
+}
+/* Article meta bar (tag + date + read time) */
+.article-meta         { display: flex; align-items: center; gap: 14px; margin-bottom: 40px; flex-wrap: wrap; }
+.article-tag          { background: var(--coral-soft); color: var(--coral-deep); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 5px 14px; border-radius: var(--radius-pill); }
+.article-date,
+.article-read-time    { font-size: 13px; color: var(--sage); }
+
+/* Author profile strip */
+.article-author       { display: flex; align-items: center; gap: 10px; margin-bottom: 40px; padding: 18px 20px; background: var(--mint); border-radius: 14px; }
+.author-photo         { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+.author-info strong   { display: block; font-size: 14px; color: var(--ink); }
+.author-info span     { font-size: 12.5px; color: var(--sage); }
+
+/* Full-width hero image at top of article */
+.article-hero-img     { width: 100%; border-radius: var(--radius-xl); aspect-ratio: 16/8; object-fit: cover; margin-bottom: 40px; display: block; }
+
+/* Article heading levels */
+.article-wrap h2      { font-size: clamp(20px, 2.4vw, 26px); font-weight: 600; margin: 40px 0 14px; color: var(--teal); }
+
+/* In-article images */
+.article-img          { width: 100%; border-radius: var(--radius-md); margin: 32px 0; display: block; object-fit: cover; }
+.article-img.half     { max-width: 480px; }
+.img-caption          { font-size: 12.5px; color: var(--sage); text-align: center; margin-top: -20px; margin-bottom: 28px; }
+
+/* Callout / tip / warning boxes */
+.callout {
+  background: var(--mint);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 14px 14px 0;
+  padding: 20px 24px;
+  margin: 32px 0;
+}
+.callout.urgent       { background: var(--coral-soft); border-color: var(--coral); }
+.callout strong       { display: block; font-size: 14px; color: var(--teal); margin-bottom: 6px; }
+.callout.urgent strong{ color: var(--coral-deep); }
+.callout p            { font-size: 14px; color: var(--sage); margin: 0; line-height: 1.7; }
+
+/* Fact stat grid (2 columns) */
+.fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 32px 0; }
+.fact-card {
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: var(--radius-md);
+  padding: 22px;
+}
+.fact-card .fact-num  { font-family: var(--font-display); font-size: 32px; font-weight: 700; color: var(--teal); display: block; margin-bottom: 4px; }
+.fact-card p          { font-size: 13px; color: var(--sage); margin: 0; line-height: 1.6; }
+
+/* Numbered step list */
+.step-list { display: flex; flex-direction: column; gap: 18px; margin: 28px 0; }
+.step-row  { display: flex; gap: 16px; align-items: flex-start; }
+.step-num-badge {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--teal); color: var(--white);
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.step-row h4          { font-size: 15.5px; font-weight: 600; margin-bottom: 4px; }
+.step-row p           { font-size: 14px; color: var(--sage); margin: 0; line-height: 1.65; }
+
+/* End-of-article CTA box */
+.article-cta { background: var(--teal); border-radius: var(--radius-xl); padding: 40px; text-align: center; margin-top: 60px; }
+.article-cta h3 { color: var(--white); font-size: 22px; margin-bottom: 10px; }
+.article-cta p  { color: rgba(255,255,255,0.65); font-size: 14px; margin-bottom: 22px; }
+
+/* Related articles section */
+.related-section  { background: var(--mint); padding: 70px 60px; }
+.related-inner    { max-width: 1320px; margin: 0 auto; }
+.related-grid     { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 30px; }
+.related-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--mint-mid);
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow);
+  display: block;
+}
+.related-card:hover      { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.related-card img        { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.related-card-body       { padding: 18px; }
+.related-card-body h4    { font-size: 15px; font-weight: 600; margin: 8px 0 10px; line-height: 1.3; color: var(--ink); }
+.related-card-body .read-link { font-size: 12.5px; font-weight: 700; color: var(--coral); }
+
+
+/* ============================================================
+   26. NEWSLETTER BAND
+   ============================================================ */
+.newsletter-band { background: var(--teal); padding: 80px 60px; }
+.newsletter-inner {
+  max-width: 1320px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.newsletter-band h3  { font-family: var(--font-display); font-size: clamp(24px,2.8vw,36px); color: var(--white); margin-bottom: 10px; }
+.newsletter-band p   { color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.7; }
+.nl-form             { display: flex; gap: 12px; }
+.nl-form input {
+  flex: 1; padding: 15px 18px; border: none;
+  border-radius: var(--radius-pill); font-size: var(--text-base);
+  background: rgba(255,255,255,0.12); color: var(--white);
+  font-family: var(--font-body);
+}
+.nl-form input::placeholder { color: rgba(255,255,255,0.45); }
+.nl-form input:focus        { outline: 2px solid var(--gold); }
+.nl-note { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+
+/* ============================================================
+   27. ABOUT US PAGE
+   ============================================================ */
+.about-intro         { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1320px; margin: 0 auto; padding: 90px 60px 80px; }
+.about-intro-text h2 { font-size: clamp(26px, 3vw, 40px); font-weight: 600; letter-spacing: -0.6px; margin-bottom: 18px; }
+.about-intro-text p  { font-size: 15px; color: var(--sage); line-height: 1.8; margin-bottom: 14px; }
+.about-visual        { border-radius: var(--radius-xl); overflow: hidden; }
+.about-quote {
+  background: var(--gold);
+  padding: 22px 28px;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+.about-quote p       { font-size: 17px; font-style: italic; font-family: var(--font-display); color: var(--teal-deep); margin: 0; line-height: 1.6; }
+
+.values-section      { background: var(--mint); padding: 90px 60px; }
+.values-inner        { max-width: 1320px; margin: 0 auto; }
+.values-grid         { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+.value-card          { background: var(--white); border-radius: var(--radius-lg); padding: 32px 28px; }
+.value-icon          { width: 52px; height: 52px; border-radius: 14px; background: var(--mint); color: var(--teal); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.value-icon svg      { width: 24px; height: 24px; }
+.value-card h3       { font-size: 18px; margin-bottom: 8px; }
+.value-card p        { font-size: 13.5px; color: var(--sage); line-height: 1.7; }
+
+.mv-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 1320px; margin: 80px auto 0; padding: 0 60px; }
+.mv-card  { padding: 44px; border-radius: var(--radius-xl); }
+.mv-card.dark  { background: var(--teal-deep); }
+.mv-card.light { background: var(--paper); border: 1px solid var(--mint-mid); }
+.mv-card h3    { font-size: 21px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 14px; }
+.mv-card.dark h3  { color: var(--gold); }
+.mv-card.light h3 { color: var(--teal); }
+.mv-card p        { font-size: 14.5px; line-height: 1.8; }
+.mv-card.dark p   { color: rgba(255,255,255,0.6); }
+.mv-card.light p  { color: var(--sage); }
+
+/* Stats strip on About page */
+.stats-strip  { background: var(--teal); padding: 70px 60px; text-align: center; }
+.stats-inner  { max-width: 1320px; margin: 0 auto; }
+.stats-strip h2 { color: var(--white); font-size: clamp(24px,2.8vw,36px); margin-bottom: 12px; }
+.stats-strip > p { color: rgba(255,255,255,0.55); font-size: 15px; margin-bottom: 50px; }
+.stats-nums   { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.stat-item span:first-child  { display: block; font-family: var(--font-display); font-size: clamp(32px,3.5vw,52px); color: var(--gold); font-weight: 700; }
+.stat-item span:last-child   { font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 600; letter-spacing: 0.3px; }
+
+/* FAQ accordion */
+.faq-section { padding: 90px 60px; max-width: 1320px; margin: 0 auto; }
+.faq-list    { display: flex; flex-direction: column; gap: 4px; max-width: 800px; }
+details      { background: var(--mint); padding: 24px 28px; border-radius: 14px; cursor: pointer; }
+summary {
+  font-size: 15.5px; font-weight: 700; color: var(--ink);
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+summary::after        { content: "+"; font-size: 20px; color: var(--coral); flex-shrink: 0; }
+details[open] summary::after { content: "−"; }
+details p             { margin-top: 14px; font-size: 14px; color: var(--sage); line-height: 1.8; }
+
+
+/* ============================================================
+   28. SERVICES PAGE — PHOTO CARDS
+   ============================================================ */
+.srv-grid     { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1320px; margin: 0 auto; padding: 0 60px 100px; }
+.srv-card     { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--mint-mid); transition: transform var(--ease-slow), box-shadow var(--ease-slow); }
+.srv-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-soft); border-color: transparent; }
+.srv-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.srv-body     { padding: 26px 24px; }
+.srv-tag      { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; background: var(--coral-soft); color: var(--coral-deep); padding: 4px 12px; border-radius: var(--radius-pill); margin-bottom: 12px; }
+.srv-body h3  { font-size: 20px; font-weight: 600; margin-bottom: 8px; line-height: 1.25; }
+.srv-body p   { font-size: 13.5px; color: var(--sage); line-height: 1.7; margin-bottom: 16px; }
+.srv-meta-row { display: flex; justify-content: space-between; padding: 14px 0 16px; border-top: 1px solid var(--mint-mid); font-size: 12px; color: var(--sage); }
+.srv-meta-row strong { color: var(--teal); }
+
+
+/* ============================================================
+   29. PAYMENT MODAL
+   Overlay + slide-up card for MoMo and Card payment
+   ============================================================ */
+/* Applied to <body> whenever any full-screen modal/overlay
+   (cart, delivery, payment, auth) is open — stops the page
+   behind it from being scrolled, so the site footer (or any
+   other page content) can never be scrolled into view behind
+   a modal that's meant to be the sole focus. */
+body.modal-lock { overflow: hidden; }
+
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 20, 18, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: none;                   /* Shown by JS when payment triggered */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  max-width: 480px; width: 100%;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  position: relative;
+  animation: slideUp 0.35s ease;
+}
+.modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--sage); }
+.modal-box h2    { font-size: 22px; margin-bottom: 6px; }
+.modal-sub       { font-size: 13.5px; color: var(--sage); margin-bottom: 24px; }
+
+/* Delivery-details modal — reuses .modal-overlay for the backdrop,
+   but the form needs more room than the payment card, so it gets
+   its own wider box (still a .form-card underneath for the
+   input styling) with the same slide-up entrance. */
+.modal-box-lg {
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  animation: slideUp 0.35s ease;
+}
+.modal-box-lg .modal-close { top: 20px; right: 24px; z-index: 1; }
+
+/* Tab switcher: MoMo | Card */
+.pay-tabs {
+  display: flex;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.pay-tab {
+  flex: 1; padding: 12px; text-align: center;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; border: none; background: var(--white);
+  transition: background var(--ease), color var(--ease);
+  font-family: var(--font-body);
+}
+.pay-tab.active { background: var(--teal); color: var(--white); }
+
+/* Tab panels */
+.pay-panel        { display: none; }
+.pay-panel.active { display: block; }
+
+/* Mobile network selector buttons */
+.network-btns {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px;
+}
+.net-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 14px 8px 12px;
+  border-radius: 14px;
+  border: 1.5px solid var(--mint-mid);
+  background: var(--white); font-size: 11.5px; font-weight: 700;
+  color: var(--ink);
+  cursor: pointer; text-align: center;
+  transition: all var(--ease); font-family: var(--font-body);
+}
+.net-btn:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 8px 18px rgba(11,61,58,0.1); }
+.net-btn.sel {
+  border-color: var(--teal);
+  background: var(--mint);
+  box-shadow: 0 0 0 3px rgba(11,61,58,0.08);
+}
+/* Network logo badge — brand-coloured circle with monogram,
+   consistent with the WhatsApp/SOS/AI badges used elsewhere */
+.net-badge {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 800; letter-spacing: -0.2px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.35);
+  flex-shrink: 0;
+}
+.net-badge-mtn      { background: #FFCC00; color: #1A1A1A; }
+.net-badge-telecel  { background: #E4022F; color: #FFFFFF; }
+.net-badge-airteltigo { background: linear-gradient(135deg, #ED1C24 50%, #003DA5 50%); color: #FFFFFF; }
+
+/* MoMo info callout inside modal */
+.momo-info {
+  background: var(--mint);
+  border-radius: 12px; padding: 16px;
+  font-size: 13px; color: var(--sage);
+  margin-bottom: 18px; line-height: 1.7;
+}
+.pay-amount { font-size: 18px; font-weight: 700; color: var(--teal); margin-bottom: 18px; }
+.pay-amount small { font-size: 12px; font-weight: 400; color: var(--sage); margin-left: 6px; }
+
+
+/* ============================================================
+   30. RIDER CHAT WINDOW
+   Slides up from bottom-right of screen
+   ============================================================ */
+.chat-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10,20,18,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: none;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 20px 30px;
+}
+.chat-overlay.open { display: flex; }
+.chat-box {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  width: 360px; max-height: 520px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  animation: slideUp 0.3s ease;
+}
+/* Teal header strip */
+.chat-head         { background: var(--teal); border-radius: var(--radius-xl) var(--radius-xl) 0 0; padding: 18px 20px; display: flex; align-items: center; gap: 12px; }
+.chat-head-av      { width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; }
+.chat-head-av svg  { width: 20px; height: 20px; color: var(--white); }
+.chat-head-info strong { display: block; color: var(--white); font-size: 14px; }
+.chat-head-info span   { color: rgba(255,255,255,0.6); font-size: 12px; }
+.chat-close        { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 20px; cursor: pointer; }
+
+/* Message bubbles */
+.chat-messages     { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.chat-msg          { max-width: 78%; padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.5; }
+.chat-msg.rider    { background: var(--mint); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-msg.user     { background: var(--teal); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
+.chat-msg .msg-time { font-size: 10.5px; opacity: 0.6; margin-top: 4px; }
+
+/* Chat input row */
+.chat-input-row    { padding: 14px 16px; border-top: 1px solid var(--mint-mid); display: flex; gap: 8px; }
+.chat-input-row input {
+  flex: 1; padding: 11px 14px;
+  border: 1.5px solid var(--mint-mid); border-radius: var(--radius-pill);
+  font-size: 13.5px; font-family: var(--font-body);
+}
+.chat-send-btn {
+  background: var(--teal); color: var(--white); border: none;
+  border-radius: 50%; width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: background var(--ease);
+}
+.chat-send-btn:hover { background: var(--teal-soft); }
+.chat-send-btn svg  { width: 16px; height: 16px; }
+
+
+/* ============================================================
+   31. URGENCY PILLS (Consultation booking form)
+   ============================================================ */
+.urgency-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+.urgency-pill {
+  padding: 9px 16px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: var(--radius-pill);
+  font-size: 12.5px; font-weight: 600;
+  cursor: pointer;
+  transition: all var(--ease);
+  background: var(--white);
+  font-family: var(--font-body);
+}
+.urgency-pill.selected { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+
+/* ============================================================
+   32. FORMS — Generic inputs, labels, layout rows
+   ============================================================ */
+.form-card    { background: var(--white); border-radius: var(--radius-xl); padding: 44px; box-shadow: var(--shadow-soft); }
+.form-row     { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+.form-group   { margin-bottom: 18px; }
+.form-group label {
+  display: block;
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  margin-bottom: 8px;
+}
+.form-group label .opt { color: var(--sage); font-weight: 400; }
+
+/* All form inputs, selects, textareas share this style */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--ink);
+  background: var(--paper);
+  transition: border-color var(--ease);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--teal); outline: none; }
+.form-group textarea       { resize: vertical; min-height: 90px; }
+
+/* "Use My Location" button row beside address input */
+.location-row             { display: flex; gap: 10px; }
+.location-row input       { flex: 1; }
+.location-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--mint); color: var(--teal);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px; padding: 0 16px;
+  font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; cursor: pointer;
+  font-family: var(--font-body);
+  transition: background var(--ease), color var(--ease);
+}
+.location-btn:hover { background: var(--teal); color: var(--white); }
+.location-btn svg   { width: 15px; height: 15px; }
+
+/* Care-type radio selection buttons (home visit page) */
+.care-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+.care-type {
+  padding: 14px; border-radius: 12px;
+  border: 1.5px solid var(--mint-mid);
+  background: var(--white); font-size: 12.5px; font-weight: 600;
+  cursor: pointer; font-family: var(--font-body);
+  transition: border-color var(--ease), background var(--ease);
+  display: flex; align-items: center; gap: 8px;
+}
+.care-type:hover          { border-color: var(--teal); }
+.care-type svg            { width: 16px; height: 16px; color: var(--teal); flex-shrink: 0; }
+.care-type input          { accent-color: var(--teal); }
+
+
+/* ============================================================
+   33. TOAST NOTIFICATION
+   Appears at bottom-centre when user performs an action
+   ============================================================ */
+.toast {
+  position: fixed;
+  bottom: 26px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--teal); color: var(--white);
+  padding: 16px 26px; border-radius: var(--radius-pill);
+  font-size: 13.5px; font-weight: 600;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.25);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2000;
+  display: flex; align-items: center; gap: 10px;
+  white-space: nowrap; max-width: 90vw;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+
+/* ============================================================
+   34. FLOATING ACTION BUTTONS (WhatsApp + SOS + AI)
+   NOTE: the real, final styling for these lives further down
+   this file in the "PATCH — Float Button Stack" section
+   (search for .float-btn-stack) — that block replaced this one.
+   ============================================================ */
+
+
+/* ============================================================
+   35. FOOTER
+   ============================================================ */
+footer {
+  background: var(--teal-deep);
+  color: rgba(255,255,255,0.7);
+  padding: 70px 60px 0;
+}
+.footer-top {
+  max-width: 1320px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 50px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-brand .nav-logo-text { color: var(--white); }
+.footer-brand .nav-logo-mark { background: rgba(255,255,255,0.1); }
+.footer-brand p { font-size: 13.5px; line-height: 1.8; margin: 16px 0 22px; color: rgba(255,255,255,0.5); }
+/* Footer social icon links */
+.social-links { display: flex; gap: 10px; }
+.social-link {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--ease);
+}
+.social-link:hover { background: var(--coral); }
+.social-link svg, .social-link img { width: 16px; height: 16px; }
+/* Footer column headings */
+.footer-col h4    { color: var(--white); font-size: 14px; font-weight: 700; margin-bottom: 18px; letter-spacing: 0.3px; }
+.footer-col ul    { display: flex; flex-direction: column; gap: 11px; }
+.footer-col ul a  { font-size: 13.5px; color: rgba(255,255,255,0.55); transition: color var(--ease); }
+.footer-col ul a:hover { color: var(--gold); }
+address {
+  font-style: normal; font-size: 13.5px;
+  line-height: 1.9; color: rgba(255,255,255,0.55);
+}
+address a { color: rgba(255,255,255,0.55); }
+address a:hover { color: var(--gold); }
+/* Bottom bar */
+.footer-bottom {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 0;
+  font-size: 12.5px; color: rgba(255,255,255,0.4);
+  flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a { color: rgba(255,255,255,0.4); }
+.footer-bottom-links a:hover { color: var(--gold); }
+
+
+/* ============================================================
+   36. ANIMATIONS & KEYFRAMES
+   ============================================================ */
+
+/* Ticker scrolls left continuously */
+@keyframes scrollTicker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+/* Gentle vertical float for hero cards */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+/* Pulsing opacity for "live" dots */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(0.8); }
+}
+/* SOS button glow pulse */
+@keyframes sosPulse {
+  0%, 100% { box-shadow: 0 12px 28px rgba(232,92,74,0.4); }
+  50%       { box-shadow: 0 12px 36px rgba(232,92,74,0.65); }
+}
+/* Modal and chat slide up */
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+
+/* ============================================================
+   37. RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── Tablet (≤1100px) ── */
+@media (max-width: 1100px) {
+  /* Hero */
+  .hero-grid    { grid-template-columns: 1fr; }
+  .hero-visual  { max-width: 460px; margin: 0 auto; }
+
+  /* Cards grids — 2 columns */
+  .dept-grid,
+  .consult-modes,
+  .doctor-grid,
+  .steps-grid,
+  .why-grid,
+  .payment-methods,
+  .values-grid    { grid-template-columns: repeat(2, 1fr); }
+
+  /* Full-width singles */
+  .emergency-inner { grid-template-columns: 1fr; }
+  .emergency-grid  { grid-template-columns: 1fr 1fr; }
+
+  /* Hospital finder — stack */
+  .finder-layout   { grid-template-columns: 1fr; }
+  .finder-list     { max-height: 280px; }
+  #finder-map      { height: 360px; }
+
+  /* Order, About, home-visit */
+  .order-bottom,
+  .homecall-layout,
+  .about-intro     { grid-template-columns: 1fr; }
+
+  /* Consultation layout */
+  .consult-page-layout { grid-template-columns: 1fr; }
+  .consult-summary     { position: static; }
+
+  /* Services, Blog, Related */
+  .srv-grid            { grid-template-columns: repeat(2, 1fr); padding: 0 30px 70px; }
+  .blog-grid           { grid-template-columns: repeat(2, 1fr); }
+  .related-grid        { grid-template-columns: 1fr 1fr; }
+
+  /* Footer */
+  .footer-top          { grid-template-columns: 1fr 1fr; }
+
+  /* Misc */
+  .mv-grid             { grid-template-columns: 1fr; }
+  .stats-nums          { grid-template-columns: repeat(2, 1fr); }
+  .newsletter-inner    { grid-template-columns: 1fr; }
+}
+
+/* ── Mobile (≤720px) ── */
+@media (max-width: 720px) {
+  /* Nav — collapse to hamburger */
+  .site-nav { padding: 0 20px; height: 66px; }
+  .nav-links {
+    position: fixed; top: 66px; left: 0; right: 0; bottom: 0;
+    background: var(--paper);
+    flex-direction: column; align-items: flex-start;
+    padding: 30px 24px; gap: 22px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    overflow-y: auto;
+  }
+  .nav-links.open { transform: translateX(0); }
+  .hamburger      { display: flex; }
+  .nav-cta        { order: 10; }
+
+  /* Cart panel — single column, tighter padding */
+  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 70px 20px 40px; max-width: none; gap: 28px; }
+  .cart-page-summary { position: static; }
+  .cart-dropdown-close { top: 14px; right: 14px; }
+
+  /* Sections — reduce padding */
+  .section,
+  .consult-section,
+  .finder-wrap,
+  .homecall-section,
+  .emergency-section,
+  .how-it-works,
+  .payment-section,
+  .order-wrap,
+  .values-section,
+  .faq-section,
+  .stats-strip,
+  .newsletter-band,
+  .related-section { padding: var(--section-pad-m); }
+
+  .page-hero      { padding: 140px 20px 50px; }
+  .order-bottom,
+  #order-tracking-result { padding-left: 20px; padding-right: 20px; }
+
+  /* Hero — stack and full-width buttons */
+  .hero           { padding: 110px 20px 60px; min-height: auto; }
+  .hero-actions   { flex-direction: column; }
+  .hero-actions a { width: 100%; justify-content: center; }
+  .hero-float-card{ display: none; }   /* Hidden on small screens */
+  .hero-trust     { gap: 20px; }
+
+  /* All grids → single column */
+  .dept-grid,
+  .consult-modes,
+  .doctor-grid,
+  .steps-grid,
+  .why-grid,
+  .payment-methods,
+  .emergency-grid,
+  .values-grid,
+  .form-row,
+  .freq-grid,
+  #search-results-grid,
+  .care-type-grid,
+  .fact-grid,
+  .network-btns   { grid-template-columns: 1fr; }
+
+  /* Services */
+  .srv-grid       { grid-template-columns: 1fr; padding: 0 20px 60px; }
+
+  /* Blog */
+  .blog-grid      { grid-template-columns: 1fr; }
+  .blog-wrap      { padding: 40px 20px 60px; }
+  .related-grid   { grid-template-columns: 1fr; }
+
+  /* Article */
+  .article-wrap   { padding: 40px 20px 80px; }
+
+  /* Footer */
+  .footer-top     { grid-template-columns: 1fr; padding: 0 20px 40px; }
+  footer          { padding: 50px 0 0; }
+  .footer-bottom  { padding: 24px 20px; flex-direction: column; text-align: center; }
+  .stats-nums     { grid-template-columns: 1fr 1fr; }
+  .mv-grid        { padding: 0 20px; }
+
+  /* Chat */
+  .chat-box       { width: 100% !important; }
+  .chat-overlay   { padding: 0; align-items: flex-end; }
+
+  /* FAB — hide text labels on small screens */
+  .support-btn span,
+  .sos-btn span   { display: none; }
+  .support-btn,
+  .sos-btn        { padding: 12px; }
+  .float-btn-stack { right: 16px; bottom: 16px; }
+
+  /* Forms */
+  .form-card      { padding: 28px 22px; }
+
+  /* About */
+  .about-intro    { padding: 60px 20px 40px; }
+  .consult-page-layout { padding: 60px 20px; }
+}
+
+
+/* ============================================================
+   38. PROMO ANNOUNCEMENT BAR
+   Dismissible top banner for sale announcements & promotions.
+   Sits above the nav bar on every page.
+   ============================================================ */
+.promo-announcement-bar {
+  display: block;
+  position: fixed;         /* own space pinned to the very top of the screen */
+  top: 0; left: 0; right: 0;
+  height: 40px;
+  line-height: 40px;
+  background: var(--teal);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 1002;           /* above the nav (1000) and modals stay above this */
+  overflow: hidden;        /* clip the scrolling text */
+  white-space: nowrap;
+}
+/* Marquee: text scrolls right -> left across the very top of the header,
+   moving automatically and continuously with no controls. */
+.promo-bar-text {
+  display: inline-block;
+  padding-left: 100%;      /* start the message fully off the right edge */
+  animation: promo-marquee 18s linear infinite;
+}
+@keyframes promo-marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+/* When the promo strip is visible, give it its own 40px space at the very
+   top: push the fixed nav down and offset page content so nothing overlaps. */
+body.has-promo-bar .site-nav { top: 40px; }
+body.has-promo-bar main,
+body.has-promo-bar .site-footer { margin-top: 40px; }
+
+
+/* ============================================================
+   39. AUTH MODAL (Registration + Login)
+   Full-screen overlay with two-tab panel.
+   ============================================================ */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,18,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.auth-modal-overlay.open { display: flex; }
+
+.auth-modal-box {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  animation: slideUp 0.35s ease;
+  position: relative;
+}
+.auth-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 32px 0;
+}
+.auth-modal-header h2 { font-size: 22px; margin: 0; }
+.auth-modal-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--sage);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+/* Tab switcher inside auth modal */
+.auth-tabs {
+  display: flex;
+  margin: 20px 32px 0;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.auth-tab-btn {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: var(--white);
+  font-family: var(--font-body);
+  color: var(--sage);
+  transition: background var(--ease), color var(--ease);
+}
+.auth-tab-btn.active { background: var(--teal); color: var(--white); }
+
+/* Panel inside auth modal */
+.auth-panel { padding: 24px 32px 32px; }
+
+/* Guest checkout link */
+.guest-link {
+  text-align: center;
+  font-size: 13px;
+  color: var(--sage);
+  margin-top: 16px;
+}
+.guest-link a {
+  color: var(--teal);
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Error message inside auth forms */
+.auth-error {
+  display: none;
+  background: var(--coral-soft);
+  color: var(--coral-deep);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13.5px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+/* Phone input with dial-code prefix */
+.phone-input-row {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.phone-input-row:focus-within { border-color: var(--teal); }
+.dial-prefix {
+  padding: 14px 12px;
+  background: var(--mint);
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid var(--mint-mid);
+  min-width: 56px;
+  text-align: center;
+}
+.phone-input-row input {
+  flex: 1;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 14px 14px !important;
+}
+.phone-input-row input:focus { outline: none; }
+
+/* Patient ID display badge */
+.patient-id-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mint);
+  color: var(--teal);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 16px;
+}
+.patient-id-badge svg { width: 16px; height: 16px; }
+
+/* Nav auth area */
+#nav-auth-area { display: flex; align-items: center; gap: 8px; }
+#nav-user-area {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+.nav-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mint);
+  color: var(--teal);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+}
+.nav-user-chip svg { width: 16px; height: 16px; }
+
+/* Cart control in nav — its own button, sitting beside Sign In /
+   Register, that pops open a mini-cart instead of navigating away. */
+#nav-cart-area { position: relative; display: flex; align-items: center; }
+
+.nav-cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--mint);
+  color: var(--teal);
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-body);
+  transition: background var(--ease), transform 0.2s ease;
+}
+.nav-cart-btn:hover { background: var(--teal); color: var(--white); }
+.nav-cart-btn svg { width: 18px; height: 18px; }
+
+/* Little pop when an item is added to the cart */
+@keyframes cartPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
+.nav-cart-btn.cart-pop { animation: cartPop 0.35s ease; }
+
+#cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 100px;
+  background: var(--coral);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 800;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--paper);
+}
+
+/* ── CART PANEL — "Your Bag" style ────────────────────────────
+   A full overlay (dim backdrop + centered white panel) rather
+   than a small popover, modelled on adidas.com/us/cart: a big
+   item list on the left, a sticky order-summary card on the
+   right with a bold dark Checkout button and payment badges. */
+.cart-dropdown {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: var(--paper);
+  display: block;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s;
+}
+.cart-dropdown.open { opacity: 1; visibility: visible; }
+.cart-dropdown::before {
+  /* lets the panel itself hold the white card while the whole
+     fixed element acts as the dim backdrop + click-outside target */
+  content: '';
+}
+.cart-dropdown-close {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: none; cursor: pointer;
+  font-size: 22px; line-height: 1; color: var(--ink);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  z-index: 501;
+  transition: transform var(--ease), color var(--ease);
+}
+.cart-dropdown-close:hover { color: var(--coral); transform: scale(1.08); }
+
+.cart-page-inner {
+  position: relative;
+  background: var(--white);
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 90px 44px 80px;
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.cart-page-head h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.cart-page-head h2 span { font-size: 15px; font-weight: 400; color: var(--sage); font-family: var(--font-body); }
+.cart-page-head p { font-size: 13px; color: var(--sage); margin-bottom: 24px; }
+
+/* Cart line item — big thumbnail, name + meta, qty dropdown, price */
+.cart-item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--mint-mid);
+}
+.cart-item:first-child { padding-top: 0; }
+.ci-thumb { width: 84px; height: 84px; border-radius: 12px; object-fit: cover; background: var(--mint); }
+.ci-info { min-width: 0; }
+.ci-top-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.ci-name { font-weight: 700; font-size: 15px; line-height: 1.35; }
+.ci-meta { font-size: 12.5px; color: var(--sage); margin-top: 4px; }
+.ci-bottom-row { display: flex; align-items: center; justify-content: space-between; margin-top: 16px; }
+.ci-qty-wrap { flex: none; width: 78px; }
+.qty-select { width: 100%; appearance: none; -webkit-appearance: none; font-size: 13px; font-weight: 600; font-family: var(--font-body); color: var(--ink); background: var(--white); border: 1.5px solid var(--mint-mid); border-radius: 8px; padding: 7px 26px 7px 12px; cursor: pointer; }
+.qty-select:hover  { border-color: var(--teal); }
+.qty-select:focus  { outline: none; border-color: var(--teal); }
+.ci-price { font-weight: 700; font-size: 14px; color: var(--ink); }
+.ci-remove {
+  background: none; border: none; cursor: pointer;
+  color: var(--sage); padding: 2px; flex-shrink: 0;
+  transition: color var(--ease);
+}
+.ci-remove svg { width: 17px; height: 17px; }
+.ci-remove:hover { color: var(--coral); }
+
+/* Order summary — sticky card on the right, like adidas's checkout rail */
+.cart-page-summary {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  padding: 26px;
+}
+.cart-page-summary h3 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+.summary-line { display: flex; justify-content: space-between; font-size: 13.5px; color: var(--sage); margin-bottom: 10px; }
+.summary-total {
+  display: flex; justify-content: space-between;
+  font-size: 16px; font-weight: 700; color: var(--ink);
+  padding-top: 14px; margin-top: 4px;
+  border-top: 1.5px solid var(--mint-mid);
+}
+.summary-note { font-size: 12px; color: var(--sage); line-height: 1.6; margin: 14px 0 18px; }
+
+.btn-checkout-dark {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background var(--ease), transform var(--ease);
+}
+.btn-checkout-dark svg { width: 18px; height: 18px; }
+.btn-checkout-dark:hover { background: var(--teal); transform: translateY(-1px); }
+
+.accepted-methods { margin-top: 22px; }
+.accepted-methods p {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em;
+  color: var(--sage); margin-bottom: 10px;
+}
+.accepted-icons { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pay-icon-generic {
+  height: 26px; padding: 0 9px;
+  display: flex; align-items: center;
+  border-radius: 6px;
+  background: var(--white);
+  border: 1px solid var(--mint-mid);
+  font-size: 9.5px; font-weight: 800; letter-spacing: 0.01em;
+  color: var(--sage);
+}
+.cart-page-perks { margin-top: 20px; }
+.cart-page-perks p { font-size: 12px; color: var(--sage); line-height: 1.9; }
+.empty-cart { font-size: 13px; color: var(--sage); padding: 30px 0; text-align: center; }
+
+
+/* ============================================================
+   40. CHECKOUT PROGRESS INDICATORS
+   Step-by-step progress bar for the checkout flow.
+   ============================================================ */
+.checkout-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 40px auto;
+  max-width: 600px;
+  padding: 0 20px;
+}
+.checkout-step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  position: relative;
+}
+/* Connecting line between steps */
+.checkout-step-indicator:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: calc(50% + 18px);
+  right: calc(-50% + 18px);
+  height: 2px;
+  background: var(--mint-mid);
+  z-index: 0;
+  transition: background var(--ease);
+}
+.checkout-step-indicator.completed:not(:last-child)::after {
+  background: var(--teal);
+}
+/* Step circle */
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mint);
+  border: 2px solid var(--mint-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--sage);
+  position: relative;
+  z-index: 1;
+  transition: all var(--ease);
+}
+.checkout-step-indicator.active .step-circle {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--white);
+}
+.checkout-step-indicator.completed .step-circle {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: var(--white);
+}
+/* Completed step shows a checkmark */
+.checkout-step-indicator.completed .step-circle::before { content: '✓'; }
+.checkout-step-indicator.completed .step-num { display: none; }
+/* Step label */
+.step-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sage);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.checkout-step-indicator.active .step-label { color: var(--teal); }
+.checkout-step-indicator.completed .step-label { color: var(--teal); }
+
+
+/* ============================================================
+   41. ORDER HISTORY CARDS
+   Displayed in the user account / order status section.
+   ============================================================ */
+.order-history-card {
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-bottom: 14px;
+  transition: box-shadow var(--ease);
+}
+.order-history-card:hover { box-shadow: var(--shadow-card); }
+.oh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.oh-id   { display: block; font-size: 14px; font-weight: 700; color: var(--teal); font-family: monospace; }
+.oh-date { font-size: 12px; color: var(--sage); }
+.oh-status {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 100px;
+  text-transform: capitalize;
+}
+.oh-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.oh-items span {
+  background: var(--mint);
+  color: var(--teal);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.oh-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--mint-mid);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.oh-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.empty-orders { color: var(--sage); font-size: 14px; text-align: center; padding: 30px 0; }
+
+
+/* ============================================================
+   42. AI TOOLS — Recommendations, Symptom Checker, Chat
+   ============================================================ */
+
+/* ── AI loading spinner ── */
+.ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px;
+  background: var(--mint);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--sage);
+}
+.ai-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid var(--mint-mid);
+  border-top-color: var(--teal);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.ai-error { color: var(--coral-deep); font-size: 13.5px; padding: 14px; background: var(--coral-soft); border-radius: 10px; }
+.ai-empty { color: var(--sage); font-size: 13.5px; padding: 14px; }
+
+/* ── AI Recommendations section ── */
+#ai-recommend-section { margin-bottom: 40px; }
+.ai-rec-title { font-size: 18px; font-weight: 600; margin: 10px 0 8px; color: var(--teal); }
+.ai-rec-title em { font-style: italic; color: var(--coral); }
+.ai-rec-disclaimer {
+  font-size: 12.5px;
+  color: var(--sage);
+  background: #FEF9EC;
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 20px;
+}
+.ai-rec-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.ai-rec-card {
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--ease-slow), box-shadow var(--ease-slow);
+}
+.ai-rec-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.ai-rec-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.ai-rec-body { padding: 14px; }
+.ai-otc-badge {
+  display: inline-block;
+  background: #E7F7EE;
+  color: #1E8A52;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.ai-rx-badge {
+  display: inline-block;
+  background: var(--coral-soft);
+  color: var(--coral-deep);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+.ai-rec-card h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 6px; line-height: 1.3; }
+.ai-rec-card p  { font-size: 12px; color: var(--sage); line-height: 1.55; margin-bottom: 10px; }
+.ai-rec-price   { display: block; font-size: 14px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+
+/* ── Symptom checker ── */
+.symptom-checker-box {
+  background: var(--mint);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  margin-bottom: 50px;
+}
+.symptom-checker-box h3 { font-size: 20px; margin-bottom: 8px; }
+.symptom-checker-box p  { font-size: 14px; color: var(--sage); margin-bottom: 18px; }
+.symptom-input-row { display: flex; gap: 12px; }
+.symptom-input-row textarea {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  resize: none;
+  height: 80px;
+}
+.symptom-input-row textarea:focus { border-color: var(--teal); outline: none; }
+#symptom-result { margin-top: 20px; }
+.symptom-result-card { padding: 22px 24px; border-radius: var(--radius-md); }
+.sr-urgency  { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+.sr-summary  { font-size: 14.5px; line-height: 1.7; margin-bottom: 10px; color: var(--ink); }
+.sr-action   { font-size: 13.5px; color: var(--sage); margin-bottom: 4px; }
+.sr-disclaimer { font-size: 11.5px; color: var(--sage); margin-top: 14px; font-style: italic; }
+
+/* ── AI Chat Panel header/body (the panel container itself is
+   styled by .ai-chat-panel-popup in the PATCH section below —
+   that fully replaced the old #ai-chat-toggle-btn / #ai-chat-panel
+   rules that used to live here and conflicted with the real
+   floating button via ID-selector specificity) ── */
+.ai-chat-header {
+  background: var(--teal);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ai-chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.ai-chat-info strong { display: block; color: var(--white); font-size: 14px; }
+.ai-chat-info span   { color: rgba(255,255,255,0.65); font-size: 11.5px; }
+.ai-chat-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 20px;
+  cursor: pointer;
+}
+#ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--paper);
+}
+.ai-bubble { max-width: 82%; }
+.ai-bubble-ai   { align-self: flex-start; }
+.ai-bubble-user { align-self: flex-end; }
+.ai-bubble-content {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.ai-bubble-ai .ai-bubble-content {
+  background: var(--white);
+  color: var(--ink);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.ai-bubble-user .ai-bubble-content {
+  background: var(--teal);
+  color: var(--white);
+  border-bottom-right-radius: 4px;
+}
+.ai-bubble-time { font-size: 10.5px; color: var(--sage); margin-top: 4px; padding: 0 4px; }
+/* Quick reply chips */
+.ai-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 14px 0;
+  background: var(--paper);
+}
+.ai-quick-chip {
+  background: var(--white);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 100px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--teal);
+  font-family: var(--font-body);
+  transition: all var(--ease);
+  white-space: nowrap;
+}
+.ai-quick-chip:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+/* Typing indicator dots */
+.ai-typing-dots span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  animation: typingBounce 1.2s infinite;
+  margin: 0 1px;
+}
+.ai-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.ai-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%,60%,100% { transform: translateY(0); }
+  30%          { transform: translateY(-6px); }
+}
+/* Input area */
+.ai-chat-input-row {
+  padding: 12px 14px;
+  border-top: 1px solid var(--mint-mid);
+  display: flex;
+  gap: 8px;
+  background: var(--white);
+  flex-shrink: 0;
+}
+#ai-chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 100px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  resize: none;
+}
+#ai-chat-input:focus { border-color: var(--teal); outline: none; }
+.ai-send-btn {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--ease);
+}
+.ai-send-btn:hover { background: var(--teal-soft); }
+.ai-send-btn svg   { width: 15px; height: 15px; }
+.ai-powered-label  {
+  text-align: center;
+  font-size: 10.5px;
+  color: rgba(0,0,0,0.3);
+  padding: 6px 0;
+  background: var(--white);
+}
+
+
+/* ============================================================
+   43. PAYMENT METHODS — Extended (PayPal, Stripe, Square etc.)
+   ============================================================ */
+.pay-methods-extended { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 18px; }
+.pay-method-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 12px;
+  background: var(--white);
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  color: var(--ink);
+  transition: all var(--ease);
+}
+.pay-method-btn:hover { border-color: var(--teal); background: var(--mint); }
+.pay-method-btn.selected { border-color: var(--teal); background: var(--mint); }
+.pay-method-btn .pm-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.pm-momo    { background: #FFF3CC; }
+.pm-card    { background: #E8F3EE; }
+.pm-paypal  { background: #E8F1FB; }
+.pm-stripe  { background: #F0EFFF; }
+.pm-square  { background: #F5F5F5; }
+.pm-wallet  { background: #FFF0E8; }
+
+/* Transaction fee notice */
+.transaction-fee-notice {
+  background: #FAFAFA;
+  border: 1px solid var(--mint-mid);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  color: var(--sage);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.transaction-fee-notice strong { color: var(--ink); }
+
+/* SSL security badge */
+.ssl-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--sage);
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: #F9FFF9;
+  border-radius: 8px;
+  border: 1px solid #C6E6C8;
+}
+.ssl-badge svg { width: 16px; height: 16px; color: #1E8A52; flex-shrink: 0; }
+
+
+/* ============================================================
+   44. CUSTOMER REVIEWS SECTION
+   ============================================================ */
+.reviews-section { padding: var(--section-pad); background: linear-gradient(160deg, var(--mint) 0%, var(--mint-mid) 100%); }
+.reviews-inner   { max-width: 1320px; margin: 0 auto; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.review-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--mint-mid);
+}
+.review-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.review-stars  { font-size: 15px; letter-spacing: 1px; }
+.verified-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #1E8A52;
+  background: #E7F7EE;
+  padding: 3px 9px;
+  border-radius: 100px;
+}
+.review-text { font-size: 14px; color: var(--ink); line-height: 1.7; margin-bottom: 14px; }
+.review-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--sage); }
+.no-reviews  { color: var(--sage); font-size: 14px; text-align: center; padding: 20px; }
+
+/* Review form */
+.review-form-card { background: var(--white); border-radius: var(--radius-xl); padding: 32px; }
+.review-form-card h3 { font-size: 18px; margin-bottom: 18px; }
+.star-rating { display: flex; gap: 6px; flex-direction: row-reverse; justify-content: flex-end; margin-bottom: 16px; }
+.star-rating input  { display: none; }
+.star-rating label  { font-size: 28px; cursor: pointer; color: #DDD; transition: color var(--ease); }
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label { color: #F59E0B; }
+
+
+/* ============================================================
+   45. DATA PRIVACY POLICY PAGE
+   ============================================================ */
+.privacy-wrap { max-width: 820px; margin: 0 auto; padding: 80px 40px 100px; }
+.privacy-wrap h2 { font-size: 22px; margin: 36px 0 12px; color: var(--teal); }
+.privacy-wrap p  { font-size: 15px; color: #2C3E35; line-height: 1.85; margin-bottom: 16px; }
+.privacy-wrap ul { padding-left: 22px; margin-bottom: 18px; }
+.privacy-wrap li { font-size: 15px; color: #2C3E35; line-height: 1.8; margin-bottom: 6px; }
+.privacy-last-updated {
+  display: inline-block;
+  background: var(--mint);
+  color: var(--teal);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+.privacy-section-icon { font-size: 22px; margin-right: 8px; }
+
+
+/* ============================================================
+   46. ERROR HANDLING PAGES & INDICATORS
+   ============================================================ */
+.error-page {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+.error-code {
+  font-family: var(--font-display);
+  font-size: 90px;
+  font-weight: 700;
+  color: var(--mint-mid);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.error-page h2 { font-size: 28px; margin-bottom: 14px; }
+.error-page p  { font-size: 15.5px; color: var(--sage); max-width: 440px; margin-bottom: 28px; }
+
+/* Inline field error messages */
+.field-error {
+  display: block;
+  font-size: 12px;
+  color: var(--coral-deep);
+  margin-top: 5px;
+  font-weight: 600;
+}
+/* Input error state */
+.input-error {
+  border-color: var(--coral) !important;
+  background: var(--coral-soft) !important;
+}
+
+/* Network / loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--mint) 25%, var(--mint-mid) 50%, var(--mint) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+
+/* ============================================================
+   47. ORDER STATUS PAGE
+   ============================================================ */
+.order-status-wrap { max-width: 680px; margin: 0 auto; padding: 80px 40px 100px; }
+.order-status-header { text-align: center; margin-bottom: 40px; }
+.order-status-id {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teal);
+  background: var(--mint);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.order-timeline { display: flex; flex-direction: column; gap: 0; position: relative; margin-bottom: 36px; }
+.order-timeline::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--mint-mid);
+}
+.timeline-step { display: flex; gap: 18px; padding: 18px 0; position: relative; }
+.tl-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--mint);
+  border: 2px solid var(--mint-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  transition: all var(--ease);
+}
+.timeline-step.done .tl-dot { background: var(--teal); border-color: var(--teal); color: var(--white); }
+.timeline-step.active .tl-dot { background: var(--coral); border-color: var(--coral); color: var(--white); }
+.tl-content h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+.tl-content p  { font-size: 13px; color: var(--sage); }
+.tl-time       { font-size: 11.5px; color: var(--sage); margin-top: 3px; }
+
+
+/* ============================================================
+   48. A/B TEST VARIANT STYLES
+   Variant B gets slightly different CTA button styling
+   to test whether rounded vs sharp corners convert better.
+   ============================================================ */
+body.ab-variant-b .btn-primary { border-radius: 10px; }
+body.ab-variant-b .btn-outline { border-radius: 10px; }
+body.ab-variant-b .btn-emergency { border-radius: 10px; }
+
+
+/* ============================================================
+   49. SSL / SECURITY TRUST BADGES
+   Shown near payment forms to reassure customers.
+   ============================================================ */
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border: 1px solid var(--mint-mid);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--sage);
+}
+.trust-badge svg { width: 14px; height: 14px; color: #1E8A52; }
+
+
+/* ============================================================
+   50. RESPONSIVE ADDITIONS for new feature sections
+   ============================================================ */
+@media (max-width: 1100px) {
+  .ai-rec-grid        { grid-template-columns: repeat(2,1fr); }
+  .reviews-grid       { grid-template-columns: repeat(2,1fr); }
+  .pay-methods-extended { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  /* Auth modal */
+  .auth-modal-box  { border-radius: var(--radius-md); }
+  .auth-panel      { padding: 20px; }
+  .auth-modal-header { padding: 20px 20px 0; }
+  .auth-tabs       { margin: 16px 20px 0; }
+
+  /* Checkout progress */
+  .step-label      { display: none; }
+  .checkout-progress { gap: 0; padding: 0 10px; }
+
+  /* AI recs */
+  .ai-rec-grid     { grid-template-columns: 1fr; }
+  .symptom-input-row { flex-direction: column; }
+
+  /* Reviews */
+  .reviews-grid    { grid-template-columns: 1fr; }
+
+  /* Order status */
+  .order-status-wrap { padding: 60px 20px 80px; }
+
+  /* Privacy */
+  .privacy-wrap    { padding: 60px 20px 80px; }
+
+  /* Nav auth */
+  #nav-auth-area   { gap: 6px; }
+  .nav-user-chip span { display: none; }
+}
+
+
+/* ============================================================
+   PATCH — Float Button Stack (3-button unified group)
+   WhatsApp + SOS + AI all in one right-aligned column
+   ============================================================ */
+.float-btn-stack {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* When the footer scrolls into view, core.js adds this class to the
+   SOS and AI buttons only — the footer already repeats emergency
+   contact info, so those two fade out of the way. WhatsApp support
+   stays available. */
+.sos-btn.fabs-hidden,
+.ai-fab-btn.fabs-hidden {
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  pointer-events: none;
+}
+.support-btn,
+.sos-btn,
+.ai-fab-btn {
+  transition: transform var(--ease), box-shadow var(--ease), filter var(--ease), opacity 0.28s ease;
+}
+
+/* Shared pill shape for all three FABs */
+.support-btn,
+.sos-btn,
+.ai-fab-btn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 18px 9px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: var(--font-body);
+  transition: transform var(--ease), box-shadow var(--ease), filter var(--ease);
+  white-space: nowrap;
+}
+.support-btn:hover,
+.sos-btn:hover,
+.ai-fab-btn:hover { transform: translateY(-3px); filter: brightness(1.04); }
+.support-btn:active,
+.sos-btn:active,
+.ai-fab-btn:active { transform: translateY(-1px); }
+
+/* Icon badge shared by all three — consistent 30px circle so the
+   row reads as one cohesive, professionally-designed component */
+.wa-icon,
+.sos-icon,
+.ai-fab-btn svg {
+  flex-shrink: 0;
+}
+.wa-icon,
+.sos-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* WhatsApp — white card */
+.support-btn {
+  background: var(--white);
+  color: var(--teal-deep);
+  box-shadow: 0 10px 26px rgba(11,61,58,0.16);
+  border-color: rgba(11,61,58,0.06);
+  text-decoration: none;
+}
+.wa-icon {
+  background: #25D366;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+.wa-icon img { width: 15px; height: 15px; }
+
+/* SOS — coral, with a soft breathing ring instead of a shaky pulse */
+.sos-btn {
+  position: relative;
+  background: linear-gradient(155deg, var(--coral) 0%, var(--coral-deep) 100%);
+  color: var(--white);
+  box-shadow: 0 10px 26px rgba(232,92,74,0.4);
+  text-decoration: none;
+}
+.sos-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-pill);
+  border: 2px solid rgba(232,92,74,0.55);
+  animation: sosRing 2.2s ease-out infinite;
+  pointer-events: none;
+}
+.sos-icon {
+  background: rgba(255,255,255,0.18);
+}
+.sos-icon svg { width: 16px; height: 16px; }
+@keyframes sosRing {
+  0%   { transform: scale(1);    opacity: 0.9; }
+  100% { transform: scale(1.22); opacity: 0; }
+}
+
+/* AI — teal gradient chat button */
+.ai-fab-btn {
+  background: linear-gradient(155deg, var(--teal) 0%, var(--teal-deep) 100%);
+  color: var(--white);
+  box-shadow: 0 10px 26px rgba(11,61,58,0.32);
+}
+.ai-fab-btn svg {
+  width: 30px; height: 30px;
+  padding: 7px;
+  box-sizing: border-box;
+  background: rgba(255,255,255,0.16);
+  border-radius: 50%;
+}
+
+/* AI Chat panel — floats above the stack */
+.ai-chat-panel-popup {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 168px;          /* sits above the 3-button stack */
+  right: 22px;
+  width: 330px;
+  max-height: 480px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+  overflow: hidden;
+  z-index: 950;
+  animation: slideUp 0.3s ease;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+.ai-chat-panel-popup.open { display: flex; }
+.ai-chat-panel-popup.fabs-hidden {
+  opacity: 0;
+  transform: translateY(14px);
+  pointer-events: none;
+}
+
+/* Mobile — hide text labels on FABs, show icon only */
+@media (max-width: 720px) {
+  .support-btn span,
+  .sos-btn span,
+  .ai-fab-btn span { display: none; }
+  .support-btn,
+  .sos-btn,
+  .ai-fab-btn { padding: 12px; border-radius: 50%; width: 46px; height: 46px; justify-content: center; }
+  .ai-fab-btn svg { background: none; padding: 0; width: 18px; height: 18px; }
+  .float-btn-stack { right: 14px; bottom: 14px; gap: 10px; }
+  .ai-chat-panel-popup { width: calc(100vw - 28px); right: 14px; bottom: 140px; }
+}
+
+/* ============================================================
+   PATCH — Emergency page layout fix
+   ============================================================ */
+.emergency-section {
+  padding: 90px 60px;
+  min-height: auto;
+}
+.emergency-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .emergency-inner { grid-template-columns: 1fr; gap: 40px; }
+  .emergency-section { padding: 60px 20px; }
+}
+
+/* ============================================================
+   PATCH — Nav refinements (cleaner, less cramped)
+   ============================================================ */
+.site-nav { padding: 0 40px; }
+.nav-links { gap: 22px; }
+.nav-links a:not(.nav-cta):not(.nav-emergency) { font-size: 13px; }
+.nav-emergency { font-size: 12px !important; padding: 8px 14px; }
+.nav-cta { padding: 10px 20px; font-size: 13px !important; }
+/* Sign In outlined style matching Register */
+.nav-links .btn-outline.btn-sm {
+  padding: 10px 18px;
+  font-size: 13px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+}
+@media (max-width: 1100px) {
+  .site-nav { padding: 0 24px; }
+  .nav-links { gap: 16px; }
+}
+
+/* ============================================================
+   PATCH — Symptom result card spacing
+   ============================================================ */
+.symptom-result-card { margin-top: 16px; }
+.sr-urgency { font-size: 15px; }
+
+/* ============================================================
+   PATCH — Payment modal confirm buttons always visible
+   ============================================================ */
+.pay-panel .btn-primary { margin-top: 16px; }
+.modal-box { max-height: 90vh; overflow-y: auto; }
+
+
+/* ============================================================
+   AI ACTION BUBBLES — shown when the AI executes a tool
+   ============================================================ */
+.ai-action-bubble .ai-bubble-content {
+  background: linear-gradient(135deg, #E8F3EE, #D3E8DF) !important;
+  border: 1.5px solid var(--mint-mid);
+  color: var(--ink) !important;
+  font-size: 13px;
+}
+.ai-action-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+/* Newlines in AI messages */
+.ai-bubble-content { white-space: pre-wrap; word-break: break-word; }
+/* Bold/italic inside AI messages */
+.ai-bubble-content em     { font-style: italic; }
+.ai-bubble-content strong { font-weight: 700; }
+
+/* ============================================================
+   EMERGENCY PAGE — SOS hero, symptom quick-triage, steps
+   (classes used in emergency.html that had no matching rules)
+   ============================================================ */
+.sos-hero {
+  background: var(--teal-deep);
+  background-image: radial-gradient(circle at 85% 20%, rgba(232,92,74,0.18), transparent 50%);
+  color: var(--white);
+  padding: 100px 60px 90px;
+  text-align: center;
+}
+.sos-hero h1 {
+  color: var(--white);
+  font-size: clamp(32px, 4vw, 56px);
+  max-width: 720px;
+  margin: 0 auto 18px;
+}
+.sos-hero > p {
+  color: rgba(255,255,255,0.65);
+  font-size: 15.5px;
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+.sos-call-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.sos-call-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  text-align: left;
+  transition: background var(--ease);
+}
+.sos-call-card:hover { background: rgba(255,255,255,0.12); }
+.sos-call-card .icon {
+  width: 42px; height: 42px; flex-shrink: 0;
+  border-radius: 12px;
+  background: rgba(232,92,74,0.18);
+  color: var(--coral);
+  display: flex; align-items: center; justify-content: center;
+}
+.sos-call-card .icon svg { width: 20px; height: 20px; }
+.sos-call-card strong { display: block; color: var(--white); font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.sos-call-card span { color: rgba(255,255,255,0.6); font-size: 12.5px; }
+
+/* ── Symptom quick-triage (emergency page) ── */
+.symptom-checker {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--section-pad);
+  text-align: center;
+}
+.symptom-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin: 24px 0 32px;
+}
+.symptom-chip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--mint);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--ease), border-color var(--ease);
+}
+.symptom-chip:hover { background: var(--coral-soft); border-color: var(--coral); }
+.symptom-chip svg { width: 20px; height: 20px; flex-shrink: 0; color: var(--coral); }
+
+/* ── "From Call to Care" numbered steps ── */
+.steps-emergency {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.estep { text-align: left; }
+.estep-num {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--coral);
+  margin-bottom: 14px;
+}
+.estep h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.estep p { font-size: 13.5px; color: var(--sage); line-height: 1.65; }
+
+@media (max-width: 900px) {
+  .sos-call-grid { grid-template-columns: 1fr; }
+  .steps-emergency { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .steps-emergency { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+   RESPONSIVE PATCH — Phase 2 audit fixes
+   (tables/overflow, min-width guards, fixed-width panels,
+    FAB/chat/modal safety) — additive only, preserves Phase 1.
+   ============================================================ */
+
+/* Generic: let any element opt out of overflowing the viewport */
+img, svg, video, canvas { max-width: 100%; }
+
+/* Prevent the 220px finder input from forcing horizontal scroll on
+   very small screens (320px). It keeps a sensible minimum until then. */
+@media (max-width: 360px) {
+  .finder-search-bar input { min-width: 0; }
+  .finder-search-bar { flex-direction: column; align-items: stretch; }
+}
+
+/* Modals: tighten padding + never exceed the viewport on phones */
+@media (max-width: 720px) {
+  .modal-box,
+  .modal-box-lg {
+    padding: 28px 20px;
+    max-height: 92vh;
+    border-radius: var(--radius-md);
+  }
+  .modal-box-lg { max-width: 100%; }
+  .modal-box h2 { font-size: 20px; }
+  .modal-close { top: 12px; right: 14px; font-size: 24px; }
+
+  /* Payment network buttons wrap instead of overflowing */
+  .net-btn { flex: 1 1 45%; }
+  .pay-tabs { flex-wrap: wrap; }
+
+  /* Rider chat panel pinned to bottom, full-width like the AI panel */
+  .chat-overlay.rider-overlay,
+  .rider-chat-panel {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .chat-box.rider-chat-box,
+  .rider-chat-panel .chat-box {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+}
+
+/* Extra-small phones: keep FAB stack reachable, no overlap */
+@media (max-width: 480px) {
+  .float-btn-stack { right: 12px; bottom: 12px; gap: 8px; }
+  .support-btn, .sos-btn, .ai-fab-btn { font-size: 11.5px; padding: 8px 14px 8px 8px; }
+  .order-status-id { font-size: 15px; padding: 8px 14px; }
+  .tl-content h4 { font-size: 14px; }
+}

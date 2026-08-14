@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthPlus Pharmacy — Medicines &amp; Health Products Delivered</title>
+<meta name="description" content="HealthPlus Pharmacy — shop genuine medicines, vitamins and health products online, upload your prescription, pay securely and track delivery across Accra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- PROMO ANNOUNCEMENT BAR — managed by auth.js showPromoBanner() -->
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+
+<!-- NAV -->
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    </div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="order-online.html">Shop</a></li>
+    <li><a href="services.html">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- Auth: logged out -->
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+      <button class="nav-cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;"></span>
+      </button>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-bg-shape two"></div>
+    <div class="hero-grid">
+        <div class="hero-content">
+            <div class="hero-eyebrow"><span class="pulse-dot"></span><span>500+ medicines in stock · East Legon, Accra</span></div>
+            <h1>Your medicine<br>cabinet,<br><em>delivered.</em></h1>
+            <p class="hero-sub">Shop genuine medicines, vitamins and health products online. Upload a prescription if needed, pay securely, and track your delivery right to your door.</p>
+            <div class="hero-actions">
+                <a href="order-online.html" class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;"><path d="M9 3a3 3 0 0 1 6 0v2H9V3z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 12h6M9 16h6"/></svg>
+                    Shop Medicines Now
+                </a>
+                <a href="services.html" class="btn-outline">Browse Categories</a>
+            </div>
+            <div class="hero-trust">
+                <div class="hero-trust-item"><span class="hero-trust-num">15 min</span><span class="hero-trust-lbl">Avg. delivery ETA</span></div>
+                <div class="hero-trust-item"><span class="hero-trust-num">500+</span><span class="hero-trust-lbl">Products in stock</span></div>
+                <div class="hero-trust-item"><span class="hero-trust-num">12+</span><span class="hero-trust-lbl">Areas covered</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card-main">
+                <svg viewBox="0 0 400 320" style="width:100%;aspect-ratio:4/3.1;display:block;" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="320" fill="#0B3D3A"/>
+                    <circle cx="320" cy="40" r="120" fill="#134A46"/>
+                    <circle cx="40" cy="290" r="90" fill="#072826"/>
+                    <circle cx="200" cy="140" r="58" fill="#E8F3EE"/>
+                    <circle cx="200" cy="120" r="26" fill="#0B3D3A"/>
+                    <path d="M160 200c0-26 18-44 40-44s40 18 40 44" fill="#0B3D3A"/>
+                    <rect x="120" y="200" width="160" height="70" rx="14" fill="#E8F3EE"/>
+                    <rect x="140" y="218" width="120" height="8" rx="4" fill="#C9A35C"/>
+                    <rect x="140" y="234" width="80" height="8" rx="4" fill="#6B8F87"/>
+                    <circle cx="320" cy="240" r="22" fill="#E85C4A"/>
+                    <path d="M311 240h18M320 231v18" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="hero-card-body">
+                    <div class="hero-card-row">
+                        <strong>Order #HP-4821</strong>
+                        <span class="hero-status-chip"><span class="pulse-dot"></span>Confirmed</span>
+                    </div>
+                    <span class="hero-card-meta">3 items · Paid via MTN MoMo</span>
+                </div>
+            </div>
+            <div class="hero-float-card one">
+                <div class="hero-float-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+                <div><strong>Prescription verified</strong><span>Pharmacist approved your order</span></div>
+            </div>
+            <div class="hero-float-card two">
+                <div class="hero-float-icon coral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l9 4V6L6 10H3z"/></svg></div>
+                <div><strong>Rider 4 min away</strong><span>Medication on its way</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- VITALS TICKER -->
+<div class="vitals-strip">
+    <div class="vitals-inner" id="ticker">
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 0 1 6 0v2H9V3z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 12h6M9 16h6"/></svg><strong>500+</strong><span>medicines &amp; products</span></span>
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><strong>15 min</strong><span>average delivery ETA</span></span>
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l9 4V6L6 10H3z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg><strong>12+</strong><span>delivery areas in Accra</span></span>
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><strong>100%</strong><span>pharmacist-verified orders</span></span>
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg><strong>9+</strong><span>product categories</span></span>
+        <span class="vital-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5V5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.4.6l7 7a2 2 0 0 1 0 2.8l-7.6 7.6a2 2 0 0 1-2.8 0l-7-7a2 2 0 0 1-.5-1.5z"/></svg><strong>10%</strong><span>off your first order</span></span>
+    </div>
+</div>
+
+<!-- SHOP BY CATEGORY -->
+<section class="section">
+    <div class="section-header">
+        <div>
+            <div class="section-label"><span>Shop By Category</span></div>
+            <h2>Everything Your<br>Health Needs</h2>
+        </div>
+        <a href="services.html" class="view-all-link">View All Categories →</a>
+    </div>
+    <div class="dept-grid">
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 0 1 6 0v2H9V3z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 12h6M9 16h6"/></svg></div>
+            <h3>Pain Relief &amp; Fever</h3>
+            <p>Paracetamol, ibuprofen, aspirin and other analgesics for fast relief.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+            <h3>Antibiotics &amp; Infections</h3>
+            <p>Prescription antibiotics and antimalarials, verified by our pharmacists.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <h3>Chronic Condition Care</h3>
+            <p>Diabetes, blood pressure and heart medication for ongoing treatment.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z"/><path d="M9 12h6M12 9v6"/></svg></div>
+            <h3>Vitamins &amp; Supplements</h3>
+            <p>Multivitamins, minerals and supplements to support daily wellness.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.5 7-12.5A7 7 0 0 0 5 9.5C5 14.5 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.3"/></svg></div>
+            <h3>Mother &amp; Baby</h3>
+            <p>Maternal health, rehydration and baby-care essentials.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6L4 19a2 2 0 0 0 2 3h12a2 2 0 0 0 2-3l-5-11V2"/><path d="M9 2h6M7 16h10"/></svg></div>
+            <h3>Skin &amp; Personal Care</h3>
+            <p>Topicals, antifungals and hygiene products for everyday care.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6v6H9z"/></svg></div>
+            <h3>First Aid &amp; Devices</h3>
+            <p>Bandages, thermometers, glucometers and other medical devices.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+        <a href="order-online.html" class="dept-card reveal">
+            <div class="dept-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4z"/></svg></div>
+            <h3>Allergy &amp; Cold</h3>
+            <p>Antihistamines, decongestants and cough &amp; cold remedies.</p>
+            <span class="dept-link">Shop now →</span>
+        </a>
+    </div>
+</section>
+
+<!-- PRESCRIPTION UPLOAD -->
+<section class="consult-section">
+    <div class="consult-inner">
+        <div class="section-label"><span>Prescription-Only Medicine</span></div>
+        <h2 style="font-size:clamp(28px,3vw,42px);font-weight:600;letter-spacing:-0.8px;margin-bottom:14px;">Upload Your Prescription,<br>We Handle the Rest</h2>
+        <p class="section-sub" style="margin:0 0 40px;text-align:left;">Ordering a prescription-only medicine? Add a photo or PDF of your prescription at checkout and one of our licensed pharmacists will verify it before your order is dispensed and shipped.</p>
+        <div class="consult-modes">
+            <div class="mode-card selected">
+                <div class="mode-card-top">
+                    <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a3 3 0 0 1 6 0v2H9V3z"/><rect x="5" y="5" width="14" height="16" rx="2"/><path d="M9 12h6M9 16h6"/></svg></div>
+                </div>
+                <h3>1. Add to Cart</h3>
+                <p>Search or browse for the medicine you need and add it to your cart.</p>
+            </div>
+            <div class="mode-card">
+                <div class="mode-card-top">
+                    <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4z"/></svg></div>
+                </div>
+                <h3>2. Upload Prescription</h3>
+                <p>At checkout, attach a photo or PDF of your prescription for verification.</p>
+            </div>
+            <div class="mode-card">
+                <div class="mode-card-top">
+                    <div class="mode-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+                </div>
+                <h3>3. Pharmacist Verifies</h3>
+                <p>A licensed pharmacist reviews your prescription before dispensing.</p>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:36px;">
+            <a href="order-online.html" class="btn-primary">Start Shopping</a>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+    <div class="section-label on-dark"><span>Process</span></div>
+    <h2>How Ordering<br>Works</h2>
+    <div class="steps-grid">
+        <div class="step-card">
+            <span class="step-num">01</span>
+            <h3>Search or Browse</h3>
+            <p>Find your medicine or health product by name, category, or symptom.</p>
+        </div>
+        <div class="step-card">
+            <span class="step-num">02</span>
+            <h3>Add to Cart</h3>
+            <p>Add items to your cart and upload a prescription if one is required.</p>
+        </div>
+        <div class="step-card">
+            <span class="step-num">03</span>
+            <h3>Pay Securely</h3>
+            <p>Checkout with Mobile Money, card, or bank transfer — all encrypted.</p>
+        </div>
+        <div class="step-card">
+            <span class="step-num">04</span>
+            <h3>Track Your Delivery</h3>
+            <p>Watch your order move from pharmacy to your doorstep in real time.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+    <div class="section-label"><span>Why HealthPlus</span></div>
+    <h2 style="font-size:clamp(28px,3vw,42px);font-weight:600;letter-spacing:-0.8px;margin-bottom:50px;">Trusted Care,<br>Built for Accra</h2>
+    <div class="why-grid">
+        <div class="why-card reveal">
+            <span class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <h3>Genuine, Verified Medicines</h3>
+            <p>Every product is sourced from licensed suppliers and checked by our pharmacists.</p>
+        </div>
+        <div class="why-card reveal">
+            <span class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+            <h3>Fast Delivery</h3>
+            <p>Average delivery time under 15 minutes for in-stock items across Accra.</p>
+        </div>
+        <div class="why-card reveal">
+            <span class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+            <h3>Secure Payments</h3>
+            <p>Mobile Money and card payments are encrypted — we never store your card details.</p>
+        </div>
+        <div class="why-card reveal">
+            <span class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l9 4V6L6 10H3z"/><path d="M18 9a4 4 0 0 1 0 6"/></svg></span>
+            <h3>Door-to-Door Delivery</h3>
+            <p>Track every order live, from pharmacy shelf to your doorstep.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOME CALL-IN -->
+<section class="homecall-section">
+    <div class="homecall-layout">
+        <div class="homecall-visual">
+            <svg viewBox="0 0 500 420" style="width:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
+                <rect width="500" height="420" fill="#E8F3EE"/>
+                <rect x="60" y="60" width="380" height="300" rx="20" fill="#FFFFFF"/>
+                <rect x="90" y="100" width="120" height="120" rx="16" fill="#0B3D3A"/>
+                <circle cx="150" cy="150" r="28" fill="#E8F3EE"/>
+                <circle cx="150" cy="142" r="12" fill="#0B3D3A"/>
+                <path d="M128 184c0-13 10-22 22-22s22 9 22 22" fill="#0B3D3A"/>
+                <rect x="230" y="100" width="180" height="14" rx="7" fill="#C9A35C"/>
+                <rect x="230" y="124" width="150" height="10" rx="5" fill="#D3E8DF"/>
+                <rect x="230" y="142" width="160" height="10" rx="5" fill="#D3E8DF"/>
+                <rect x="90" y="250" width="320" height="80" rx="14" fill="#E8F3EE"/>
+                <circle cx="125" cy="290" r="18" fill="#E85C4A"/>
+                <path d="M118 290h14M125 283v14" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                <rect x="155" y="278" width="200" height="9" rx="4.5" fill="#0B3D3A"/>
+                <rect x="155" y="296" width="140" height="9" rx="4.5" fill="#6B8F87"/>
+            </svg>
+        </div>
+        <div>
+            <div class="section-label"><span>Order Tracking</span></div>
+            <h2 style="font-size:clamp(26px,2.8vw,38px);font-weight:600;letter-spacing:-0.6px;margin-bottom:18px;">Know Exactly Where<br>Your Order Is</h2>
+            <p style="font-size:15.5px;color:var(--sage);line-height:1.75;">From the moment your pharmacist confirms your order to the moment it arrives, follow every step live on the map.</p>
+            <div class="homecall-list">
+                <div class="homecall-item">
+                    <span class="homecall-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                    <div><strong>Real-time map tracking</strong><span>Watch your rider's location update live.</span></div>
+                </div>
+                <div class="homecall-item">
+                    <span class="homecall-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                    <div><strong>Order status updates</strong><span>Confirmed, packed, out for delivery, delivered.</span></div>
+                </div>
+                <div class="homecall-item">
+                    <span class="homecall-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                    <div><strong>Chat with your rider</strong><span>Message your delivery rider directly if you need to.</span></div>
+                </div>
+            </div>
+            <a href="order-status.html" class="btn-primary">Track Your Order</a>
+        </div>
+    </div>
+</section>
+
+<!-- PROMO -->
+<div class="promo-banner">
+    <h2>10% Off Your <em>First Order</em></h2>
+    <a href="order-online.html" class="btn-outline" style="border-color:var(--teal-deep);color:var(--teal-deep);">Claim Your Discount</a>
+</div>
+
+<!-- PAYMENT -->
+
+<!-- ══════════════════════════════════════════════════════
+     CUSTOMER REVIEWS & TESTIMONIALS
+     Pre-seeded reviews + form for new reviews.
+     Managed by auth.js renderReviews() + submitReview()
+     ══════════════════════════════════════════════════════ -->
+<section class="reviews-section">
+  <div class="reviews-inner">
+    <div class="section-label"><span>Customer Reviews</span></div>
+    <h2 style="font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-0.6px;margin-bottom:10px;">What Our Customers Say</h2>
+    <p style="font-size:15px;color:var(--sage);margin-bottom:36px;max-width:480px;">Real feedback from verified HealthPlus customers.</p>
+    <!-- Review cards — populated by auth.js -->
+    <div class="reviews-grid" id="reviews-list"></div>
+    <!-- Review form -->
+    <div class="review-form-card" style="max-width:560px;margin-top:40px;">
+      <h3>Leave a Review</h3>
+      <form id="review-form">
+        <div class="form-group">
+          <label>Your Rating</label>
+          <div class="star-rating">
+            <input type="radio" name="review-rating" id="star5" value="5"><label for="star5">★</label>
+            <input type="radio" name="review-rating" id="star4" value="4"><label for="star4">★</label>
+            <input type="radio" name="review-rating" id="star3" value="3"><label for="star3">★</label>
+            <input type="radio" name="review-rating" id="star2" value="2"><label for="star2">★</label>
+            <input type="radio" name="review-rating" id="star1" value="1"><label for="star1">★</label>
+          </div>
+        </div>
+        <div class="form-group"><label for="review-name">Your Name <span class="opt">(optional)</span></label><input type="text" id="review-name" placeholder="e.g. Akosua M."></div>
+        <div class="form-group"><label for="review-comment">Your Review</label><textarea id="review-comment" placeholder="Tell others about your HealthPlus experience…" style="min-height:100px;"></textarea></div>
+        <button type="submit" class="btn-primary">Submit Review</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="payment-section">
+    <div class="section-label centered"><span>Payments</span></div>
+    <h2 style="font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-0.6px;">Flexible Payment Options</h2>
+    <p class="section-sub">Pay for your order the way that works for you.</p>
+    <div class="payment-methods">
+        <div class="payment-card">
+            <span class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 6v8M10 7.5c0-1 .9-1.5 2-1.5s2 .6 2 1.4c0 1.8-4 .8-4 2.6 0 .8.9 1.5 2 1.5s2-.5 2-1.5"/></svg></span>
+            <h4>Mobile Money</h4>
+            <p>MTN MoMo, Telecel Cash &amp; AirtelTigo Money</p>
+        </div>
+        <div class="payment-card">
+            <span class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+            <h4>Card Payment</h4>
+            <p>Visa, Mastercard &amp; Verve accepted</p>
+        </div>
+        <div class="payment-card">
+            <span class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+            <h4>Secure Checkout</h4>
+            <p>All payments are encrypted — your details are never stored</p>
+        </div>
+        <div class="payment-card">
+            <span class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:34px;height:34px;"><path d="M3 10l9-6 9 6"/><rect x="4" y="10" width="16" height="9"/></svg></span>
+            <h4>Bank Transfer</h4>
+            <p>Direct transfer accepted for larger orders</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+</main>
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+
+
+<div class="float-btn-stack" id="float-btn-stack">
+  <!-- WhatsApp support -->
+  <a href="https://wa.me/233203122589" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp support">
+    <div class="wa-icon"><img src="assets/whatsapp.png" alt="WhatsApp" width="17" height="17"></div>
+    <span>Support</span>
+  </a>
+  <!-- AI Health Assistant -->
+  <button type="button" class="ai-fab-btn" id="ai-fab-btn" aria-label="AI Health Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <span>AI Health</span>
+  </button>
+
+</div>
+
+<div class="ai-chat-panel-popup" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">💬</div>
+    <div class="ai-chat-info"><strong>HealthPlus AI Assistant</strong><span>Symptom guidance &amp; OTC suggestions</span></div>
+    <button class="ai-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="ai-chat-input" placeholder="Describe how you're feeling..." autocomplete="off">
+    <button class="ai-send-btn" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/ai-assistant.js" defer></script>
+<script src="js/wire.js" defer></script>
+</body>
+</html>

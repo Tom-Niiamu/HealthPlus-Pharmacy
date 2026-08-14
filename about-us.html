@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — HealthPlus Pharmacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- PROMO ANNOUNCEMENT BAR — managed by auth.js showPromoBanner() -->
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    </div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="order-online.html">Shop</a></li>
+    <li><a href="services.html">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html" class="active">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- Auth: logged out -->
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+      <button class="nav-cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;"></span>
+      </button>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main>
+
+<div class="page-hero dark-overlay hero-bg-about">
+    <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> About Us</p>
+    <h1>About<br>HealthPlus</h1>
+    <p>Your trusted online pharmacy, built for Accra and the people in it.</p>
+</div>
+
+<div class="about-intro">
+    <div class="about-intro-text">
+        <div class="section-label"><span>Our Story</span></div>
+        <h2>Genuine Medicine, Delivered Without the Wait</h2>
+        <p>HealthPlus Pharmacy was built around one belief: that getting genuine, affordable medicine should not require a long queue, a difficult commute, or a day off work.</p>
+        <p>We've brought together a verified medicine catalogue, licensed pharmacists, and a fast delivery network — all accessible from your phone, within minutes, anywhere in Accra.</p>
+        <p>From everyday pain relief to prescription medication, every order is checked by our pharmacists and tracked live from our shelves to your door.</p>
+        <div style="margin-top:32px;">
+            <a href="order-online.html" class="btn-primary">Start Shopping</a>
+        </div>
+    </div>
+    <div class="about-visual reveal">
+        <svg viewBox="0 0 500 420" style="width:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
+            <rect width="500" height="420" fill="#E8F3EE"/>
+            <circle cx="380" cy="80" r="110" fill="#D3E8DF"/>
+            <circle cx="80" cy="360" r="80" fill="#D3E8DF"/>
+            <rect x="100" y="80" width="300" height="260" rx="20" fill="#FFFFFF"/>
+            <circle cx="250" cy="174" r="40" fill="#0B3D3A"/>
+            <circle cx="250" cy="164" r="18" fill="#E8F3EE"/>
+            <path d="M220 214c0-18 14-30 30-30s30 12 30 30" fill="#0B3D3A"/>
+            <rect x="130" y="240" width="240" height="12" rx="6" fill="#C9A35C"/>
+            <rect x="150" y="262" width="200" height="10" rx="5" fill="#D3E8DF"/>
+            <rect x="160" y="282" width="180" height="10" rx="5" fill="#D3E8DF"/>
+            <rect x="140" y="312" width="100" height="34" rx="17" fill="#0B3D3A"/>
+            <rect x="260" y="312" width="100" height="34" rx="17" fill="#E85C4A"/>
+        </svg>
+        <div style="background:var(--gold);padding:22px 28px;margin-top:2px;border-radius:0 0 20px 20px;">
+            <p style="font-size:16px;font-style:italic;font-family:'Fraunces',serif;color:var(--teal-deep);margin:0;line-height:1.6;">"Medicine that meets people where they are — not where a queue makes them wait."</p>
+        </div>
+    </div>
+</div>
+
+<section class="values-section">
+    <div class="values-inner">
+        <div class="section-label"><span>What We Stand For</span></div>
+        <h2 style="font-size:clamp(26px,3vw,40px);font-weight:600;letter-spacing:-0.6px;">Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card reveal">
+                <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                <h3>Pharmacy Integrity</h3>
+                <p>Every medicine is sourced from licensed suppliers and every prescription-only order is checked by a registered pharmacist before it ships.</p>
+            </div>
+            <div class="value-card reveal">
+                <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+                <h3>Radical Accessibility</h3>
+                <p>We believe a working parent in Madina deserves the same fast, reliable access to medicine as someone next door to a pharmacy. Distance is not a barrier here.</p>
+            </div>
+            <div class="value-card reveal">
+                <div class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+                <h3>Privacy First</h3>
+                <p>Your health is personal. Your orders, prescriptions and payment details are encrypted and confidential. We never share your data without your consent.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="mv-grid" style="margin-bottom:90px;">
+    <div class="mv-card dark reveal">
+        <h3>Our Mission</h3>
+        <p>To make genuine, affordable medicine available to every person in Accra — ordered online, verified by pharmacists, and delivered on demand.</p>
+    </div>
+    <div class="mv-card light reveal">
+        <h3>Our Vision</h3>
+        <p>To become Ghana's most trusted online pharmacy — the first place people turn when they need medicine, fast and without compromise.</p>
+    </div>
+</div>
+
+<section class="stats-strip">
+    <div class="stats-inner">
+        <div class="section-label on-dark centered" style="justify-content:center;"><span>By the Numbers</span></div>
+        <h2>Built on Results</h2>
+        <p>Serving customers across Accra, every single day.</p>
+        <div class="stats-nums">
+            <div class="stat-item"><span>15 min</span><span>Average delivery ETA</span></div>
+            <div class="stat-item"><span>500+</span><span>Medicines &amp; products</span></div>
+            <div class="stat-item"><span>9+</span><span>Product categories</span></div>
+            <div class="stat-item"><span>12+</span><span>Areas covered in Accra</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section">
+    <div class="section-label"><span>FAQ</span></div>
+    <h2 style="font-size:clamp(26px,3vw,40px);font-weight:600;margin-bottom:40px;">Common Questions</h2>
+    <div class="faq-list">
+        <details>
+            <summary>How do I order medicine online?</summary>
+            <p>Search or browse our catalogue on the Shop page, add items to your cart, then check out. If an item requires a prescription, you'll be prompted to upload one before payment.</p>
+        </details>
+        <details>
+            <summary>Do I need a prescription for every medicine?</summary>
+            <p>No. Over-the-counter items like pain relief, vitamins and first-aid products don't need one. Prescription-only medicines require a valid prescription, which our pharmacists verify before dispensing.</p>
+        </details>
+        <details>
+            <summary>What areas does HealthPlus deliver to?</summary>
+            <p>We deliver to all major areas of Accra including East Legon, Adenta, Airport Residential, Cantonments, Labone, Osu, Spintex, Tema, Madina, Haatso and more. If you're unsure, message us on WhatsApp.</p>
+        </details>
+        <details>
+            <summary>What payment methods are accepted?</summary>
+            <p>We accept Mobile Money (MTN MoMo, Telecel Cash, AirtelTigo Money), Visa/Mastercard/Verve cards, and bank transfer for larger orders.</p>
+        </details>
+        <details>
+            <summary>How does delivery tracking work?</summary>
+            <p>Once your order is confirmed and any prescription is verified, a rider collects it from our pharmacy and delivers to your address. You can follow the whole journey live on the map from the Track Order page.</p>
+        </details>
+        <details>
+            <summary>Is my personal and payment information private?</summary>
+            <p>Absolutely. All orders and payments are encrypted. Your personal data and prescription images are stored securely and never shared with any third party without your consent.</p>
+        </details>
+        <details>
+            <summary>What if I'm not satisfied with my order?</summary>
+            <p>Your experience matters to us. If there's an issue with your order or delivery, contact us within 24 hours and we will make it right — including a replacement or refund where appropriate.</p>
+        </details>
+    </div>
+</section>
+
+</main>
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+
+
+<div class="float-btn-stack" id="float-btn-stack">
+  <!-- WhatsApp support -->
+  <a href="https://wa.me/233203122589" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp support">
+    <div class="wa-icon"><img src="assets/whatsapp.png" alt="WhatsApp" width="17" height="17"></div>
+    <span>Support</span>
+  </a>
+  <!-- AI Health Assistant -->
+  <button type="button" class="ai-fab-btn" id="ai-fab-btn" aria-label="AI Health Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <span>AI Health</span>
+  </button>
+
+</div>
+
+<div class="ai-chat-panel-popup" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">💬</div>
+    <div class="ai-chat-info"><strong>HealthPlus AI Assistant</strong><span>Symptom guidance &amp; OTC suggestions</span></div>
+    <button class="ai-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="ai-chat-input" placeholder="Describe how you're feeling..." autocomplete="off">
+    <button class="ai-send-btn" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/ai-assistant.js" defer></script>
+<script src="js/wire.js" defer></script>
+</body>
+</html>

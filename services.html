@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop by Category — HealthPlus Pharmacy</title>
+<meta name="description" content="Browse HealthPlus Pharmacy's medicine and health product categories — pain relief, antibiotics, chronic condition care, vitamins, mother &amp; baby, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<!-- PROMO ANNOUNCEMENT BAR — managed by auth.js showPromoBanner() -->
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    </div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="order-online.html">Shop</a></li>
+    <li><a href="services.html" class="active">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- Auth: logged out -->
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+      <button class="nav-cart-btn" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;"></span>
+      </button>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main>
+
+<div class="page-hero dark-overlay hero-bg-services">
+  <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Categories</p>
+  <h1>Shop By<br>Category</h1>
+  <p>Find exactly what you need, fast — from pain relief to vitamins to mother &amp; baby care.</p>
+</div>
+
+<section style="padding:80px 60px 40px;max-width:1320px;margin:0 auto;">
+  <div class="section-label"><span>Categories</span></div>
+  <h2 style="font-size:clamp(28px,3vw,42px);font-weight:600;letter-spacing:-0.6px;margin-bottom:10px;">Product Categories</h2>
+  <p style="font-size:15px;color:var(--sage);max-width:520px;margin-bottom:0;">Browse our full catalogue of medicines and health products, organised the way you shop.</p>
+</section>
+
+<div class="srv-grid">
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&q=80" alt="Pain Relief and Fever">
+    <div class="srv-body">
+      <span class="srv-tag">Analgesics</span>
+      <h3>Pain Relief &amp; Fever</h3>
+      <p>Paracetamol, ibuprofen, aspirin, diclofenac and other pain and fever remedies for the whole family.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 15</strong></span><span>In stock</span></div>
+      <a href="order-online.html?cat=Analgesic" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=700&q=80" alt="Antibiotics and Infections">
+    <div class="srv-body">
+      <span class="srv-tag">Prescription</span>
+      <h3>Antibiotics &amp; Infections</h3>
+      <p>Amoxicillin, azithromycin, antimalarials and more — pharmacist-verified before dispensing.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 25</strong></span><span>Prescription may be required</span></div>
+      <a href="order-online.html?cat=Antibiotic" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1563213126-a4273aed2016?w=700&q=80" alt="Chronic Condition Care">
+    <div class="srv-body">
+      <span class="srv-tag">Long-Term Care</span>
+      <h3>Chronic Condition Care</h3>
+      <p>Diabetes, blood pressure, cholesterol and thyroid medication for ongoing treatment plans.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 20</strong></span><span>Prescription may be required</span></div>
+      <a href="order-online.html?cat=Antidiabetic" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=700&q=80" alt="Vitamins and Supplements">
+    <div class="srv-body">
+      <span class="srv-tag">Wellness</span>
+      <h3>Vitamins &amp; Supplements</h3>
+      <p>Multivitamins, minerals, iron and immune-support supplements for everyday wellness.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 18</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Supplement" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=700&q=80" alt="Mother and Baby">
+    <div class="srv-body">
+      <span class="srv-tag">Family</span>
+      <h3>Mother &amp; Baby</h3>
+      <p>Maternal health essentials, oral rehydration salts and baby-care products.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 12</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Maternal%20Health" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=700&q=80" alt="Skin and Personal Care">
+    <div class="srv-body">
+      <span class="srv-tag">Personal Care</span>
+      <h3>Skin &amp; Personal Care</h3>
+      <p>Topical creams, antifungal treatments and hygiene essentials for everyday care.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 15</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Topical" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=700&q=80" alt="First Aid and Medical Devices">
+    <div class="srv-body">
+      <span class="srv-tag">Devices</span>
+      <h3>First Aid &amp; Devices</h3>
+      <p>Bandages, thermometers, blood pressure monitors and glucometers for home use.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 10</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Medical%20Device" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&q=80" alt="Allergy and Cold">
+    <div class="srv-body">
+      <span class="srv-tag">Seasonal</span>
+      <h3>Allergy &amp; Cold</h3>
+      <p>Antihistamines, decongestants and cough &amp; cold remedies for quick relief.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 14</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Antihistamine" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+  <div class="srv-card reveal">
+    <img class="srv-card-img" src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=700&q=80" alt="Digestive Health">
+    <div class="srv-body">
+      <span class="srv-tag">Digestive</span>
+      <h3>Digestive Health</h3>
+      <p>Antacids, laxatives, antiemetics and rehydration products for stomach relief.</p>
+      <div class="srv-meta-row"><span>From <strong>GHS 12</strong></span><span>No prescription needed</span></div>
+      <a href="order-online.html?cat=Antacid" class="btn-primary btn-sm btn-block">Shop Category</a>
+    </div>
+  </div>
+
+</div>
+
+</main>
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+
+
+<div class="float-btn-stack" id="float-btn-stack">
+  <!-- WhatsApp support -->
+  <a href="https://wa.me/233203122589" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp support">
+    <div class="wa-icon"><img src="assets/whatsapp.png" alt="WhatsApp" width="17" height="17"></div>
+    <span>Support</span>
+  </a>
+  <!-- AI Health Assistant -->
+  <button type="button" class="ai-fab-btn" id="ai-fab-btn" aria-label="AI Health Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <span>AI Health</span>
+  </button>
+
+</div>
+
+<div class="ai-chat-panel-popup" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">💬</div>
+    <div class="ai-chat-info"><strong>HealthPlus AI Assistant</strong><span>Symptom guidance &amp; OTC suggestions</span></div>
+    <button class="ai-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="ai-chat-input" placeholder="Describe how you're feeling..." autocomplete="off">
+    <button class="ai-send-btn" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/ai-assistant.js" defer></script>
+<script src="js/wire.js" defer></script>
+</body>
+</html>

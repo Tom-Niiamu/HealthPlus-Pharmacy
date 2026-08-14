@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pharmacy — HealthPlus Pharmacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+<!-- PROMO ANNOUNCEMENT BAR — managed by auth.js showPromoBanner() -->
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+    </div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="order-online.html" class="active">Shop</a></li>
+    <li><a href="services.html">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- CART — its own control, always visible, sits beside Sign In / Register.
+         Clicking it pops open a mini-cart instead of navigating away. -->
+    <li id="nav-cart-area">
+      <button class="nav-cart-btn" id="nav-cart-toggle"  aria-label="View cart" aria-haspopup="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;">0</span>
+      </button>
+    </li>
+    <!-- Auth: logged out -->
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main>
+
+<!-- CART PANEL — lives outside <nav> on purpose. The nav bar uses
+     backdrop-filter, which creates a new containing block for any
+     position:fixed descendant, trapping it inside the 76px-tall
+     nav instead of the full viewport. Keeping this as a direct
+     sibling of <nav> (not nested inside it) is what lets it open
+     as a real full-screen page. -->
+<div class="cart-dropdown" id="cart-dropdown">
+  <button class="cart-dropdown-close"  aria-label="Close cart">&times;</button>
+  <div class="cart-page-inner">
+    <div class="cart-page-main">
+      <div class="cart-page-head">
+        <h2>YOUR CART <span id="cart-page-count">(0 items)</span></h2>
+        <p>Items in your cart are not reserved — confirm your order to make them yours.</p>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <div class="empty-cart" id="empty-cart-msg">No items yet — search or pick from the popular list above.</div>
+      </div>
+    </div>
+    <div class="cart-page-summary" id="cart-summary-card" style="display:none;">
+      <h3>ORDER SUMMARY</h3>
+      <div class="summary-line"><span id="summary-item-count">0 items</span><span id="summary-subtotal">GHS 0</span></div>
+      <div class="summary-line"><span>Delivery</span><span>GHS 10</span></div>
+      <div class="summary-total"><span>Total</span><span id="cart-total-val">GHS 0</span></div>
+      <p class="summary-note">Pay securely by Mobile Money or Card — confirmed instantly.</p>
+      <button class="btn-checkout-dark" id="pay-order-btn" style="display:none;">
+        <span>Checkout</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <div class="accepted-methods">
+        <p>ACCEPTED PAYMENT METHODS</p>
+        <div class="accepted-icons">
+          <span class="net-badge net-badge-mtn">MTN</span>
+          <span class="net-badge net-badge-telecel">T</span>
+          <span class="net-badge net-badge-airteltigo">AT</span>
+          <span class="pay-icon-generic">VISA</span>
+          <span class="pay-icon-generic">MASTERCARD</span>
+        </div>
+      </div>
+      <div class="cart-page-perks">
+        <p>✓ Every order is checked by a licensed pharmacist</p>
+        <p>✓ Same-day delivery across Accra</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-hero dark-overlay hero-bg-pharmacy">
+  <p class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Pharmacy</p>
+  <h1>Order Medication<br>Online</h1>
+  <p>Search any medicine or health product — delivered with live tracking to your door.</p>
+</div>
+
+<!-- SEARCH -->
+<div class="order-wrap">
+  <div class="med-search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="med-search-input" placeholder="Search medicines, vitamins, health products, e.g. Paracetamol, Insulin, Vitamin D..." autocomplete="off">
+  </div>
+
+  <div class="blog-cats" style="margin:16px 0 28px;">
+    <span class="cat-chip" data-search-cat="Analgesic">Pain Relief</span>
+    <span class="cat-chip" data-search-cat="Antibiotic">Antibiotics</span>
+    <span class="cat-chip" data-search-cat="Antidiabetic">Diabetes</span>
+    <span class="cat-chip" data-search-cat="Antihypertensive">Blood Pressure</span>
+    <span class="cat-chip" data-search-cat="Supplement">Vitamins</span>
+    <span class="cat-chip" data-search-cat="Maternal Health">Mother &amp; Baby</span>
+    <span class="cat-chip" data-search-cat="Topical">Skin Care</span>
+    <span class="cat-chip" data-search-cat="Medical Device">Devices</span>
+    <span class="cat-chip" data-search-cat="Antihistamine">Allergy &amp; Cold</span>
+  </div>
+  
+  <p id="search-hint">Type at least 2 characters to search our full catalogue of medicines &amp; health products.</p>
+
+  <!-- AI SYMPTOM CHECKER -->
+  <div class="symptom-checker-box">
+    <h3>Not sure what you need? 🩺</h3>
+    <p>Describe your symptoms and our AI assistant will suggest general guidance and relevant products. This doesn't replace advice from our pharmacist or a doctor.</p>
+    <div class="symptom-input-row">
+      <textarea id="symptom-input" placeholder="e.g. I have a headache and mild fever since this morning..."></textarea>
+      <button class="btn-primary" id="symptom-check-btn" style="align-self:flex-start;">Check</button>
+    </div>
+    <div id="symptom-result"></div>
+  </div>
+
+  <!-- SEARCH RESULTS -->
+  <div id="search-results-section">
+    <div class="section-label"><span>Search Results</span></div>
+    <h2 id="search-results-title" style="font-size:18px;font-weight:600;margin-bottom:20px;"></h2>
+    <div id="search-results-grid"></div>
+  </div>
+
+  <!-- FREQUENTLY ORDERED -->
+  <div id="freq-section">
+    <div class="section-label"><span>Popular</span></div>
+    <h2 style="font-size:20px;font-weight:600;margin-bottom:20px;">Frequently Ordered</h2>
+    <div class="freq-grid">
+      <div class="freq-card">
+        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&q=80" alt="Paracetamol">
+        <div class="fc-body">
+          <h4>Paracetamol 500mg</h4>
+          <div class="fc-sub">20 tablets · Pain &amp; Fever</div>
+          <div class="fc-foot">
+            <span class="fc-price">GHS 15</span>
+            <div class="qty-row"><button class="q-btn" >−</button><span class="qty-val">1</span><button class="q-btn" >+</button></div>
+          </div>
+          <button class="btn-primary btn-sm btn-block" style="margin-top:10px;" >Add to Cart</button>
+        </div>
+      </div>
+      <div class="freq-card">
+        <img src="https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=400&q=80" alt="Amoxicillin">
+        <div class="fc-body">
+          <h4>Amoxicillin 500mg</h4>
+          <div class="fc-sub">21 capsules · Antibiotic</div>
+          <div class="fc-foot">
+            <span class="fc-price">GHS 38</span>
+            <div class="qty-row"><button class="q-btn" >−</button><span class="qty-val">1</span><button class="q-btn" >+</button></div>
+          </div>
+          <button class="btn-primary btn-sm btn-block" style="margin-top:10px;" >Add to Cart</button>
+        </div>
+      </div>
+      <div class="freq-card">
+        <img src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=400&q=80" alt="Vitamin C">
+        <div class="fc-body">
+          <h4>Vitamin C 1000mg</h4>
+          <div class="fc-sub">30 tablets · Supplement</div>
+          <div class="fc-foot">
+            <span class="fc-price">GHS 22</span>
+            <div class="qty-row"><button class="q-btn" >−</button><span class="qty-val">1</span><button class="q-btn" >+</button></div>
+          </div>
+          <button class="btn-primary btn-sm btn-block" style="margin-top:10px;" >Add to Cart</button>
+        </div>
+      </div>
+      <div class="freq-card">
+        <img src="https://images.unsplash.com/photo-1563213126-a4273aed2016?w=400&q=80" alt="ORS">
+        <div class="fc-body">
+          <h4>ORS Sachets</h4>
+          <div class="fc-sub">Pack of 10 · Rehydration</div>
+          <div class="fc-foot">
+            <span class="fc-price">GHS 18</span>
+            <div class="qty-row"><button class="q-btn" >−</button><span class="qty-val">1</span><button class="q-btn" >+</button></div>
+          </div>
+          <button class="btn-primary btn-sm btn-block" style="margin-top:10px;" >Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DELIVERY DETAILS
+     Hidden until the person opens the cart and taps "Checkout" —
+     see proceedToCheckout() in js/pharmacy.js. Pops up as an
+     overlay (same pattern as the payment modal below) instead of
+     scrolling to an inline section. -->
+<div class="modal-overlay" id="delivery-section">
+  <div class="form-card modal-box-lg">
+    <button class="modal-close"  aria-label="Close">×</button>
+    <div class="section-label"><span>Delivery Details</span></div>
+    <h2 style="font-size:20px;font-weight:600;margin-bottom:20px;">Where Should We Deliver?</h2>
+    <form id="delivery-form" >
+      <div class="form-row">
+        <div class="form-group"><label>Full Name</label><input type="text" id="del-name" placeholder="e.g. Akosua Mensah" required></div>
+        <div class="form-group"><label>Phone</label><input type="tel" id="del-phone" placeholder="+233 ..." required></div>
+      </div>
+      <div class="form-group">
+        <label>Delivery Address</label>
+        <div class="location-row">
+          <input type="text" id="delivery-location" placeholder="Enter address or use live location" required>
+          <button type="button" class="location-btn" >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;"><path d="M12 22s7-7.5 7-12.5A7 7 0 0 0 5 9.5C5 14.5 12 22 12 22z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+            Use My Location
+          </button>
+        </div>
+      </div>
+      <div class="form-group"><label>Prescription <span class="opt">(required for prescription-only medicines)</span></label><input type="file" accept="image/*,application/pdf"><span style="display:block;font-size:12px;color:var(--sage);margin-top:6px;">A licensed pharmacist will verify your prescription before your order is dispensed.</span></div>
+      <div class="form-group"><label>Delivery Notes <span class="opt">(optional)</span></label><textarea placeholder="Gate code, landmark, preferred time..."></textarea></div>
+      <button type="submit" class="btn-primary btn-block">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Proceed to Payment
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- LIVE TRACKING -->
+<div id="order-tracking-result">
+  <div class="section-label"><span>Live Tracking</span></div>
+  <h2 style="font-size:clamp(22px,2.4vw,30px);font-weight:600;margin-bottom:24px;">Your Order Is On Its Way</h2>
+  <div class="tracking-card">
+    <div id="tracking-map-leaflet"></div>
+    <div class="tracking-status-bar">
+      <div class="tracking-eta"><strong id="tracking-eta-text">22 min</strong><span>estimated arrival</span></div>
+      <div class="tracking-stage" id="tracking-stage-text">Pharmacist preparing your order</div>
+      <div class="tracking-progress"><div class="tracking-progress-fill" id="tracking-progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="tracking-courier">
+      <div class="courier-avatar">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rider Kojo A." style="width:46px;height:46px;border-radius:50%;object-fit:cover;">
+      </div>
+      <div class="courier-info"><strong>Kojo A. — Rider</strong><span>Motorbike · GR-2381-24</span></div>
+      <div class="courier-actions">
+        <a href="tel:+233201234567" class="courier-btn" title="Call rider">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        </a>
+        <button class="courier-btn" title="Message rider" >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-overlay" id="pay-modal">
+  <div class="modal-box modal-box-lg">
+    <button class="modal-close" >×</button>
+    <h2>Complete Payment</h2>
+    <p class="modal-sub" id="pay-modal-sub">Pay securely before your order is confirmed.</p>
+    <div class="pay-tabs">
+      <button type="button" class="pay-tab active" data-tab="momo">Mobile Money</button>
+      <button type="button" class="pay-tab" data-tab="card">Card</button>
+    </div>
+    <!-- MOMO PANEL -->
+    <div class="pay-panel active" id="panel-momo">
+      <div class="form-group"><label>Select Network</label>
+        <div class="network-btns">
+        <div class="network-btns">
+          <button type="button" class="net-btn sel" >
+            <span class="net-badge net-badge-mtn">MTN</span>
+            <span>MTN MoMo</span>
+          </button>
+          <button type="button" class="net-btn" >
+            <span class="net-badge net-badge-telecel">T</span>
+            <span>Telecel Cash</span>
+          </button>
+          <button type="button" class="net-btn" >
+            <span class="net-badge net-badge-airteltigo">AT</span>
+            <span>AirtelTigo</span>
+          </button>
+        </div>
+      </div>
+      <div class="form-group"><label>Mobile Money Number</label><input type="tel" id="momo-number" placeholder="e.g. 0241234567" required></div>
+      <div class="form-group"><label>Account Name</label><input type="text" id="momo-name" placeholder="Name on MoMo account" required></div>
+      <div style="background:var(--mint);border-radius:12px;padding:16px;font-size:13px;color:var(--sage);margin-bottom:18px;line-height:1.7;">
+        You will receive a <strong>prompt on your phone</strong> to approve the payment. Do not share your PIN with anyone.
+      </div>
+      <div id="pay-amount-momo" style="font-size:18px;font-weight:700;color:var(--teal);margin-bottom:18px;"></div>
+      <button class="btn-primary btn-block" >Confirm &amp; Pay via MoMo</button>
+    </div>
+    <!-- CARD PANEL -->
+    <div class="pay-panel" id="panel-card">
+      <div class="form-group"><label>Card Number</label><input type="text" id="card-num" placeholder="1234 5678 9012 3456" maxlength="19" ></div>
+      <div class="form-row">
+        <div class="form-group"><label>Expiry</label><input type="text" id="card-exp" placeholder="MM / YY" maxlength="7" ></div>
+        <div class="form-group"><label>CVV</label><input type="text" id="card-cvv" placeholder="123" maxlength="3"></div>
+      </div>
+      <div class="form-group"><label>Name on Card</label><input type="text" placeholder="e.g. AKOSUA MENSAH"></div>
+      <div id="pay-amount-card" style="font-size:18px;font-weight:700;color:var(--teal);margin-bottom:18px;"></div>
+      <button class="btn-primary btn-block" >Pay with Card</button>
+    </div>
+  </div>
+</div>
+
+<!-- RIDER CHAT -->
+<div class="chat-overlay" id="rider-chat-overlay">
+  <div class="chat-box">
+    <div class="chat-head">
+      <div class="chat-head-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+      <div class="chat-head-info"><strong>Kojo A.</strong><span>Your delivery rider · Online</span></div>
+      <button class="chat-close" >×</button>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="chat-msg rider">Hi! I've picked up your order from the pharmacy and I'm on my way. 🚗<div class="msg-time">Just now</div></div>
+      <div class="chat-msg rider">I'll be there in about 18 minutes. Please keep your phone nearby!<div class="msg-time">Just now</div></div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Message your rider..." >
+      <button class="chat-send-btn" >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/payment.js" defer></script>
+<script src="js/pharmacy.js" defer></script>
+<script src="js/wire.js" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+
+<div class="float-btn-stack" id="float-btn-stack">
+  <!-- WhatsApp support -->
+  <a href="https://wa.me/233203122589" class="support-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp support">
+    <div class="wa-icon"><img src="assets/whatsapp.png" alt="WhatsApp" width="17" height="17"></div>
+    <span>Support</span>
+  </a>
+  <!-- AI Health Assistant -->
+  <button type="button" class="ai-fab-btn" id="ai-fab-btn" aria-label="AI Health Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    <span>AI Health</span>
+  </button>
+
+</div>
+
+<div class="ai-chat-panel-popup" id="ai-chat-panel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-avatar">💬</div>
+    <div class="ai-chat-info"><strong>HealthPlus AI Assistant</strong><span>Symptom guidance &amp; OTC suggestions</span></div>
+    <button class="ai-chat-close" aria-label="Close chat">&times;</button>
+  </div>
+  <div id="ai-chat-messages"></div>
+  <div class="ai-quick-replies" id="ai-quick-replies"></div>
+  <div class="ai-chat-input-row">
+    <input type="text" id="ai-chat-input" placeholder="Describe how you're feeling..." autocomplete="off">
+    <button class="ai-send-btn" aria-label="Send message">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </div>
+</div>
+
+<script src="js/ai-assistant.js" defer></script>
+</body>
+</html>
