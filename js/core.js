@@ -42,6 +42,16 @@ function syncModalScrollLock() {
    ──────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* Keep authentication links consistent across every page. */
+  document.querySelectorAll('a').forEach(function (link) {
+    var label = link.textContent.trim().toLowerCase();
+    if (/^(sign in|signin|log in|login)$/.test(label)) {
+      link.href = 'login.html';
+    } else if (/^(sign up|signup|register)$/.test(label)) {
+      link.href = 'register.html';
+    }
+  });
+
   /* Create the dark backdrop behind the mobile menu once (appended to
      <body> so the nav's backdrop-filter doesn't trap it as a fixed
      descendant) and wire it to close the menu when tapped. */

@@ -88,6 +88,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  document.querySelectorAll('.auth-create-account-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (typeof window.switchAuthTab === 'function') window.switchAuthTab('register');
+    });
+  });
+
   /* ----------------------------------------------------------
      3b. BLOG newsletter subscribe (blog.html)
      ---------------------------------------------------------- */
