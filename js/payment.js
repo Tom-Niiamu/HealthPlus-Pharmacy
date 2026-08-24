@@ -20,6 +20,9 @@ var _payContext = 'order';
 /* Currently selected mobile money network name */
 var _selectedNetwork = 'MTN MoMo';
 
+/* Payment method used by the current confirmation attempt */
+var _confirmedMethod = 'momo';
+
 /* Callback function to run after payment is confirmed.
    Set by openPayModal() so each page can define its own action. */
 var _onPaymentConfirmed = null;
@@ -135,6 +138,7 @@ function confirmPayment(method) {
     return;
   }
   if (method === 'momo') {
+    _confirmedMethod = 'momo';
     /* Validate MoMo number field */
     var momoNum = document.getElementById('momo-number');
     if (!momoNum || !momoNum.value.trim()) {
@@ -151,6 +155,7 @@ function confirmPayment(method) {
       ' via ' + _selectedNetwork + '. Approve on your phone!');
 
   } else if (method === 'card') {
+    _confirmedMethod = 'card';
     /* Validate card number */
     var cardNum = document.getElementById('card-num');
     if (!cardNum || cardNum.value.replace(/\s/g, '').length < 16) {

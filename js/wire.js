@@ -254,6 +254,14 @@ document.addEventListener('DOMContentLoaded', function () {
   var chatSend = document.querySelector('.chat-send-btn');
   if (chatSend) chatSend.addEventListener('click', fn('sendChatMsg'));
 
+    /* ----------------------------------------------------------
+      11b. DEDICATED CART PAGE actions
+      ---------------------------------------------------------- */
+    var cartPay = document.getElementById('pay-order-btn');
+    if (cartPay) cartPay.addEventListener('click', fn('startCartCheckout'));
+    var cartClear = document.getElementById('clear-cart-btn');
+    if (cartClear) cartClear.addEventListener('click', fn('clearCartNow'));
+
   /* ----------------------------------------------------------
      12. REGISTER inline DOB max-date script moved here
      ---------------------------------------------------------- */

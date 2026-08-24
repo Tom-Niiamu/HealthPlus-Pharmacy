@@ -1440,7 +1440,7 @@ function handleOrderSubmit(e) {
   var total = getCartTotal();
   openPayModal('order', total, function () {
     /* Save the order before clearing the basket, then show the invoice. */
-    var order = buildLatestOrderSnapshot('momo');
+    var order = buildLatestOrderSnapshot(typeof _confirmedMethod !== 'undefined' ? _confirmedMethod : 'momo');
     saveLatestOrder(order);
     window.location.href = 'order-made.html';
     /* Clear cart and reset the delivery section for next time */
