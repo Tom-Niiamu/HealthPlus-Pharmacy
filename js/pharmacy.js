@@ -1442,13 +1442,13 @@ function handleOrderSubmit(e) {
     /* Save the order before clearing the basket, then show the invoice. */
     var order = buildLatestOrderSnapshot(typeof _confirmedMethod !== 'undefined' ? _confirmedMethod : 'momo');
     saveLatestOrder(order);
-    window.location.href = 'order-made.html';
     /* Clear cart and reset the delivery section for next time */
     _cart = {};
     saveCart(_cart);
     renderCart();
     var section = document.getElementById('delivery-section');
     if (section) section.classList.remove('open');
+    window.location.href = 'order-made.html';
   });
 
   return false;

@@ -41,10 +41,10 @@ function startCartCheckout() {
   openPayModal('order', total, function () {
     var order = buildLatestOrderSnapshot(typeof _confirmedMethod !== 'undefined' ? _confirmedMethod : 'momo');
     saveLatestOrder(order);
-    window.location.href = 'order-made.html';
     clearCartShared();
     if (typeof window._cart !== 'undefined') window._cart = {};
     renderCartPage();
+    window.location.href = 'order-made.html';
   });
 }
 
