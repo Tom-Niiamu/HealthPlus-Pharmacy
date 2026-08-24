@@ -2100,7 +2100,9 @@ address a:hover { color: var(--gold); }
     height: calc(100vh - 66px);
     height: calc(100dvh - 66px);
     background: var(--paper);
-    box-shadow: none; /* removed the ash vertical line along the drawer's left edge */
+    /* Soft, blurred shadow on the opening (left) edge so the drawer reads
+       as floating above the page — a gentle falloff, not a hard ruler line. */
+    box-shadow: -10px 0 30px rgba(7, 40, 38, 0.18);
     flex-direction: column; align-items: stretch;
     padding: 14px 22px 32px;
     gap: 0;
@@ -2162,13 +2164,13 @@ address a:hover { color: var(--gold); }
   .hamburger      { display: flex; }
 
   /* Backdrop shown behind the open menu. Kept in the DOM (and clickable)
-     so tapping it closes the drawer, but made fully transparent so the
-     dark layer no longer creates the ash "ruler" line down the drawer's
-     left edge — the page simply shows through instead. */
+     so tapping it closes the drawer. A light dim gives the page a subtle
+     "shadowed" feel behind the drawer, while staying soft (not the heavy
+     0.5 overlay that created the old ash ruler line). */
   .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: transparent;
+    background: rgba(7, 40, 38, 0.28);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
