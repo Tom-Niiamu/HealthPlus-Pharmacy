@@ -422,13 +422,13 @@ function saveCart(cart) {
    Updates the item count badge on the nav cart icon.
    ──────────────────────────────────────────────────────────── */
 function updateCartBadge(cart) {
-  var badge = document.getElementById('cart-badge');
-  if (!badge) return;
   var total = Object.values(cart).reduce(function (sum, item) {
     return sum + item.qty;
   }, 0);
-  badge.textContent = total;
-  badge.style.display = total > 0 ? 'flex' : 'none';
+  document.querySelectorAll('.cart-badge, #cart-badge').forEach(function (badge) {
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  });
 }
 
 /* Refresh the badge on EVERY page (some pages have more than one
@@ -438,7 +438,7 @@ function updateCartBadgeAll() {
   var total = Object.values(cart).reduce(function (sum, item) {
     return sum + item.qty;
   }, 0);
-  document.querySelectorAll('#cart-badge').forEach(function (badge) {
+  document.querySelectorAll('.cart-badge, #cart-badge').forEach(function (badge) {
     badge.textContent = total;
     badge.style.display = total > 0 ? 'flex' : 'none';
   });

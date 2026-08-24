@@ -1135,7 +1135,7 @@ function changeCartQty(name, delta) {
    counts up/down to the new total instead of jumping straight there. */
 var _badgeAnimTimer = null;
 function animateCartBadge(newTotal) {
-  var badge = document.getElementById('cart-badge');
+  var badge = document.querySelector('.cart-badge, #cart-badge');
   if (!badge) return;
 
   var current = parseInt(badge.textContent, 10) || 0;
