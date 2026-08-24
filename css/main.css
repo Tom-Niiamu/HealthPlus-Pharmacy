@@ -2124,22 +2124,35 @@ address a:hover { color: var(--gold); }
     padding: 15px 22px;
     font-size: 16px;
   }
-  /* Logged-in user row stays inline */
-  #nav-user-area { margin-top: 14px; }
-  /* Logged-out auth row — Sign In + Register side by side */
+  /* Logged-in / logged-out account rows sit at the TOP of the drawer,
+     above the Home link, using flex order. */
+  #nav-user-area,
   #nav-auth-area {
+    order: -1;
     width: 100%;
-    margin-top: 18px;
+    margin: 4px 0 6px;
     gap: 10px;
   }
+  /* Divider separating the auth row from the nav links below it */
+  #nav-auth-area { border-bottom: 1px solid var(--mint-mid); padding-bottom: 16px; }
+  /* Logged-out auth row — Sign In + Register, identical teal style */
   #nav-auth-area .btn-outline,
   #nav-auth-area .nav-cta {
     flex: 1 1 auto;
     justify-content: center;
+    align-items: center;
     font-size: 15px;
+    font-weight: 700;
     padding: 14px 16px;
     width: 100%;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--teal);
+    color: var(--white) !important;
+    margin-top: 0;
   }
+  #nav-auth-area .btn-outline:hover,
+  #nav-auth-area .nav-cta:hover { background: var(--teal-soft); }
   .hamburger      { display: flex; }
 
   /* Dark backdrop shown behind the open menu so it's clear a
