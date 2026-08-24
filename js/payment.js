@@ -175,14 +175,104 @@ function confirmPayment(method) {
   /* Close modal and clear fields */
   closePayModal();
 
+  /* Show the real waiting state before moving to the invoice page */
+  setTimeout(function () {
+    showToast('Waiting for confirmation…');
+  }, 250);
+
   /* Fire the confirmation callback after a short delay
      to simulate network round-trip */
   setTimeout(function () {
-    showToast('Payment confirmed ✓');
     if (typeof _onPaymentConfirmed === 'function') {
       _onPaymentConfirmed();
+    } else {
+      window.location.href = 'order-made.html';
     }
-  }, 2000);
+  }, 1800);
+}
+
+
+/* ── ORDER SNAPSHOT ─────────────────────────────────────────
+   Builds the invoice data that will be shown on the order-made page.
+   This captures cart content plus the delivery / customer details
+   entered before payment was confirmed. */
+function buildLatestOrderSnapshot(method) {
+  var cart = {};
+  if (typeof window._cart !== 'undefined' && Object.keys(window._cart).length) {
+    cart = window._cart;
+  } else if (typeof window.loadCart === 'function') {
+    cart = window.loadCart();
+  }
+
+  var items = Object.keys(cart).map(function (name) {
+    var item = cart[name] || {};
+    var qty = parseInt(item.qty, 10) || 1;
+    var unitPrice = Number(item.price) || 0;
+    return {
+      name: name,
+      qty: qty,
+      price: unitPrice,
+      meta: item.meta || '',
+      lineTotal: unitPrice * qty
+    };
+  });
+
+  var subtotal = items.reduce(function (sum, item) {
+    return sum + item.lineTotal;
+  }, 0);
+  var delivery = 10;
+  var total = subtotal + delivery;
+
+  var user = (typeof window.getCurrentUser === 'function') ? window.getCurrentUser() : null;
+  var customerName = '';
+  var phone = '';
+  var address = '';
+
+  var delName = document.getElementById('del-name');
+  if (delName && delName.value.trim()) customerName = delName.value.trim();
+  if (!customerName && user && user.firstName) {
+    customerName = user.firstName + (user.lastName ? ' ' + user.lastName : '');
+  }
+  if (!customerName) customerName = 'Customer';
+
+  var delPhone = document.getElementById('del-phone');
+  if (delPhone && delPhone.value.trim()) phone = delPhone.value.trim();
+  if (!phone && user && user.phone) phone = user.phone;
+
+  var delAddress = document.getElementById('delivery-location');
+  if (delAddress && delAddress.value.trim()) address = delAddress.value.trim();
+
+  var now = new Date();
+  var orderId = 'HP-ORD-' + now.getTime().toString().slice(-8);
+
+  return {
+    id: orderId,
+    placedAt: now.toISOString(),
+    status: 'Waiting for confirmation',
+    statusText: 'Awaiting MoMo approval',
+    method: String(method || 'momo').toUpperCase(),
+    network: _selectedNetwork || 'MTN MoMo',
+    customer: {
+      name: customerName,
+      phone: phone,
+      address: address || 'Address not provided',
+      email: (user && user.email) ? user.email : 'guest@healthplusmedical.com'
+    },
+    items: items,
+    subtotal: subtotal,
+    delivery: delivery,
+    total: total
+  };
+}
+
+
+function saveLatestOrder(order) {
+  if (!order || !order.id) return;
+  try {
+    sessionStorage.setItem('hp_latest_order', JSON.stringify(order));
+  } catch (e) {
+    console.warn('[Payment] Could not save order snapshot.', e);
+  }
 }
 
 
