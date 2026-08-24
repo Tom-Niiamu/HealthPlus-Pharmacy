@@ -2084,7 +2084,10 @@ address a:hover { color: var(--gold); }
      bottom edge of the (fixed) nav and spans the rest of the viewport. */
   .nav-links {
     position: absolute;
-    top: 100%; left: 0; right: 0; bottom: auto;
+    top: 100%;
+    right: 0; left: auto; bottom: auto;
+    width: 82%;
+    max-width: 380px;
     height: 50vh;
     height: 50dvh;
     max-height: 50vh;
@@ -2101,6 +2104,22 @@ address a:hover { color: var(--gold); }
   .nav-links.open { transform: translateX(0); }
   .hamburger      { display: flex; }
   .nav-cta        { order: 10; }
+
+  /* Dark backdrop shown behind the open menu so it's clear a
+     folder/menu has opened in front of the current page. It is
+     created in JS (appended to <body>) because the nav's
+     backdrop-filter would otherwise trap a fixed descendant. */
+  .nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(7, 40, 38, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 998;
+  }
+  .nav-backdrop.show { opacity: 1; visibility: visible; }
+
   /* Lock background scroll while the mobile menu overlay is open */
   body.nav-open { overflow: hidden; }
 

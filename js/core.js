@@ -17,6 +17,9 @@ function toggleNav() {
   const open = nav.classList.toggle('open');
   /* Lock background scroll while the mobile menu overlay is open */
   document.body.classList.toggle('nav-open', open);
+  /* Show/hide the dark backdrop behind the open menu */
+  const backdrop = document.querySelector('.nav-backdrop');
+  if (backdrop) backdrop.classList.toggle('show', open);
 }
 
 /* ── MODAL SCROLL LOCK ───────────────────────────────────────
@@ -39,6 +42,19 @@ function syncModalScrollLock() {
    ──────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* Create the dark backdrop behind the mobile menu once (appended to
+     <body> so the nav's backdrop-filter doesn't trap it as a fixed
+     descendant) and wire it to close the menu when tapped. */
+  const backdrop = document.createElement('div');
+  backdrop.className = 'nav-backdrop';
+  document.body.appendChild(backdrop);
+  backdrop.addEventListener('click', function () {
+    const nav = document.getElementById('nav-links');
+    if (nav) nav.classList.remove('open');
+    backdrop.classList.remove('show');
+    document.body.classList.remove('nav-open');
+  });
+
   /* Close mobile nav when any link inside it is clicked */
   document.querySelectorAll('.nav-links a').forEach(function (link) {
     link.addEventListener('click', function () {
@@ -46,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
       if (nav) nav.classList.remove('open');
       /* Restore background scroll */
       document.body.classList.remove('nav-open');
+      /* Hide the dark backdrop */
+      const bd = document.querySelector('.nav-backdrop');
+      if (bd) bd.classList.remove('show');
     });
   });
 
