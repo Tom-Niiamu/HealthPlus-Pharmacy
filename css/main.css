@@ -2100,7 +2100,7 @@ address a:hover { color: var(--gold); }
     height: calc(100vh - 66px);
     height: calc(100dvh - 66px);
     background: var(--paper);
-    box-shadow: 0 24px 40px rgba(11, 61, 58, 0.14);
+    box-shadow: none; /* removed the ash vertical line along the drawer's left edge */
     flex-direction: column; align-items: stretch;
     padding: 14px 22px 32px;
     gap: 0;
