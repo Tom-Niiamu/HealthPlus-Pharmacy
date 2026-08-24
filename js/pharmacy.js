@@ -1038,6 +1038,8 @@ function renderCart() {
   var keys = Object.keys(_cart);
   var totalQty = keys.reduce(function (sum, k) { return sum + _cart[k].qty; }, 0);
   animateCartBadge(totalQty);
+  /* The shop menu has separate logged-in and logged-out cart controls. */
+  updateCartBadgeAll();
 
   if (pageCountEl) pageCountEl.textContent = '(' + totalQty + ' item' + (totalQty !== 1 ? 's' : '') + ')';
 
