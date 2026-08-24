@@ -2085,8 +2085,10 @@ address a:hover { color: var(--gold); }
   .nav-links {
     position: absolute;
     top: 100%; left: 0; right: 0; bottom: auto;
-    height: calc(100vh - 66px);
-    height: calc(100dvh - 66px);
+    height: 50vh;
+    height: 50dvh;
+    max-height: 50vh;
+    max-height: 50dvh;
     background: var(--paper);
     box-shadow: 0 24px 40px rgba(11, 61, 58, 0.14);
     flex-direction: column; align-items: flex-start;
