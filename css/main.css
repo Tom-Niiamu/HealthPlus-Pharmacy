@@ -2604,7 +2604,11 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
    item list on the left, a sticky order-summary card on the
    right with a bold dark Checkout button and payment badges. */
 .cart-page {
-  padding-top: 96px;
+  padding-top: 126px;
+}
+
+.cart-page-inner {
+  padding-top: 10px;
 }
 
 .cart-dropdown {
