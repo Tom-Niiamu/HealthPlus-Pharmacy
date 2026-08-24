@@ -2186,21 +2186,22 @@ address a:hover { color: var(--gold); }
   body.nav-open { overflow: hidden; }
 
   /* Cart panel — single column, tighter padding */
-  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 80px 18px 48px; max-width: none; gap: 28px; }
-  .cart-page-summary { position: static; }
+  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 40px 18px 48px; max-width: none; gap: 20px; }
+  .cart-page-head h2 { font-size: 20px; }
+  .cart-page-head p { font-size: 12px; margin-bottom: 16px; }
+  .cart-page-summary { position: static; padding: 20px; }
+  .cart-page-summary h3 { font-size: 13px; margin-bottom: 12px; }
   .cart-dropdown-close { top: 14px; right: 14px; }
 
   /* Cart line items — stop the 84px thumb from eating the row on phones,
      and let very long medicine names wrap cleanly instead of overflowing. */
-  .cart-item { grid-template-columns: 64px 1fr; gap: 14px; padding: 18px 0; }
-  .ci-thumb { width: 64px; height: 64px; border-radius: 10px; }
-  .ci-info { min-width: 0; }
-  .ci-top-row { align-items: flex-start; gap: 8px; }
-  .ci-name { font-size: 14px; font-weight: 700; line-height: 1.35; word-break: break-word; overflow-wrap: anywhere; }
-  .ci-remove { flex-shrink: 0; margin-top: 1px; }
-  .ci-bottom-row { margin-top: 12px; gap: 10px; flex-wrap: wrap; }
-  .ci-qty-wrap { flex: 0 0 auto; }
-  .ci-price { white-space: nowrap; }
+  .cart-item { grid-template-columns: 60px 1fr; gap: 12px; padding: 14px 0; }
+  .ci-thumb { width: 60px; height: 60px; border-radius: 8px; }
+  .ci-name { font-size: 13px; }
+  .ci-meta { font-size: 11px; }
+  .ci-bottom-row { margin-top: 10px; }
+  .qty-select { padding: 5px 20px 5px 8px; font-size: 12px; }
+  .ci-price { font-size: 13px; }
 
   /* Recommendations strip — 2-up on phones */
   .rec-grid { grid-template-columns: repeat(2, 1fr); }
@@ -2574,7 +2575,7 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
 .cart-dropdown {
   position: fixed;
   inset: 0;
-  z-index: 500;
+  z-index: 1200;
   background: var(--paper);
   display: block;
   overflow-y: auto;
@@ -2598,7 +2599,7 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
   border: none; cursor: pointer;
   font-size: 22px; line-height: 1; color: var(--ink);
   box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-  z-index: 501;
+  z-index: 1201;
   transition: transform var(--ease), color var(--ease);
 }
 .cart-dropdown-close:hover { color: var(--coral); transform: scale(1.08); }

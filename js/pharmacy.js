@@ -1179,6 +1179,18 @@ function toggleCartDropdown(e, forceOpen) {
   var dropdown = document.getElementById('cart-dropdown');
   if (!dropdown) return;
   var shouldOpen = (typeof forceOpen === 'boolean') ? forceOpen : !dropdown.classList.contains('open');
+  
+  if (shouldOpen) {
+    /* If opening, ensure mobile menu is closed so it doesn't block */
+    var nav = document.getElementById('nav-links');
+    if (nav && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        document.body.classList.remove('nav-open');
+        var backdrop = document.querySelector('.nav-backdrop');
+        if (backdrop) backdrop.classList.remove('show');
+    }
+  }
+
   dropdown.classList.toggle('open', shouldOpen);
   syncModalScrollLock();
 }
