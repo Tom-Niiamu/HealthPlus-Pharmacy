@@ -49,7 +49,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var cartBtn = document.querySelector('.nav-cart-btn');
   if (cartBtn) {
-    cartBtn.addEventListener('click', function () { window.location = 'order-online.html'; });
+    /* The cart icon is always inline beside the profile chip; tapping it
+       opens the dedicated Cart page rather than dropping a panel down. */
+    cartBtn.addEventListener('click', function () { window.location = 'cart.html'; });
   }
 
   var hamburger = document.getElementById('hamburger');

@@ -424,6 +424,25 @@ function updateCartBadge(cart) {
   badge.style.display = total > 0 ? 'flex' : 'none';
 }
 
+/* Refresh the badge on EVERY page (some pages have more than one
+   #cart-badge, e.g. the dedicated cart page). */
+function updateCartBadgeAll() {
+  var cart = loadCart();
+  var total = Object.values(cart).reduce(function (sum, item) {
+    return sum + item.qty;
+  }, 0);
+  document.querySelectorAll('#cart-badge').forEach(function (badge) {
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  });
+}
+
+/* Empty the shared cart (called after a successful checkout on cart.html). */
+function clearCartShared() {
+  saveCart({});
+  updateCartBadgeAll();
+}
+
 
 /* ============================================================
    CHECKOUT FLOW WITH PROGRESS INDICATORS
@@ -1129,9 +1148,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var reviewForm = document.getElementById('review-form');
   if (reviewForm) reviewForm.addEventListener('submit', submitReview);
 
-  /* Update cart badge from storage */
-  var cart = loadCart();
-  updateCartBadge(cart);
+  /* Update cart badge from storage (all badges on the page) */
+  updateCartBadgeAll();
 
   /* A/B testing: assign variant if not already set */
   if (!sessionStorage.getItem('hp_ab_variant')) {

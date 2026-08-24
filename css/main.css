@@ -3386,7 +3386,10 @@ body.ab-variant-b .btn-emergency { border-radius: 10px; }
 
   /* Nav auth */
   #nav-auth-area   { gap: 6px; }
-  .nav-user-chip span { display: none; }
+  /* Keep the profile name visible beside the icon on mobile (requested),
+     truncating long names so the chip stays tidy. */
+  .nav-user-chip { padding: 7px 12px; max-width: 150px; }
+  .nav-user-chip span { display: inline; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 }
 
 

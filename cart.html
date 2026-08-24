@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — HealthPlus Pharmacy</title>
+<meta name="description" content="Review the medicines in your HealthPlus Pharmacy cart, change quantities and check out for fast delivery across Accra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="promo-announcement-bar" class="promo-announcement-bar" style="display:none;">
+  <span class="promo-bar-text"></span>
+</div>
+
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+    <span class="nav-logo-text">Health<em>Plus</em></span>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="consultation.html">Consultations</a></li>
+    <li><a href="order-online.html">Pharmacy</a></li>
+    <li><a href="hospital-finder.html">Hospitals</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="emergency.html" class="nav-emergency"><span class="pulse-dot urgent"></span>Emergency</a></li>
+    <li><a href="consultation.html" class="nav-cta">Book a Doctor</a></li>
+    <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
+      <a href="register.html" class="btn-outline btn-sm">Sign In</a>
+      <a href="register.html" class="nav-cta">Register</a>
+    </li>
+    <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
+      <button class="nav-user-chip" onclick="showAccountModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
+        <span id="nav-user-name">My Account</span>
+      </button>
+      <a class="nav-cart-btn" href="cart.html" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-badge" style="display:none;">0</span>
+      </a>
+    </li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+
+
+<main class="cart-page">
+  <div class="cart-page-inner">
+    <div class="cart-page-main">
+      <div class="cart-page-head">
+        <h2>YOUR CART <span id="cart-page-count">(0 items)</span></h2>
+        <p>Items in your cart are not reserved — confirm your order to make them yours.</p>
+      </div>
+      <div class="cart-items" id="cart-items">
+        <div class="empty-cart" id="empty-cart-msg">Your cart is empty. <a href="order-online.html">Add medicines from the pharmacy →</a></div>
+      </div>
+    </div>
+
+    <div class="cart-page-summary" id="cart-summary-card" style="display:none;">
+      <h3>ORDER SUMMARY</h3>
+      <div class="summary-line"><span id="summary-item-count">0 items</span><span id="summary-subtotal">GHS 0</span></div>
+      <div class="summary-line"><span>Delivery</span><span>GHS 10</span></div>
+      <div class="summary-total"><span>Total</span><span id="cart-total-val">GHS 0</span></div>
+      <p class="summary-note">Pay securely by Mobile Money or Card — confirmed instantly.</p>
+      <button class="btn-checkout-dark" id="pay-order-btn" onclick="startCartCheckout()" style="display:none;">
+        <span>Checkout</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button class="btn-checkout-dark ghost" id="clear-cart-btn" onclick="clearCartNow()" style="display:none;">
+        <span>Empty cart</span>
+      </button>
+      <div class="accepted-methods">
+        <p>ACCEPTED PAYMENT METHODS</p>
+        <div class="accepted-icons">
+          <span class="net-badge net-badge-mtn">MTN</span>
+          <span class="net-badge net-badge-telecel">T</span>
+          <span class="net-badge net-badge-airteltigo">AT</span>
+          <span class="pay-icon-generic">VISA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="rec-section" id="rec-section" style="display:none;">
+    <h3>FREQUENTLY BOUGHT TOGETHER</h3>
+    <div class="rec-grid" id="rec-grid"></div>
+  </section>
+</main>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <span class="nav-logo-text">Health<em>Plus</em></span>
+            </a>
+            <p>Your trusted online pharmacy.<br>East Legon, Accra — real medicines, delivered fast.</p>
+            <div class="social-links">
+                <a href="https://wa.me/233203122589" class="social-link" target="_blank" rel="noopener noreferrer"><img src="assets/whatsapp.png" alt="WhatsApp"></a>
+                <a href="mailto:care@healthplusmedical.com" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+                <a href="tel:+233539314527" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.3 0 .7-.2 1L6.6 10.8z"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Shop</h4>
+            <ul>
+      <li><a href="order-online.html">Shop Medicines</a></li>
+      <li><a href="services.html">Shop by Category</a></li>
+      <li><a href="order-status.html">Track Your Order</a></li>
+      <li><a href="register.html">My Account</a></li>
+      <li><a href="order-online.html">Upload Prescription</a></li>
+    </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Categories</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <address>
+                37 Trinity Road<br>Near FabriCad, East Legon<br>Accra · GA-229-1995<br><br>
+                <a href="tel:+233539314527">+233 539 314 527</a><br>
+                <a href="mailto:care@healthplusmedical.com">care@healthplusmedical.com</a>
+            </address>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 HealthPlus Pharmacy. All rights reserved.</p>
+        <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms of Service</a></div>
+    </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/security.js" defer></script>
+<script src="js/core.js" defer></script>
+<script src="js/auth.js" defer></script>
+<script src="js/payment.js" defer></script>
+<script src="js/pharmacy.js" defer></script>
+<script src="js/cart.js" defer></script>
+<script src="js/wire.js" defer></script>
+<script src="js/ai-assistant.js" defer></script>
+</body>
+</html>

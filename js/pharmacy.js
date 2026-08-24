@@ -923,6 +923,7 @@ function addToCart(name, price, img, meta) {
   } else {
     _cart[name].qty += 1;
   }
+  saveCart(_cart);
   renderCart();
   showToast(name + ' added to cart ✓');
   flashCartIcon();
@@ -950,6 +951,7 @@ function addFreqToCart(name, price, btn) {
   }
   _cart[name].qty += qty;
 
+  saveCart(_cart);
   renderCart();
   showToast(name + ' ×' + qty + ' added to cart ✓');
   flashCartIcon();
@@ -978,6 +980,7 @@ function addProductToCart(btn) {
   } else {
     _cart[variant.name].qty += 1;
   }
+  saveCart(_cart);
   renderCart();
   showToast(variant.name + ' added to cart ✓');
   flashCartIcon();
@@ -1012,6 +1015,7 @@ function onVariantChange(select) {
    ──────────────────────────────────────────────────────────── */
 function removeFromCart(name) {
   delete _cart[name];
+  saveCart(_cart);
   renderCart();
 }
 
@@ -1105,6 +1109,7 @@ function setCartQty(name, valueStr) {
   if (!_cart[name]) return;
   var qty = parseInt(valueStr, 10) || 1;
   _cart[name].qty = qty;
+  saveCart(_cart);
   renderCart();
 }
 
@@ -1112,6 +1117,7 @@ function changeCartQty(name, delta) {
   if (!_cart[name]) return;
   _cart[name].qty += delta;
   if (_cart[name].qty <= 0) delete _cart[name];
+  saveCart(_cart);
   renderCart();
 }
 
@@ -1421,6 +1427,7 @@ function handleOrderSubmit(e) {
     revealTracking();
     /* Clear cart and reset the delivery section for next time */
     _cart = {};
+    saveCart(_cart);
     renderCart();
     var section = document.getElementById('delivery-section');
     if (section) section.classList.remove('open');
@@ -1701,6 +1708,10 @@ function _escapeHtml(str) {
    handler (handleOrderSubmit, below) validates + opens payment. */
 
 document.addEventListener('DOMContentLoaded', function () {
+  /* Hydrate the in-page cart from the shared (persisted) store */
+  _cart = loadCart();
+  renderCart();
+
   /* Initialise search listener */
   initSearch();
 
