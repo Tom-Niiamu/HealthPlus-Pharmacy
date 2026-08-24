@@ -84,12 +84,12 @@
   /* — Typography scale — */
   --font-display: "Fraunces", Georgia, serif;   /* Headings, numbers        */
   --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  --text-xs:   11px;
-  --text-sm:   12.5px;
-  --text-base: 14px;
-  --text-md:   15.5px;
-  --text-lg:   18px;
-  --text-xl:   22px;
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;     /* Professional 16px base body text */
+  --text-md:   17.5px;
+  --text-lg:   20px;
+  --text-xl:   25px;
 
   /* — Spacing — */
   --section-pad:   100px 60px;
@@ -2092,16 +2092,55 @@ address a:hover { color: var(--gold); }
     height: calc(100dvh - 66px);
     background: var(--paper);
     box-shadow: 0 24px 40px rgba(11, 61, 58, 0.14);
-    flex-direction: column; align-items: flex-start;
-    padding: 30px 24px; gap: 22px;
+    flex-direction: column; align-items: stretch;
+    padding: 14px 22px 32px;
+    gap: 0;
     transform: translateX(100%);
     transition: transform 0.35s ease;
     overflow-y: auto;
     z-index: 999;
   }
   .nav-links.open { transform: translateX(0); }
+  /* Drawer link rows — clean, separated, easy to tap */
+  .nav-links > li { width: 100%; }
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) {
+    border-bottom: 1px solid var(--mint-mid);
+  }
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a {
+    display: block;
+    width: 100%;
+    padding: 17px 4px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a::after { bottom: 12px; }
+  /* Top-level CTA (e.g. Shop Now) — full-width, centred */
+  .nav-links .nav-cta {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin-top: 12px;
+    padding: 15px 22px;
+    font-size: 16px;
+  }
+  /* Logged-in user row stays inline */
+  #nav-user-area { margin-top: 14px; }
+  /* Logged-out auth row — Sign In + Register side by side */
+  #nav-auth-area {
+    width: 100%;
+    margin-top: 18px;
+    gap: 10px;
+  }
+  #nav-auth-area .btn-outline,
+  #nav-auth-area .nav-cta {
+    flex: 1 1 auto;
+    justify-content: center;
+    font-size: 15px;
+    padding: 14px 16px;
+    width: 100%;
+  }
   .hamburger      { display: flex; }
-  .nav-cta        { order: 10; }
 
   /* Dark backdrop shown behind the open menu so it's clear a
      folder/menu has opened in front of the current page. It is
