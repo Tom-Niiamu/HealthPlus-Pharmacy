@@ -23,25 +23,25 @@
   </a>
   <ul class="nav-links" id="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="consultation.html">Consultations</a></li>
-    <li><a href="order-online.html">Pharmacy</a></li>
-    <li><a href="hospital-finder.html">Hospitals</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="emergency.html" class="nav-emergency"><span class="pulse-dot urgent"></span>Emergency</a></li>
-    <li><a href="consultation.html" class="nav-cta">Book a Doctor</a></li>
+    <li><a href="order-online.html">Shop</a></li>
+    <li><a href="services.html">Categories</a></li>
+    <li><a href="blog.html">Health Tips</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="order-online.html" class="nav-cta">Shop Now</a></li>
+    <!-- Auth: logged out -->
     <li id="nav-auth-area" style="display:flex;align-items:center;gap:8px;">
       <a href="register.html" class="btn-outline btn-sm">Sign In</a>
       <a href="register.html" class="nav-cta">Register</a>
     </li>
+    <!-- Auth: logged in (hidden by default, shown by auth.js) -->
     <li id="nav-user-area" style="display:none;align-items:center;gap:8px;">
-      <button class="nav-user-chip" onclick="showAccountModal()">
+      <button class="nav-user-chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg>
         <span id="nav-user-name">My Account</span>
       </button>
       <a class="nav-cart-btn" href="cart.html" aria-label="Cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span id="cart-badge" style="display:none;">0</span>
+        <span id="cart-badge" style="display:none;"></span>
       </a>
     </li>
   </ul>
