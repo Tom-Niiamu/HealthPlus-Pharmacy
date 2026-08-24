@@ -2112,9 +2112,6 @@ address a:hover { color: var(--gold); }
   .nav-links.open { transform: translateX(0); }
   /* Drawer link rows — clean, separated, easy to tap */
   .nav-links > li { width: 100%; }
-  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) {
-    border-bottom: 1px solid var(--mint-mid);
-  }
   .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a {
     display: block;
     width: 100%;
@@ -2142,8 +2139,8 @@ address a:hover { color: var(--gold); }
     margin: 4px 0 6px;
     gap: 10px;
   }
-  /* Divider separating the auth row from the nav links below it */
-  #nav-auth-area { border-bottom: 1px solid var(--mint-mid); padding-bottom: 16px; }
+  /* Auth row sits above the nav links; no divider line under it */
+  #nav-auth-area { margin-bottom: 12px; }
   /* Logged-out auth row — Sign In + Register, identical teal style */
   #nav-auth-area .btn-outline,
   #nav-auth-area .nav-cta {
