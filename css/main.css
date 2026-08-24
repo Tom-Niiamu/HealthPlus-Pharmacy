@@ -2603,6 +2603,10 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
    than a small popover, modelled on adidas.com/us/cart: a big
    item list on the left, a sticky order-summary card on the
    right with a bold dark Checkout button and payment badges. */
+.cart-page {
+  padding-top: 96px;
+}
+
 .cart-dropdown {
   position: fixed;
   inset: 0;
