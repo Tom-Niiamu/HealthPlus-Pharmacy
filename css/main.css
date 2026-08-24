@@ -2187,6 +2187,7 @@ address a:hover { color: var(--gold); }
 
   /* Cart panel — clean single-column mobile flow */
   .cart-page-inner {
+    display: block;
     grid-template-columns: 1fr;
     border-radius: 0;
     min-height: 100vh;
@@ -2195,6 +2196,7 @@ address a:hover { color: var(--gold); }
     gap: 18px;
   }
   .cart-page-main { width: 100%; }
+  .cart-page-summary { order: 2; margin-top: 12px; }
   .cart-page-head h2 { font-size: 22px; line-height: 1.15; }
   .cart-page-head p { font-size: 12px; line-height: 1.6; margin-bottom: 14px; }
   .cart-page-summary {
