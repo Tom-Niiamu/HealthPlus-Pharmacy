@@ -2184,9 +2184,24 @@ address a:hover { color: var(--gold); }
   body.nav-open { overflow: hidden; }
 
   /* Cart panel — single column, tighter padding */
-  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 70px 20px 40px; max-width: none; gap: 28px; }
+  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 80px 18px 48px; max-width: none; gap: 28px; }
   .cart-page-summary { position: static; }
   .cart-dropdown-close { top: 14px; right: 14px; }
+
+  /* Cart line items — stop the 84px thumb from eating the row on phones,
+     and let very long medicine names wrap cleanly instead of overflowing. */
+  .cart-item { grid-template-columns: 64px 1fr; gap: 14px; padding: 18px 0; }
+  .ci-thumb { width: 64px; height: 64px; border-radius: 10px; }
+  .ci-info { min-width: 0; }
+  .ci-top-row { align-items: flex-start; gap: 8px; }
+  .ci-name { font-size: 14px; font-weight: 700; line-height: 1.35; word-break: break-word; overflow-wrap: anywhere; }
+  .ci-remove { flex-shrink: 0; margin-top: 1px; }
+  .ci-bottom-row { margin-top: 12px; gap: 10px; flex-wrap: wrap; }
+  .ci-qty-wrap { flex: 0 0 auto; }
+  .ci-price { white-space: nowrap; }
+
+  /* Recommendations strip — 2-up on phones */
+  .rec-grid { grid-template-columns: repeat(2, 1fr); }
 
   /* Sections — reduce padding */
   .section,
@@ -2696,6 +2711,47 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
 .cart-page-perks { margin-top: 20px; }
 .cart-page-perks p { font-size: 12px; color: var(--sage); line-height: 1.9; }
 .empty-cart { font-size: 13px; color: var(--sage); padding: 30px 0; text-align: center; }
+
+/* ── Frequently Bought Together recommendations ── */
+.rec-section { margin-top: 44px; }
+.rec-section > h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.03em;
+  margin-bottom: 18px;
+}
+.rec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+.rec-card {
+  background: var(--paper);
+  border: 1.5px solid var(--mint-mid);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.rec-thumb {
+  width: 54px; height: 54px;
+  border-radius: 12px;
+  background: var(--mint);
+  color: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.rec-thumb svg { width: 26px; height: 26px; }
+.rec-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+.rec-card p  { font-size: 12px; color: var(--sage); margin-bottom: 14px; }
+.rec-card .btn-outline {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+  font-size: 12.5px;
+  padding: 9px 12px;
+}
+
 
 
 /* ============================================================
