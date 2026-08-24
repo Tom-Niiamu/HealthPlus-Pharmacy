@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — HealthPlus Pharmacy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<header>
+<nav class="site-nav" id="site-nav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><span class="nav-logo-text">Health<em>Plus</em></span></a>
+  <ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="order-online.html">Shop</a></li><li><a href="services.html">Categories</a></li><li><a href="order-status.html">Track Order</a></li></ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+</header>
+<main class="order-made-page">
+  <section class="invoice-shell" id="invoice-shell">
+    <div class="invoice-status"><span class="invoice-check">✓</span><div><p class="section-label"><span>Payment Received</span></p><h1>Order made successfully</h1><p class="invoice-muted">Your order is waiting for pharmacy confirmation.</p></div></div>
+    <div class="invoice-head"><div><strong id="invoice-order-id">HP-ORD-</strong><span id="invoice-date"></span></div><span class="invoice-pending">Waiting for confirmation</span></div>
+    <div class="invoice-details"><div><small>Customer</small><strong id="invoice-customer"></strong><span id="invoice-email"></span></div><div><small>Delivery to</small><strong id="invoice-address"></strong><span id="invoice-phone"></span></div><div><small>Payment</small><strong id="invoice-method"></strong><span id="invoice-network"></span></div></div>
+    <div class="invoice-items"><div class="invoice-table-head"><span>Order items</span><span>Amount</span></div><div id="invoice-item-list"></div></div>
+    <div class="invoice-totals"><div><span>Subtotal</span><strong id="invoice-subtotal"></strong></div><div><span>Delivery</span><strong id="invoice-delivery"></strong></div><div class="invoice-grand-total"><span>Total paid</span><strong id="invoice-total"></strong></div></div>
+    <div class="invoice-footer"><p>Keep this receipt for your records. We will contact you when your pharmacist confirms the order.</p><a class="btn-primary" href="order-status.html">Track my order</a><a class="invoice-back" href="order-online.html">Continue shopping</a></div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+<script src="js/core.js" defer></script>
+<script src="js/wire.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var order;
+  try { order = JSON.parse(sessionStorage.getItem('hp_latest_order') || 'null'); } catch (e) { order = null; }
+  if (!order) { window.location.href = 'order-online.html'; return; }
+  var date = new Date(order.placedAt);
+  document.getElementById('invoice-order-id').textContent = order.id;
+  document.getElementById('invoice-date').textContent = date.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+  document.getElementById('invoice-customer').textContent = order.customer.name;
+  document.getElementById('invoice-email').textContent = order.customer.email;
+  document.getElementById('invoice-address').textContent = order.customer.address;
+  document.getElementById('invoice-phone').textContent = order.customer.phone || 'Phone not provided';
+  document.getElementById('invoice-method').textContent = order.method === 'MOMO' ? 'Mobile Money' : order.method;
+  document.getElementById('invoice-network').textContent = order.network;
+  document.getElementById('invoice-subtotal').textContent = 'GHS ' + order.subtotal.toFixed(2);
+  document.getElementById('invoice-delivery').textContent = 'GHS ' + order.delivery.toFixed(2);
+  document.getElementById('invoice-total').textContent = 'GHS ' + order.total.toFixed(2);
+  document.getElementById('invoice-item-list').innerHTML = (order.items || []).map(function (item) {
+    return '<div class="invoice-item"><div><strong>' + item.name + '</strong><span>' + (item.meta || 'Medicine') + ' · Qty ' + item.qty + '</span></div><strong>GHS ' + item.lineTotal.toFixed(2) + '</strong></div>';
+  }).join('');
+});
+</script>
+</body>
+</html>

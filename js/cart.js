@@ -39,7 +39,9 @@ function startCartCheckout() {
     return;
   }
   openPayModal('order', total, function () {
-    showToast('Payment confirmed âœ“ â€” Your order is on its way ðŸ›µ');
+    var order = buildLatestOrderSnapshot('momo');
+    saveLatestOrder(order);
+    window.location.href = 'order-made.html';
     clearCartShared();
     if (typeof window._cart !== 'undefined') window._cart = {};
     renderCartPage();

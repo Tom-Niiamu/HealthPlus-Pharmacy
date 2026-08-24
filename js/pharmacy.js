@@ -1439,9 +1439,10 @@ function handleOrderSubmit(e) {
   closeDeliveryModal();
   var total = getCartTotal();
   openPayModal('order', total, function () {
-    /* After payment confirmed — reveal tracking */
-    showToast('Order placed! Tracking your delivery now 🛵');
-    revealTracking();
+    /* Save the order before clearing the basket, then show the invoice. */
+    var order = buildLatestOrderSnapshot('momo');
+    saveLatestOrder(order);
+    window.location.href = 'order-made.html';
     /* Clear cart and reset the delivery section for next time */
     _cart = {};
     saveCart(_cart);
