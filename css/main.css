@@ -2712,21 +2712,21 @@ body.has-promo-bar .site-footer { margin-top: 40px; }
 .summary-note { font-size: 12px; color: var(--sage); line-height: 1.6; margin: 14px 0 18px; }
 
 @media (max-width: 720px) {
-  .cart-page-inner {
-    display: block;
-    grid-template-columns: none;
-    padding: 24px 14px 36px;
-    gap: 0;
+  .cart-dropdown .cart-page-inner {
+    display: block !important;
+    grid-template-columns: none !important;
+    padding: 24px 14px 36px !important;
+    gap: 0 !important;
   }
-  .cart-page-main,
-  .cart-page-summary {
+  .cart-dropdown .cart-page-main,
+  .cart-dropdown .cart-page-summary {
     width: 100%;
     display: block;
   }
-  .cart-page-summary {
-    position: static;
-    margin-top: 18px;
-    padding: 18px 16px;
+  .cart-dropdown .cart-page-summary {
+    position: static !important;
+    margin-top: 18px !important;
+    padding: 18px 16px !important;
     border-radius: 18px;
     border: 1px solid var(--mint-mid);
   }
