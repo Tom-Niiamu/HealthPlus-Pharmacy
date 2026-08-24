@@ -2116,15 +2116,17 @@ address a:hover { color: var(--gold); }
   .nav-links.open { transform: translateX(0); }
   /* Drawer link rows — clean, separated, easy to tap */
   .nav-links > li { width: 100%; }
-  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a {
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a:not(.nav-cta) {
     display: block;
     width: 100%;
     padding: 15px 4px;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.2px;
+    text-align: right;
   }
-  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a::after { bottom: 12px; }
+  /* Hover underline hugs the right edge to match right-aligned menu text */
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a:not(.nav-cta)::after { bottom: 12px; left: auto; right: 0; }
   /* Top-level CTA (e.g. Shop Now) — full-width, centred */
   .nav-links .nav-cta {
     width: 100%;
