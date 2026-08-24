@@ -2164,14 +2164,14 @@ address a:hover { color: var(--gold); }
   #nav-auth-area .nav-cta:hover { background: var(--teal-soft); }
   .hamburger      { display: flex; }
 
-  /* Dark backdrop shown behind the open menu so it's clear a
-     folder/menu has opened in front of the current page. It is
-     created in JS (appended to <body>) because the nav's
-     backdrop-filter would otherwise trap a fixed descendant. */
+  /* Backdrop shown behind the open menu. Kept in the DOM (and clickable)
+     so tapping it closes the drawer, but made fully transparent so the
+     dark layer no longer creates the ash "ruler" line down the drawer's
+     left edge — the page simply shows through instead. */
   .nav-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(7, 40, 38, 0.5);
+    background: transparent;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
