@@ -354,10 +354,17 @@ function updateAuthUI() {
     if (navAuth) navAuth.style.display = 'none';
     if (navUser) navUser.style.display = 'flex';
     if (userNameEl) userNameEl.textContent = user.firstName;
+    /* When signed in the cart icon lives inside the profile area, so
+       hide the standalone shop-page cart control (if present). */
+    var navCartArea = document.getElementById('nav-cart-area');
+    if (navCartArea) navCartArea.style.display = 'none';
   } else {
     /* Show login button, hide user info */
     if (navAuth) navAuth.style.display = 'flex';
     if (navUser) navUser.style.display = 'none';
+    /* Signed out: show the standalone shop-page cart control again. */
+    var navCartAreaOut = document.getElementById('nav-cart-area');
+    if (navCartAreaOut) navCartAreaOut.style.display = 'flex';
   }
 }
 

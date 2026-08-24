@@ -2123,10 +2123,10 @@ address a:hover { color: var(--gold); }
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 0.2px;
-    text-align: right;
+    text-align: left;
   }
-  /* Hover underline hugs the right edge to match right-aligned menu text */
-  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a:not(.nav-cta)::after { bottom: 12px; left: auto; right: 0; }
+  /* Hover underline hugs the left edge to match left-aligned menu text */
+  .nav-links > li:not(#nav-auth-area):not(#nav-user-area) > a:not(.nav-cta)::after { bottom: 12px; left: 0; right: auto; }
   /* Top-level CTA (e.g. Shop Now) — full-width, centred */
   .nav-links .nav-cta {
     width: 100%;

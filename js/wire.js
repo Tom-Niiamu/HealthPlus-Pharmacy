@@ -49,9 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var cartBtn = document.querySelector('.nav-cart-btn');
   if (cartBtn) {
-    /* The cart icon is always inline beside the profile chip; tapping it
-       opens the dedicated Cart page rather than dropping a panel down. */
-    cartBtn.addEventListener('click', function () { window.location = 'cart.html'; });
+    /* On the shop page a cart dropdown exists — its cart buttons (both the
+       logged-out #nav-cart-toggle and the logged-in icon beside the profile
+       chip) open that popup. Everywhere else the cart icon navigates to the
+       dedicated Cart page. The shop-page binding is handled just below. */
+    if (!document.getElementById('cart-dropdown')) {
+      cartBtn.addEventListener('click', function () { window.location = 'cart.html'; });
+    }
   }
 
   var hamburger = document.getElementById('hamburger');
@@ -144,10 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ----------------------------------------------------------
      6. ORDER-ONLINE page — cart dropdown
      ---------------------------------------------------------- */
-  var cartToggle = document.getElementById('nav-cart-toggle');
-  if (cartToggle) {
-    cartToggle.addEventListener('click', function (e) { fn('toggleCartDropdown')(e, undefined); });
-  }
+  /* Both cart buttons on the shop page (logged-out #nav-cart-toggle and the
+     logged-in icon beside the profile chip) open the mini-cart popup. */
+  document.querySelectorAll('.nav-cart-btn').forEach(function (cartBtnEl) {
+    cartBtnEl.addEventListener('click', function (e) { fn('toggleCartDropdown')(e, undefined); });
+  });
   var cartClose = document.querySelector('.cart-dropdown-close');
   if (cartClose) {
     cartClose.addEventListener('click', function (e) { fn('toggleCartDropdown')(e, false); });

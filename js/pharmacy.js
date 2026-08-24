@@ -1159,14 +1159,17 @@ function animateCartBadge(newTotal) {
   }, 45);
 }
 
-/* Little pulse/pop on the cart icon whenever something is added */
+/* Little pulse/pop on the cart icon whenever something is added.
+   Pops every visible cart button (logged-out dropdown toggle AND the
+   logged-in cart icon beside the profile) so the feedback is consistent. */
 function flashCartIcon() {
-  var btn = document.getElementById('nav-cart-toggle');
-  if (!btn) return;
-  btn.classList.remove('cart-pop');
-  /* Restart animation even if it's already mid-flight */
-  void btn.offsetWidth;
-  btn.classList.add('cart-pop');
+  var btns = document.querySelectorAll('.nav-cart-btn');
+  btns.forEach(function (btn) {
+    btn.classList.remove('cart-pop');
+    /* Restart animation even if it's already mid-flight */
+    void btn.offsetWidth;
+    btn.classList.add('cart-pop');
+  });
 }
 
 /* Opens/closes the cart dropdown. Pass forceOpen=true/false to set
@@ -1184,10 +1187,12 @@ function toggleCartDropdown(e, forceOpen) {
    clicking the dim backdrop itself (outside the white panel) */
 document.addEventListener('click', function (e) {
   var dropdown = document.getElementById('cart-dropdown');
-  var toggleBtn = document.getElementById('nav-cart-toggle');
   if (!dropdown || !dropdown.classList.contains('open')) return;
   if (e.target === dropdown) { dropdown.classList.remove('open'); syncModalScrollLock(); return; }
-  if (dropdown.contains(e.target) || (toggleBtn && toggleBtn.contains(e.target))) return;
+  /* Any cart button (logged-out toggle OR logged-in button beside the
+     profile) counts as "inside" the toggle, so clicks on it don't close. */
+  var clickedCart = e.target.closest && e.target.closest('.nav-cart-btn');
+  if (dropdown.contains(e.target) || clickedCart) return;
   dropdown.classList.remove('open');
   syncModalScrollLock();
 });
