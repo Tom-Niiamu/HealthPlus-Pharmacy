@@ -85,12 +85,12 @@
 <!-- ══════════════════════════════════════════════════════
      MAIN CONTENT — Two columns: Registration | Benefits
      ══════════════════════════════════════════════════════ -->
-<section style="max-width:1320px;margin:0 auto;padding:80px 60px 100px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:50px;align-items:start;">
+<section class="auth-page-grid">
 
   <!-- ── LEFT: Registration & Login Tabs ── -->
   <div>
     <!-- Tab switcher -->
-    <div class="auth-tabs" style="margin:0 0 0 0;">
+    <div class="auth-tabs auth-tabs--page">
       <button class="auth-tab-btn active" data-tab="register">Create Account</button>
       <button class="auth-tab-btn" data-tab="login">Sign In</button>
     </div>
@@ -99,7 +99,7 @@
     <div class="auth-error" id="auth-error"></div>
 
     <!-- ── REGISTER PANEL ── -->
-    <div class="auth-panel" id="auth-panel-register" style="padding:28px 0 0;">
+    <div class="auth-panel auth-panel--page" id="auth-panel-register">
       <form id="registration-form" novalidate>
 
         <!-- Full name row -->
@@ -189,7 +189,7 @@
     </div>
 
     <!-- ── LOGIN PANEL ── -->
-    <div class="auth-panel" id="auth-panel-login" style="display:none;padding:28px 0 0;">
+    <div class="auth-panel auth-panel--page" id="auth-panel-login" style="display:none;">
       <form id="login-form" novalidate>
         <div class="form-group">
           <label for="login-email">Email Address</label>
@@ -210,87 +210,7 @@
     </div>
   </div>
 
-  <!-- ── RIGHT: Benefits sidebar ── -->
-  <div>
-    <!-- Customer ID info card -->
-    <div style="background:var(--teal);border-radius:var(--radius-xl);padding:32px;color:#fff;margin-bottom:24px;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:36px;height:36px;color:var(--gold);margin-bottom:16px;">
-        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-      </svg>
-      <h3 style="color:#fff;font-size:20px;margin-bottom:10px;">Your Customer ID</h3>
-      <p style="color:rgba(255,255,255,0.65);font-size:14px;line-height:1.7;">
-        When you register, you receive a unique Customer ID (e.g. HP-K7X9M2). Use it to track orders and access your order history across all HealthPlus services.
-      </p>
-    </div>
 
-    <!-- Benefits list -->
-    <div style="background:var(--mint);border-radius:var(--radius-xl);padding:32px;">
-      <h3 style="font-size:18px;margin-bottom:20px;">Why Create an Account?</h3>
-      <div class="homecall-list" style="margin:0;">
-        <div class="homecall-item">
-          <span class="homecall-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          </span>
-          <div>
-            <strong>Faster checkout</strong>
-            <span>Your details are saved — check out in seconds.</span>
-          </div>
-        </div>
-        <div class="homecall-item">
-          <span class="homecall-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          </span>
-          <div>
-            <strong>Order history &amp; tracking</strong>
-            <span>View all past orders and track live deliveries.</span>
-          </div>
-        </div>
-        <div class="homecall-item">
-          <span class="homecall-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          </span>
-          <div>
-            <strong>Email confirmations</strong>
-            <span>Receive order and delivery confirmations instantly.</span>
-          </div>
-        </div>
-        <div class="homecall-item">
-          <span class="homecall-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          </span>
-          <div>
-            <strong>International customers welcome</strong>
-            <span>Register from any country — we support all nationalities.</span>
-          </div>
-        </div>
-        <div class="homecall-item">
-          <span class="homecall-check">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          </span>
-          <div>
-            <strong>SSL-encrypted & private</strong>
-            <span>Your data is protected and never shared without consent.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Trust badges -->
-    <div class="trust-badges" style="margin-top:20px;">
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/></svg>
-        256-bit SSL
-      </div>
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-        Data Protected
-      </div>
-      <div class="trust-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5l8-3z"/></svg>
-        Verified Secure
-      </div>
-    </div>
-  </div>
 
 </section>
 
