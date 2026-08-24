@@ -2185,23 +2185,51 @@ address a:hover { color: var(--gold); }
   /* Lock background scroll while the mobile menu overlay is open */
   body.nav-open { overflow: hidden; }
 
-  /* Cart panel — single column, tighter padding */
-  .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 40px 18px 48px; max-width: none; gap: 20px; }
-  .cart-page-head h2 { font-size: 20px; }
-  .cart-page-head p { font-size: 12px; margin-bottom: 16px; }
-  .cart-page-summary { position: static; padding: 20px; }
-  .cart-page-summary h3 { font-size: 13px; margin-bottom: 12px; }
+  /* Cart panel — clean single-column mobile flow */
+  .cart-page-inner {
+    grid-template-columns: 1fr;
+    border-radius: 0;
+    min-height: 100vh;
+    padding: 24px 14px 36px;
+    max-width: none;
+    gap: 18px;
+  }
+  .cart-page-main { width: 100%; }
+  .cart-page-head h2 { font-size: 22px; line-height: 1.15; }
+  .cart-page-head p { font-size: 12px; line-height: 1.6; margin-bottom: 14px; }
+  .cart-page-summary {
+    position: static;
+    padding: 18px 16px;
+    background: var(--paper);
+    border-radius: 18px;
+    border: 1px solid var(--mint-mid);
+  }
+  .cart-page-summary h3 { font-size: 13px; margin-bottom: 14px; }
+  .summary-line, .summary-total { font-size: 13px; }
+  .summary-note { font-size: 12px; margin: 12px 0 16px; }
+  .btn-checkout-dark { padding: 13px 16px; }
   .cart-dropdown-close { top: 14px; right: 14px; }
 
-  /* Cart line items — stop the 84px thumb from eating the row on phones,
-     and let very long medicine names wrap cleanly instead of overflowing. */
-  .cart-item { grid-template-columns: 60px 1fr; gap: 12px; padding: 14px 0; }
-  .ci-thumb { width: 60px; height: 60px; border-radius: 8px; }
-  .ci-name { font-size: 13px; }
-  .ci-meta { font-size: 11px; }
-  .ci-bottom-row { margin-top: 10px; }
-  .qty-select { padding: 5px 20px 5px 8px; font-size: 12px; }
+  /* Cart line items — compact, readable, and wrapped on phones */
+  .cart-item {
+    grid-template-columns: 68px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    align-items: start;
+  }
+  .ci-thumb { width: 68px; height: 68px; border-radius: 10px; }
+  .ci-top-row { align-items: flex-start; }
+  .ci-name { font-size: 14px; line-height: 1.35; }
+  .ci-meta { font-size: 11px; margin-top: 6px; }
+  .ci-bottom-row {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-top: 12px;
+  }
+  .ci-qty-wrap { width: 86px; }
+  .qty-select { padding: 6px 24px 6px 10px; font-size: 12px; }
   .ci-price { font-size: 13px; }
+  .ci-remove { padding: 2px 0 0; }
 
   /* Recommendations strip — 2-up on phones */
   .rec-grid { grid-template-columns: repeat(2, 1fr); }
