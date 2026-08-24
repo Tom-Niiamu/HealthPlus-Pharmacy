@@ -2077,18 +2077,30 @@ address a:hover { color: var(--gold); }
 @media (max-width: 720px) {
   /* Nav — collapse to hamburger */
   .site-nav { padding: 0 20px; height: 66px; }
+  /* NOTE: .site-nav uses backdrop-filter, which makes it the containing
+     block for any position:fixed descendant. A fixed menu would therefore
+     be trapped inside the 66px-tall nav and scroll inside that tiny area.
+     We use position:absolute + top:100% so the panel is anchored to the
+     bottom edge of the (fixed) nav and spans the rest of the viewport. */
   .nav-links {
-    position: fixed; top: 66px; left: 0; right: 0; bottom: 0;
+    position: absolute;
+    top: 100%; left: 0; right: 0; bottom: auto;
+    height: calc(100vh - 66px);
+    height: calc(100dvh - 66px);
     background: var(--paper);
+    box-shadow: 0 24px 40px rgba(11, 61, 58, 0.14);
     flex-direction: column; align-items: flex-start;
     padding: 30px 24px; gap: 22px;
     transform: translateX(100%);
     transition: transform 0.35s ease;
     overflow-y: auto;
+    z-index: 999;
   }
   .nav-links.open { transform: translateX(0); }
   .hamburger      { display: flex; }
   .nav-cta        { order: 10; }
+  /* Lock background scroll while the mobile menu overlay is open */
+  body.nav-open { overflow: hidden; }
 
   /* Cart panel — single column, tighter padding */
   .cart-page-inner { grid-template-columns: 1fr; border-radius: 0; min-height: 100vh; padding: 70px 20px 40px; max-width: none; gap: 28px; }

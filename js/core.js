@@ -13,7 +13,10 @@
    ──────────────────────────────────────────────────────────── */
 function toggleNav() {
   const nav = document.getElementById('nav-links');
-  if (nav) nav.classList.toggle('open');
+  if (!nav) return;
+  const open = nav.classList.toggle('open');
+  /* Lock background scroll while the mobile menu overlay is open */
+  document.body.classList.toggle('nav-open', open);
 }
 
 /* ── MODAL SCROLL LOCK ───────────────────────────────────────
@@ -41,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
     link.addEventListener('click', function () {
       const nav = document.getElementById('nav-links');
       if (nav) nav.classList.remove('open');
+      /* Restore background scroll */
+      document.body.classList.remove('nav-open');
     });
   });
 
